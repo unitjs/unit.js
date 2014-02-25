@@ -19,6 +19,7 @@ var
   should       = require('should'),
   must         = require('must'),
   sinon        = require('sinon'),
+  supertest    = require('supertest'),
   util         = require('./lib/util'),
   main         = {
     assert:         assert,
@@ -28,7 +29,8 @@ var
     spy:            sinon.spy,
     stub:           sinon.stub,
     mock:           sinon.mock,
-    useFakeTimers:  sinon.useFakeTimers
+    useFakeTimers:  sinon.useFakeTimers,
+    httpAgent:      supertest
   }
 ;
 

@@ -12,7 +12,10 @@
 
 'use strict';
 
-var test = require('../../');
+var 
+  test = require('../../'),
+  noder = require('noder.io')
+;
 
 describe('Unit.js provides several API unified ' + 
   'and several assertion styles', function(){
@@ -123,6 +126,37 @@ describe('Unit.js provides several API unified ' +
     // then that actual value '===' expected value
 		must('foobar').be.equal('foobar');
 	});
+
+  it('supertest library to as httpAgent', function(){
+    
+    var agent;
+
+    test
+      .bool(noder.isApp())
+        .isFalse()
+
+      .when(function(){
+
+        noder.app.get('/', function(req, res){
+          res.send('hello world');
+        });
+
+        agent = test.httpAgent(noder.app);
+      })
+
+      .then(function(){
+
+        test.bool(noder.isApp()).isTrue();
+        
+        test.httpAgent(noder.app)
+          .get('/')
+          .expect('x-powered-by', /noder/i)
+        ;
+
+      })
+    ;
+  });
+  
 });
 
 it('Unit.js is expressive and fluent', function(){
