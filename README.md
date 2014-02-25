@@ -429,6 +429,7 @@ The API of Unit.js is fanatically documented with examples for all assertions.
 - guide : several tutorials to learn the unit testing with Unit.js.
 - [Unit.js Quickstart](http://unitjs.com/doc-quickstart.html)
 
+
 ## License
 
 Unit.js is released under a *Lesser GNU Affero General Public License*, which in
@@ -442,10 +443,16 @@ summary means:
 
 For more convoluted language, see the [LICENSE](http://unitjs.com/license.html).
 
+
+## Related
+
+- [Unit.js package for Sublime Text editor](https://github.com/unitjs/sublime-unitjs)
+
+
 ## Author
 
 Unit.js is designed and built with love by
 
-| [![twitter/Nicolab_net](https://pbs.twimg.com/profile_images/1188191332/nico-snow-100x100_bigger.jpg)](http://nicolab.net) |
+| [![Nicolas Tallefourtane - Nicolab.net](http://www.gravatar.com/avatar/d7dd0f4769f3aa48a3ecb308f0b457fc?s=64)](http://nicolab.net) |
 |---|
 | [Nicolas Talle](http://nicolab.net) |
