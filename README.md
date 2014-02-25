@@ -350,10 +350,22 @@ node_modules/unit.js/bin/test test/example.js
 
 `example.js` is tested :)
 
+OR alias
+
+```shell
+node_modules/.bin/test test/example.js
+```
+
+Display the _spec_ report with `-R spec`
+
+```shell
+node_modules/.bin/test test/example.js -R spec
+```
+
 You can launch the tests for all files in the `test` directory
 
 ```shell
-node_modules/unit.js/bin/test test
+node_modules/.bin/test test -R spec --recursive
 ```
 
 > See also the [Mocha tutorial](http://unitjs.com/doc-mocha.html).
