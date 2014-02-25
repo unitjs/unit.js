@@ -11,7 +11,7 @@ Simple, intuitive and flexible unit testing framework for javascript.
 
 **= Unit.js**
 
-Unit.js is test runner and framework agnostic, by default Unit.js run with [Mocha](http://unitjs.com/doc-mocha.html) but works with any other runner. Unit.js can be used as an assertion library or as a full stack units testing framework with [Mocha](http://unitjs.com/doc-mocha.html).
+Unit.js is test runner and framework agnostic, by default Unit.js run with [Mocha](http://unitjs.com/doc-mocha.html) but works with any other runner. Unit.js can be used as an assertion library or as a full stack unit testing framework with [Mocha](http://unitjs.com/doc-mocha.html).
 
   * [Unit.js introduction](http://unitjs.com/doc-introduction.html)
   * [Getting started](http://unitjs.com/doc-quickstart.html)
@@ -358,7 +358,7 @@ node_modules/unit.js/bin/test test
 
 > See also the [Mocha tutorial](http://unitjs.com/doc-mocha.html).
 
-#### Example (proposal) of structured units tests suite
+#### Example (proposal) of structured unit tests suite
 
 ```js
 var test = require('unit.js');
@@ -417,7 +417,7 @@ describe('Learning by the example', function(){
 ```
 Result :
 
-![Result of units tests with Unit.js](http://unitjs.com/assets/img/screen_console_unitjs_quickstart_example_result.png)
+![Result of unit tests with Unit.js](http://unitjs.com/assets/img/screen_console_unitjs_quickstart_example_result.png)
 
 
 ## Fully documented
