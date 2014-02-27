@@ -19,21 +19,19 @@ describe('Asserter array()', function(){
   describe('array() behavior', function(){
 
     it('Does not contains assertions from the assertions containers', function(){
-
         test
-            .value(test.array([]).hasHeader)
-                .isUndefined()
+          .value(test.array([]).hasHeader)
+            .isUndefined()
 
-            .value(test.array([]).isError)
-                .isUndefined()
+          .value(test.array([]).isError)
+            .isUndefined()
 
-            .value(test.array([]).hasMessage)
-                .isUndefined()
+          .value(test.array([]).hasMessage)
+            .isUndefined()
 
-            .value(test.array([]).isInfinite)
-                .isUndefined()
+          .value(test.array([]).isInfinite)
+            .isUndefined()
         ;
-
     });
 
     it('Assert that the tested value is an `array`', function(){
@@ -93,7 +91,7 @@ describe('Asserter array()', function(){
   describe('Assertions of array()', function(){
 
     it('is(expected)', function(){
-
+      
       test
         .array(['foo', [0, 1]])
           .is(['foo', [0, 1]])

@@ -15,287 +15,288 @@
 var test = require('../');
 
 function once(fn) {
-	var
-		returnValue,
-		called = false
-	;
+  var returnValue;
+  var called = false;
 
-	return function() {
-		if (!called) {
-			called = true;
-			returnValue = fn.apply(this, arguments);
-		}
-		return returnValue;
-	};
+  return function() {
+    if (!called) {
+      called = true;
+      returnValue = fn.apply(this, arguments);
+    }
+    return returnValue;
+  };
 };
 
 var jQuery = {
-	ajax: function() {}
+  ajax: function() {}
 };
 
 function getTodos(listId, callback) {
-	jQuery.ajax({
-		url: '/todo/' + listId + '/items',
-		success: function(data) {
+  jQuery.ajax({
+    url: '/todo/' + listId + '/items',
+    success: function(data) {
 
-			// Node-style CPS: callback(err, data)
-			callback(null, data);
-		}
-	});
+      // Node-style CPS: callback(err, data)
+      callback(null, data);
+    }
+  });
 }
 
 describe('Unit.js provides sinon.js', function() {
 
-	describe('Spies', function() {
+  describe('Spies', function() {
 
 
-		it('calls the original function', function() {
-			var callback = test.spy();
-			var proxy = once(callback);
+    it('calls the original function', function() {
+      var callback = test.spy();
+      var proxy = once(callback);
 
-			proxy();
+      proxy();
 
-			test.assert(callback.called);
-		});
+      test.assert(callback.called);
+    });
 
-		it('calls the original function only once', function() {
-			var callback = test.spy();
-			var proxy = once(callback);
+    it('calls the original function only once', function() {
+      var callback = test.spy();
+      var proxy = once(callback);
 
-			proxy();
-			proxy();
+      proxy();
+      proxy();
 
-			test.assert(callback.calledOnce);
+      test.assert(callback.calledOnce);
 
-			// ...or:
-			test.assert.strictEqual(callback.callCount, 1);
-		});
+      // ...or:
+      test.assert.strictEqual(callback.callCount, 1);
+    });
 
-		it('calls original function with right this and args', function() {
-			var callback = test.spy();
-			var proxy = once(callback);
-			var obj = {};
+    it('calls original function with right this and args', function() {
+      var callback = test.spy();
+      var proxy = once(callback);
+      var obj = {};
 
-			proxy.call(obj, 1, 2, 3);
+      proxy.call(obj, 1, 2, 3);
 
-			test.assert(callback.calledOn(obj));
-			test.assert(callback.calledWith(1, 2, 3));
-		});
-	});
+      test.assert(callback.calledOn(obj));
+      test.assert(callback.calledWith(1, 2, 3));
+    });
+  });
 
-	describe('Stubs', function() {
+  describe('Stubs', function() {
 
-		it('returns the return value from the original function', function() {
-			var callback = test.stub().returns(42);
-			var proxy = once(callback);
+    it('returns the return value from the original function', function() {
+      var callback = test.stub().returns(42);
+      var proxy = once(callback);
 
-			test.assert.strictEqual(proxy(), 42);
-		});
-	});
+      test.assert.strictEqual(proxy(), 42);
+    });
+  });
 
-	describe('Testing Ajax', function() {
+  describe('Testing Ajax', function() {
 
-		after(function() {
-			// When the test either fails or passes, restore the original
-			// jQuery ajax function (Sinon.JS also provides tools to help
-			// test frameworks automate clean-up like this)
-			jQuery.ajax.restore();
-		});
+    after(function() {
+      // When the test either fails or passes, restore the original
+      // jQuery ajax function (Sinon.JS also provides tools to help
+      // test frameworks automate clean-up like this)
+      jQuery.ajax.restore();
+    });
 
-		it('makes a GET request for todo items', function() {
-			test.stub(jQuery, 'ajax');
+    it('makes a GET request for todo items', function() {
+      test.stub(jQuery, 'ajax');
 
-			getTodos(42, test.spy());
+      getTodos(42, test.spy());
 
-			test.assert(jQuery.ajax.calledWithMatch({
-				url: '/todo/42/items'
-			}));
-		});
+      test.assert(jQuery.ajax.calledWithMatch({
+        url: '/todo/42/items'
+      }));
+    });
 
-	});
+  });
 
 
 
-	describe('Faking time', function() {
+  describe('Faking time', function() {
 
-		function throttle(callback) {
-			var timer;
+    function throttle(callback) {
+      var timer;
 
-			return function() {
+      return function() {
 
-				clearTimeout(timer);
+        clearTimeout(timer);
 
-				var args = [].slice.call(arguments);
+        var args = [].slice.call(arguments);
 
-				timer = setTimeout(function() {
-					callback.apply(this, args);
-				}, 100);
-			};
-		}
+        timer = setTimeout(function() {
+          callback.apply(this, args);
+        }, 100);
+      };
+    }
 
-		var clock;
+    var clock;
 
-		before(function() {
-			clock = test.useFakeTimers();
-		});
+    before(function() {
+      clock = test.useFakeTimers();
+    });
 
-		after(function() {
-			clock.restore();
-		});
+    after(function() {
+      clock.restore();
+    });
 
-		it('calls callback after 100ms', function() {
-			var callback = test.spy();
-			var throttled = throttle(callback);
+    it('calls callback after 100ms', function() {
+      var callback = test.spy();
+      var throttled = throttle(callback);
 
-			throttled();
+      throttled();
 
-			clock.tick(99);
-			test.assert(callback.notCalled);
+      clock.tick(99);
+      test.assert(callback.notCalled);
 
-			clock.tick(1);
-			test.assert(callback.calledOnce);
+      clock.tick(1);
+      test.assert(callback.calledOnce);
 
-			// Also:
-			test.assert.strictEqual(new Date().getTime(), 100);
-		});
+      // Also:
+      test.assert.strictEqual(new Date().getTime(), 100);
+    });
 
-	});
+  });
 
-	describe('Mocks', function() {
-		it('returns the return value from the original function', function() {
-			var myAPI = {
-				method: function() {}
-			};
+  describe('Mocks', function() {
+    it('returns the return value from the original function', function() {
+      var myAPI = {
+        method: function() {}
+      };
 
-			var mock = test.mock(myAPI);
+      var mock = test.mock(myAPI);
 
-			mock.expects('method').once().returns(42);
+      mock.expects('method').once().returns(42);
 
-			var proxy = once(myAPI.method);
+      var proxy = once(myAPI.method);
 
-			test.assert.equal(proxy(), 42);
+      test.assert.equal(proxy(), 42);
 
-			mock.verify();
-		});
+      mock.verify();
+    });
 
-		it('test should call a method with exceptions', function() {
-			var myAPI = {
-				method: function() {}
-			};
+    it('test should call a method with exceptions', function() {
+      var myAPI = {
+        method: function() {}
+      };
 
-			var mock = test.mock(myAPI);
+      var mock = test.mock(myAPI);
 
-			mock.expects('method').once().throws();
+      mock.expects('method').once().throws();
 
-			test.exception(function() {
-				myAPI.method();
-			})
-				.isInstanceOf(Error);
+      test.exception(function() {
+        myAPI.method();
+      })
+        .isInstanceOf(Error);
 
-			mock.verify();
-		});
-	});
+      mock.verify();
+    });
+  });
 
-	describe('Matchers', function() {
-		it('test should assert fuzzy', function() {
-			var book = {
-				pages: 42,
-				author: 'cjno'
-			};
+  describe('Matchers', function() {
+    it('test should assert fuzzy', function() {
+      
+      var book = {
+        pages: 42,
+        author: 'cjno'
+      };
 
-			var spy = test.spy();
+      var spy = test.spy();
 
-			spy(book);
+      spy(book);
 
-			test.sinon.assert.calledWith(spy, test.sinon.match({
-				author: 'cjno'
-			}));
-			
-			test.sinon.assert.calledWith(spy, test.sinon.match.has('pages', 42));
-		});
+      test.sinon.assert.calledWith(spy, test.sinon.match({
+        author: 'cjno'
+      }));
 
-		it('test should stub method differently based on argument types', function() {
-			var callback = test.stub();
+      test.sinon.assert.calledWith(spy, test.sinon.match.has('pages', 42));
+    });
 
-			callback.withArgs(test.sinon.match.string).returns(true);
-			callback.withArgs(test.sinon.match.number).throws('TypeError');
+    it('test should stub method differently based on argument types',
+      function() {
+        var callback = test.stub();
 
-			test.bool(callback('abc')).isTrue(); // Returns true
+        callback.withArgs(test.sinon.match.string).returns(true);
+        callback.withArgs(test.sinon.match.number).throws('TypeError');
 
-			test.exception(function() {
-				callback(123); // Throws TypeError
-			})
-				.isValid(function(err) {
+        test.bool(callback('abc')).isTrue(); // Returns true
 
-					if (err.name === 'TypeError') {
-						return true;
-					}
-				});
-		});
+        test.exception(function() {
+          callback(123); // Throws TypeError
+        })
+          .isValid(function(err) {
 
-		it('Combining matchers', function() {
+            if (err.name === 'TypeError') {
+              return true;
+            }
+          });
+      });
 
-			var stringOrNumber = test.sinon.match.string
-				.or(test.sinon.match.number);
+    it('Combining matchers', function() {
 
-			var bookWithPages = test.sinon.match.object
-				.and(test.sinon.match.has('pages'));
+      var stringOrNumber = test.sinon.match.string
+        .or(test.sinon.match.number);
 
-			var book = {
-				pages: 42,
-				author: 'cjno'
-			};
+      var bookWithPages = test.sinon.match.object
+        .and(test.sinon.match.has('pages'));
 
-			var spy = test.spy();
-			var otherSpy = test.spy();
+      var book = {
+        pages: 42,
+        author: 'cjno'
+      };
 
-			spy(book);
-			otherSpy(10);
+      var spy = test.spy();
+      var otherSpy = test.spy();
 
-			test.sinon.assert.calledWith(spy, bookWithPages);
-			test.sinon.assert.calledWith(otherSpy, stringOrNumber);
-		});
+      spy(book);
+      otherSpy(10);
 
-		it('Custom matchers', function() {
+      test.sinon.assert.calledWith(spy, bookWithPages);
+      test.sinon.assert.calledWith(otherSpy, stringOrNumber);
+    });
 
-			var equal10 = test.sinon.match(function(value) {
-				return value === 10;
-			}, 'value is not equal to 10');
+    it('Custom matchers', function() {
 
-			var spy = test.spy();
-			var otherSpy = test.spy();
+      var equal10 = test.sinon.match(function(value) {
+        return value === 10;
+      }, 'value is not equal to 10');
 
-			spy(10);
-			otherSpy(42);
+      var spy = test.spy();
+      var otherSpy = test.spy();
 
-			// ok because the argument value 10 is identical to 10 expected
-			test.sinon.assert.calledWith(spy, equal10);
+      spy(10);
+      otherSpy(42);
 
-			test.exception(function() {
+      // ok because the argument value 10 is identical to 10 expected
+      test.sinon.assert.calledWith(spy, equal10);
 
-				// throws an exception because the argument value 42 
-				// is not identical to 10 expected
-				test.sinon.assert.calledWith(otherSpy, equal10);
-			})
-				.hasMessage(/value is not equal to 10/);
+      test.exception(function() {
 
-		});
-	});
+        // throws an exception because the argument value 42 
+        // is not identical to 10 expected
+        test.sinon.assert.calledWith(otherSpy, equal10);
+      })
+        .hasMessage(/value is not equal to 10/);
 
-	describe('Sandbox', function() {
-		it('test using test.sinon.test sandbox', test.sinon.test(function() {
+    });
+  });
 
-			var myAPI = {
-				method: function() {}
-			};
+  describe('Sandbox', function() {
+    it('test using test.sinon.test sandbox', test.sinon.test(function() {
 
-			var mockMyApi = this.mock(myAPI).expects('method').once().returns(42);
+      var myAPI = {
+        method: function() {}
+      };
 
-			var proxy = once(myAPI.method);
+      var mockMyApi = this.mock(myAPI).expects('method').once().returns(
+        42);
 
-			test.number(proxy()).isIdenticalTo(42);
+      var proxy = once(myAPI.method);
 
-			mockMyApi.verify();
-		}));
-	});
+      test.number(proxy()).isIdenticalTo(42);
+
+      mockMyApi.verify();
+    }));
+  });
 });

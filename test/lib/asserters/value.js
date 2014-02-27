@@ -26,12 +26,12 @@ describe('Asserter value()', function(){
       var assertions = rawAssertions.call(this, undefined);
 
       for(var method in assertions){
-          test.value(test.value(undefined)[method]).exists();
+        test.value(test.value(undefined)[method]).exists();
       }
 
       // ensures the test method
       test.exception(function(){
-          test.value(test.value(undefined)['foobar_not_exist']).exists();
+        test.value(test.value(undefined)['foobar_not_exist']).exists();
       });
     });
     
@@ -40,7 +40,6 @@ describe('Asserter value()', function(){
   describe('Assertions of value()', function(){
 
     it('is(expected)', function(){
-
       test
         .value({fluent: 'is awesome', deep: [0, 1]})
           .is({fluent: 'is awesome', deep: [0, 1]})
@@ -53,7 +52,6 @@ describe('Asserter value()', function(){
     });
 
     it('isNot(expected)', function(){
-
       test
         .value({fluent: 'is awesome', deep: [0, 1]})
           .isNot({fluent: 'is awesome', deep: [0, '1']})
@@ -106,12 +104,10 @@ describe('Asserter value()', function(){
         .exception(function(){
           test.value('foobar').isNotEqualTo('foobar');
         })
-        
       ;
     });
     
     it('match(expected)', function(){
-
       test
         .value('foobar')
           .match(/[fo]+bar$/)
@@ -129,7 +125,6 @@ describe('Asserter value()', function(){
     });
     
     it('notMatch(expected)', function(){
-
       test
         .value('foobar')
           .notMatch(/[foo]+bazzz$/)
@@ -147,7 +142,6 @@ describe('Asserter value()', function(){
     });
     
     it('matchEach(expected)', function(){
-
       test
         .value([10, 11, 12])
           .matchEach(function(it) {
@@ -157,36 +151,31 @@ describe('Asserter value()', function(){
         .exception(function(){
 
           // error if one or several does not match
-          test.value([10, 11, 12])
-            .matchEach(function(it) { 
-              return it >= 11; 
-            })
+          test.value([10, 11, 12]).matchEach(function(it) { 
+            return it >= 11; 
+          });
         })
       ;
     });
     
     it('notMatchEach(expected)', function(){
-
       test
         .value([10, 11, 12])
           .notMatchEach(function(it) { 
             return it >= 13; 
           })
 
-
         .exception(function(){
 
           // error all match
-          test.value([10, 11, 12])
-            .notMatchEach(function(it) { 
-              return it >= 11; 
-            })
+          test.value([10, 11, 12]).notMatchEach(function(it) { 
+            return it >= 11; 
+          });
         })
       ;
     });
     
     it('isValid(expected)', function(){
-
       test
         .value(42)
           .isValid(function(actual) { 
@@ -194,16 +183,14 @@ describe('Asserter value()', function(){
           })
 
         .exception(function(){
-          test.value(42)
-            .isValid(function(actual) { 
-              return actual === 'expected value'; 
-            })
+          test.value(42).isValid(function(actual) { 
+            return actual === 'expected value'; 
+          });
         })
       ;
     });
     
     it('isNotValid(expected)', function(){
-
       test
         .value(42)
           .isNotValid(function(actual) { 
@@ -211,16 +198,14 @@ describe('Asserter value()', function(){
           })
 
         .exception(function(){
-          test.value(42)
-            .isNotValid(function(actual) { 
-              return actual === 42; 
-            })
+          test.value(42).isNotValid(function(actual) { 
+            return actual === 42; 
+          });
         })
       ;
     });
     
     it('isType(expected)', function(){
-
       test
         .value('foobar').isType('string')
 
@@ -249,7 +234,6 @@ describe('Asserter value()', function(){
     });
     
     it('isNotType(expected)', function(){
-
       test
         .value({}).isNotType('string')
 
@@ -668,7 +652,6 @@ describe('Asserter value()', function(){
           ;
         })
       ;
-      
     });
 
     it('throws([constructor], [expected])', function(){
@@ -694,10 +677,10 @@ describe('Asserter value()', function(){
             }
           })
           
-          // 'then' does nothing, it's just to make the test more expressive
-          .then()
-            .bool(indicator)
-              .isTrue()
+        // 'then' does nothing, it's just to make the test more expressive
+        .then()
+          .bool(indicator)
+            .isTrue()
 
         .exception(function(){
           test.value(function(){
@@ -710,7 +693,6 @@ describe('Asserter value()', function(){
     });
     
     it('hasLength(expected)', function(){
-
       test
         .value([1, 2])
           .hasLength(2)
@@ -725,7 +707,6 @@ describe('Asserter value()', function(){
     });
 
     it('hasNotLength(expected)', function(){
-
       test
         .value([1, 2])
           .hasNotLength(1)
@@ -740,7 +721,6 @@ describe('Asserter value()', function(){
     });
 
     it('isBetween(begin, end)', function(){
-
       test
         .value(2)
           .isBetween(2, 4)
@@ -758,7 +738,6 @@ describe('Asserter value()', function(){
     });
 
     it('isNotBetween(begin, end)', function(){
-
       test
         .value(1)
           .isNotBetween(2, 4)
@@ -856,7 +835,6 @@ describe('Asserter value()', function(){
 
     
     it('isEnumerable(property)', function(){
-
       test
         .value({prop: 'foobar'})
           .isEnumerable('prop')
@@ -869,7 +847,6 @@ describe('Asserter value()', function(){
     });
 
     it('isNotEnumerable(property)', function(){
-
       test
         .value(function() {})
           .isNotEnumerable('call')
@@ -1098,7 +1075,6 @@ describe('Asserter value()', function(){
     });
     
     it('hasValue(expected)', function(){
-
       test
         .value('Hello, Nico!')
           .hasValue('Nico')
@@ -1117,7 +1093,6 @@ describe('Asserter value()', function(){
     });
 
     it('notHasValue(expected)', function(){
-
       test
         .value('Hello, Nico!')
           .notHasValue('Bye')
@@ -1136,7 +1111,6 @@ describe('Asserter value()', function(){
     });
 
     it('hasValues(expected)', function(){
-
       test        
         .value([1, 42, 3])
           .hasValues([42, 3])
@@ -1149,7 +1123,6 @@ describe('Asserter value()', function(){
     });
 
     it('notHasValues(expected)', function(){
-
       test        
         .value([1, 42, 3])
           .notHasValues([4, 2])
@@ -1162,7 +1135,6 @@ describe('Asserter value()', function(){
     });
 
     it('contains(expected [, ...])', function(){
-      
       test
         .value('hello boy')
           .contains('boy')
@@ -1202,7 +1174,6 @@ describe('Asserter value()', function(){
     });
 
     it('notContains(expected [, ...])', function(){
-      
       test
         .value('hello boy')
           .notContains('bye')
@@ -1326,6 +1297,7 @@ describe('Asserter value()', function(){
         .exception(function(){
           test.value(req).hasHeader('content-type', 'text/html');
         })
+
         .value(req)
           .hasHeader('content-type')
           .hasHeader('content-type', 'application/json')
@@ -1504,6 +1476,7 @@ describe('Asserter value()', function(){
       test
         .value(req)
           .notHasHeaderHtml()
+          
       // or
         .string(req.headers['content-type'])
           .notStartsWith('text/html')

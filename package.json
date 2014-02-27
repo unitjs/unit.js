@@ -1,12 +1,17 @@
  {
   "name": "unit.js",
+
   "version": "0.1.3",
+
   "description": "Simple, intuitive and flexible unit testing framework for javascript / Node.js. Integrates Mocha (optional) and the great assertions libraries Must.js, Should.js, Assert of Node.js, Sinon.js and other friendly features.",
+
   "main": "index.js",
+
   "bin": {
     "test": "./bin/test",
     "unitjs": "./unitjs"
   },
+
   "keywords": [
     "unit test",
     "tdd",
@@ -25,27 +30,31 @@
     "generator",
     "report"
   ],
+
   "author": {
     "name":"Nicolas Tallefourtane",
     "url":"http://nicolab.net"
   },
+
   "homepage": "http://unitjs.com",
+
   "repository": {
     "type": "git",
     "url": "git://github.com/unitjs/unit.js.git"
   },
+
   "bugs": "https://github.com/unitjs/unit.js/issues",
-  
+
   "engines": {
     "node": "node >= 0.10.0"
   },
-
-	"dependencies": {
+  
+  "dependencies": {
     "must":   "~0.11.0",
     "should": "~3.1.2",
     "sinon":  "~1.8.2",
     "supertest": "~0.9.0",
     "noder.io": "~0.1.0",
     "mocha": ">= 1.12.0 < 2"
-	}
+  }
 }
