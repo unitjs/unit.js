@@ -1,7 +1,8 @@
 # Unit.js
+[![Actual version published in NPM](http://img.shields.io/npm/v/unit.js.svg)](https://www.npmjs.org/package/unit.js) 
 
 Simple, intuitive and flexible unit testing framework for javascript.
-        
+
   * &#43; Must.js 
   * &#43; Should.js 
   * &#43; Assert of Node.js
@@ -9,7 +10,7 @@ Simple, intuitive and flexible unit testing framework for javascript.
   * &#43; fluent style like [Atoum](https://github.com/atoum/atoum)
   * &#43; other friendly features.
 
-**= Unit.js**
+ **=** [![Unit JS unit testing framework for javascript](http://unitjs.com/assets/img/unitjs.png)](http://unitjs.com)
 
 Unit.js is test runner and framework agnostic, by default Unit.js run with [Mocha](http://unitjs.com/doc-mocha.html) but works with any other runner. Unit.js can be used as an assertion library or as a full stack unit testing framework with [Mocha](http://unitjs.com/doc-mocha.html).
 
@@ -251,6 +252,45 @@ should('foobar').be.equal('foobar');
 
 See the [Should.js tutorial](http://unitjs.com/doc-should-js.html).
 
+#### httpAgent
+
+Testing _Node.js_ HTTP servers (response and request) with the _httpAgent_.
+
+_httpAgent_ uses the modules _supertest_ and _superagent_.
+
+```js
+var 
+  test = require('unit.js'),
+  express = require('express')
+;
+
+var app = express();
+
+app.get('/user', function(req, res){
+  res.send(200, { name: 'tobi' });
+});
+
+test.httpAgent(app)
+  .get('/user')
+  .expect('Content-Type', /json/)
+  .expect('Content-Length', '20')
+  .expect(200)
+  .end(function(err, res){
+    if (err) throw err;
+  });
+```
+
+Anything you can do with _supertest_ and _superagent_, you can do with _httpAgent_ - for example multipart file uploads!
+
+```js
+test.httpAgent(app)
+  .post('/user')
+  .attach('avatar', 'test/fixtures/homeboy.jpg')
+  // ...
+```
+
+See also the [HTTP agent tutorial](http://unitjs.com/doc-http-agent.html).
+
 #### Sinon.js
 
 Mock :
@@ -370,6 +410,7 @@ node_modules/.bin/test test -R spec --recursive
 
 > See also the [Mocha tutorial](http://unitjs.com/doc-mocha.html).
 
+
 #### Example (proposal) of structured unit tests suite
 
 ```js
@@ -468,3 +509,5 @@ Unit.js is designed and built with love by
 | [![Nicolas Tallefourtane - Nicolab.net](http://www.gravatar.com/avatar/d7dd0f4769f3aa48a3ecb308f0b457fc?s=64)](http://nicolab.net) |
 |---|
 | [Nicolas Talle](http://nicolab.net) |
+| [![Support via Gittip](http://img.shields.io/gittip/Nicolab.svg)](https://www.gittip.com/Nicolab/) |
+| [![Make a donation via Paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PGRH4ZXP36GUC) |
