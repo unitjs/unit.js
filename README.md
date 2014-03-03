@@ -12,7 +12,7 @@ Simple, intuitive and flexible unit testing framework for javascript.
 
  **=** [![Unit JS unit testing framework for javascript](http://unitjs.com/assets/img/unitjs.png)](http://unitjs.com)
 
-Unit.js is test runner and framework agnostic, by default Unit.js run with [Mocha](http://unitjs.com/doc-mocha.html) but works with any other runner. Unit.js can be used as an assertion library or as a full stack unit testing framework with [Mocha](http://unitjs.com/doc-mocha.html).
+Unit.js is test runner and framework agnostic, by default Unit.js run with [Mocha](http://unitjs.com/doc-mocha.html) but works with any other runner (works with Jasmine and other). Unit.js can be used as an assertion library or as a full stack unit testing framework ready to use with [Mocha](http://unitjs.com/doc-mocha.html).
 
   * [Unit.js introduction](http://unitjs.com/doc-introduction.html)
   * [Getting started](http://unitjs.com/doc-quickstart.html)
@@ -472,6 +472,21 @@ Result :
 
 ![Result of unit tests with Unit.js](http://unitjs.com/assets/img/screen_console_unitjs_quickstart_example_result.png)
 
+## Migrating to Unit.js
+
+_Unit.js_ should work with any framework (and runner) unit tests.
+I tested _Unit.js_ with _Mocha_ and _Jasmine_, it works very well with these two runners.
+
+For use _Unit.js_ in an existing tests suite, you can write your new tests with _Unit.js_ in your new files of unit tests.
+
+For use _Unit.js_ in an existing file of unit tests, you just have to load it with `require('unit.js')` and use it like any assertion lib, example:
+
+```js
+var test = require('unit.js');
+
+// your old tests with your old assertion lib 
+// and your new tests with Unit.js
+```
 
 ## Fully documented
 
@@ -481,6 +496,17 @@ The API of Unit.js is fanatically documented with examples for all assertions.
 - spec : the spec of all asserters.
 - guide : several tutorials to learn the unit testing with Unit.js.
 - [Unit.js Quickstart](http://unitjs.com/doc-quickstart.html)
+
+
+## Learning
+
+Now take a little time to learn (see [UnitJS.com](http://unitjs.com)) with the tutorials in the _guide_, the _API doc_ and looking at the many examples of codes in the _spec doc_ and unit tests.
+
+You are operational and productive from the outset. The style of writing your unit tests is not imposed, it depends on your preferences. Unit.js is flexible enough to fit your coding style without effort on your part.
+
+The mastery of Unit.js is very fast, especially if you already know one of the libraries of assertions ([Assert of Node.js](http://unitjs.com/doc-assert-node-js.html), [Shoud.js](http://unitjs.com/doc-should-js.html), [Must.js](http://unitjs.com/doc-must-js.html), [Sinon.js](http://unitjs.com/doc-sinon-js.html), [Atoum](https://github.com/atoum/atoum)).
+
+If you use the _Sublime Text_ editor, I wrote a [package for Sublime Text](https://github.com/unitjs/sublime-unitjs) (pack of useful _snippets_ for writing unit tests with _Unit.js_ in _Sublime Text_ editor).
 
 
 ## License
