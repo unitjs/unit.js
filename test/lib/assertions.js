@@ -13,8 +13,10 @@
 'use strict';
 
 var
-  test = require('../../'),
-  noder = require('noder.io')
+  test  = require('../../'),
+  noder = require('noder.io'),
+  http  = require('http'),
+  url   = require('url')
 ;
 
 describe('Unit.js provides several API unified ' +
@@ -129,28 +131,123 @@ describe('Unit.js provides several API unified ' +
 
   it('supertest library to as httpAgent', function() {
 
-    var agent;
+    var server;
+    var indicator;
+    var testServer;
 
     test
-      .bool(noder.isApp())
-        .isFalse()
+      .given('Init the indicators', function(){
 
-      .when(function() {
-
-        noder.app.get('/', function(req, res) {
-          res.send('hello world');
+        indicator = test.createCollection({
+          home_page: false,
+          some_page: false
         });
+      })
+      
+      .given('Create a server asserter', function(){
 
-        agent = test.httpAgent(noder.app);
+        testServer = function(name){
+
+          test.bool(indicator.get(name + '_page')).isFalse();
+
+          noder.q.fcall(function(){
+            return test.httpAgent(server).get('/' + (name == 'home' ? '' : name));
+          })
+          .then(function(request){
+            request
+              .expect(200, name + ' page')
+              .expect('x-powered-by', 'unit.js')
+              .expect('Content-Type', /text/)
+
+              .end(function(err, res){
+                test
+                  .bool(indicator.get(name + '_page'))
+                    .isTrue()
+
+                  .value(err)
+                    .isFalsy()
+                    
+                  .string(res.text)
+                    .isIdenticalTo(name + ' page')
+                ;
+              })
+            ;
+          });
+        };
       })
 
-      .then(function() {
+      .when('Create a server', function () {
 
-        test.bool(noder.isApp()).isTrue();
+        server = http.createServer(function(req, res) {
 
-        test.httpAgent(noder.app)
-          .get('/')
-          .expect('x-powered-by', /noder/i)
+          var page = url.parse(req.url).pathname;
+
+          res.writeHead(200, {
+            'Content-Type': 'text/plain',
+            'x-powered-by': 'unit.js'
+          });
+
+          if (page == '/') {
+            indicator.set('home_page', true);
+            res.write('home page');
+
+          }else if (page == '/some') {
+            indicator.set('some_page', true);
+            res.write('some page');
+          }
+
+          res.end();
+        });
+
+        server.listen(0);
+      })
+
+      .then('Test the server: "/"', function(){
+        testServer('home');
+      })
+
+      .then('Test the server: "/some"', function(){
+        testServer('some');
+      })
+
+      .then('Test error', function(){
+
+        test
+          .case('Bad request', function(){
+            // async queue
+            noder.q.fcall(function(){
+              return test.httpAgent(server).get('/bad');
+            })
+            .then(function(request){
+              test.exception(function(){
+                request.expect(200);
+              });
+            });
+          })
+          
+          .given(indicator.set('home_page', false))
+
+          .case('Bad content', function(){
+
+            // async queue
+            noder.q.fcall(
+              function(){
+                return test.httpAgent(server).get('/');
+              },
+
+              function(request){
+
+                request.expect(200, 'home page');
+
+                test.exception(function(){
+                  request.expect(200, 'bad content');
+                });
+              }
+            )
+            .then(function(){
+              test.bool(indicator.get('home_page')).isTrue();
+            });
+          })
         ;
       })
     ;
