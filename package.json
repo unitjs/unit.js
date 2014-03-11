@@ -46,7 +46,7 @@
   "bugs": "https://github.com/unitjs/unit.js/issues",
 
   "engines": {
-    "node": "node >= 0.10.0"
+    "node": "~0.10.0"
   },
   
   "dependencies": {
