@@ -1,5 +1,6 @@
 # Unit.js
-[![Actual version published in NPM](http://img.shields.io/npm/v/unit.js.svg)](https://www.npmjs.org/package/unit.js) 
+[![Actual version published on NPM](https://badge.fury.io/js/unit.js.png)](https://www.npmjs.org/package/unit.js)
+[![Dependencies](https://david-dm.org/unitjs/unit.js.png)](https://david-dm.org/unitjs/unit.js)
 
 Simple, intuitive and flexible unit testing framework for javascript.
 
