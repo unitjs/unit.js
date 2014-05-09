@@ -2,7 +2,11 @@
 [![Actual version published on NPM](https://badge.fury.io/js/unit.js.png)](https://www.npmjs.org/package/unit.js)
 [![Dependencies](https://david-dm.org/unitjs/unit.js.png)](https://david-dm.org/unitjs/unit.js)
 
-Simple, intuitive and flexible unit testing framework for javascript.
+Unit testing framework for javascript / Node.js.
+
+> Philosophy of Unit.js: modern, flexible, simple and intuitive.
+
+_Unit.js_ provides an awesome API to write your unit tests in the way you prefer.
 
   * &#43; Must.js 
   * &#43; Should.js 
@@ -13,7 +17,9 @@ Simple, intuitive and flexible unit testing framework for javascript.
 
  **=** [![Unit JS unit testing framework for javascript](http://unitjs.com/assets/img/unitjs.png)](http://unitjs.com)
 
-Unit.js is test runner and framework agnostic, by default Unit.js run with [Mocha](http://unitjs.com/doc-mocha.html) but works with any other runner (works with Jasmine and other). Unit.js can be used as an assertion library or as a full stack unit testing framework ready to use with [Mocha](http://unitjs.com/doc-mocha.html).
+Unit.js is testing framework agnostic, can be used with another unit testing framework or standalone.
+
+By default Unit.js run with [Mocha](http://unitjs.com/doc-mocha.html) but works with any other runner (works with Jasmine and other). Unit.js can be used as an assertion library or as a full stack unit testing framework ready to use with [Mocha](http://unitjs.com/doc-mocha.html).
 
   * [Unit.js introduction](http://unitjs.com/doc-introduction.html)
   * [Getting started](http://unitjs.com/doc-quickstart.html)
