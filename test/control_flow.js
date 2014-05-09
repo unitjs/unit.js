@@ -163,5 +163,31 @@ describe('Control flow', function() {
             .isTrue()
         ;
       });
+
+      it('Waits to execute a given function', function(done){
+
+        var spy   = test.spy();
+        var defAt = new Date();
+        var calledAt;
+
+        test.wait(20, spy);
+
+        setTimeout(function(){
+
+          test.assert(spy.calledOnce);
+
+          calledAt  = new Date();
+          calledAt  = calledAt.getTime();
+          defAt     = defAt.getTime();
+
+          test
+            .number(calledAt)
+              .isBetween(defAt + 25, defAt + 27)
+          ;
+          
+          done();
+        }, 25);
+
     });
+  });  
 });
