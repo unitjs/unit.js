@@ -112,53 +112,6 @@ describe('Unit.js provides sinon.js', function() {
 
   });
 
-
-
-  describe('Faking time', function() {
-
-    function throttle(callback) {
-      var timer;
-
-      return function() {
-
-        clearTimeout(timer);
-
-        var args = [].slice.call(arguments);
-
-        timer = setTimeout(function() {
-          callback.apply(this, args);
-        }, 100);
-      };
-    }
-
-    var clock;
-
-    before(function() {
-      clock = test.useFakeTimers();
-    });
-
-    after(function() {
-      clock.restore();
-    });
-
-    it('calls callback after 100ms', function() {
-      var callback = test.spy();
-      var throttled = throttle(callback);
-
-      throttled();
-
-      clock.tick(99);
-      test.assert(callback.notCalled);
-
-      clock.tick(1);
-      test.assert(callback.calledOnce);
-
-      // Also:
-      test.assert.strictEqual(new Date().getTime(), 100);
-    });
-
-  });
-
   describe('Mocks', function() {
     it('returns the return value from the original function', function() {
       var myAPI = {
