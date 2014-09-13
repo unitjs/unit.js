@@ -1,8 +1,7 @@
-REPORTER = spec
+browser-build:
+	gulp browser.build
 
 test:
-	@NODE_ENV=test node ./bin/test \
-	--reporter $(REPORTER) \
-	--recursive
+	NODE_ENV=test mocha test
 
-.PHONY: test
+.PHONY: browser-build test
