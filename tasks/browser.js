@@ -121,9 +121,9 @@ function buildWebPack(done) {
         new webpack.IgnorePlugin(/^supertest$/),
         new webpack.IgnorePlugin(/^sinon$/),
         new webpack.IgnorePlugin(/src\/asserters\.js$/),
-        new webpack.BannerPlugin(bannerUnitJS),
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.BannerPlugin(bannerUnitJS)
       ],
     }))
 
@@ -198,9 +198,9 @@ function buildWebPackTests(done) {
                       'NODE_ENV': JSON.stringify('production')
                     }
                   }),
-                  new webpack.BannerPlugin(bannerUnitJS),
                   new webpack.optimize.DedupePlugin(),
-                  new webpack.optimize.UglifyJsPlugin({ mangle: false })
+                  new webpack.optimize.UglifyJsPlugin({ mangle: false }),
+                  new webpack.BannerPlugin(bannerUnitJS)
                 ],
               }))
 
