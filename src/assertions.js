@@ -18,6 +18,7 @@ var must   = require('must');
 var stats  = require('./helpers').stats;
 var fail   = require('./helpers').fail;
 
+
 /**
  * Count an assertion
  * @param {string} assertion Assertion name
@@ -1066,7 +1067,7 @@ module.exports = function(actual) {
 
       countAssertion('hasHttpStatus', true);
 
-      should(actual).have.status(code);
+      must(actual).property('statusCode', code);
 
       return this;
     },
@@ -1075,7 +1076,7 @@ module.exports = function(actual) {
 
       countAssertion('notHasHttpStatus', true);
 
-      should(actual).not.status(code);
+      must(actual).not.property('statusCode', code);
 
       return this;
     },
@@ -1089,11 +1090,13 @@ module.exports = function(actual) {
           'argument, maximum 2 arguments (field and value).');
       }
 
+      must(actual).property('headers');
+
       if (arguments.length === 1) {
 
-        must(actual.headers).property(field);
+        must(actual.headers).property(field.toLowerCase());
       } else {
-        should(actual).have.header(field, value);
+        must(actual.headers).property(field.toLowerCase(), value);
       }
 
       return this;
@@ -1103,8 +1106,6 @@ module.exports = function(actual) {
 
       countAssertion('notHasHeader', true);
 
-      var isThrows = true;
-
       if (arguments.length === 0 || arguments.length > 2) {
         throw new Error('notHasHeader() asserter, takes minimum the "field" ' +
           'argument, maximum 2 arguments (field and value).');
@@ -1112,9 +1113,9 @@ module.exports = function(actual) {
 
       if (arguments.length === 1) {
 
-        must(actual.headers).not.property(field);
+        must(actual.headers).not.property(field.toLowerCase());
       } else {
-        should(actual).not.header(field, value);
+        must(actual.headers).not.property(field.toLowerCase(), value);
       }
 
       return this;
@@ -1124,7 +1125,9 @@ module.exports = function(actual) {
 
       countAssertion('hasHeaderJson', true);
 
-      should(actual).be.json;
+      must(actual).property('headers');
+      must(actual.headers).property('content-type');
+      must(actual.headers['content-type']).match(/application\/json/i);
 
       return this;
     },
@@ -1133,7 +1136,9 @@ module.exports = function(actual) {
 
       countAssertion('notHasHeaderJson', true);
 
-      should(actual).not.json;
+      if(actual && actual.headers && 'content-type' in actual.headers) {
+        must(actual.headers['content-type']).not.match(/application\/json/i);
+      }
 
       return this;
     },
@@ -1142,7 +1147,9 @@ module.exports = function(actual) {
 
       countAssertion('hasHeaderHtml', true);
 
-      should(actual).be.html;
+      must(actual).property('headers');
+      must(actual.headers).property('content-type');
+      must(actual.headers['content-type']).match(/text\/html/i);
 
       return this;
     },
@@ -1151,7 +1158,9 @@ module.exports = function(actual) {
 
       countAssertion('notHasHeaderHtml', true);
 
-      should(actual).not.html;
+      if(actual && actual.headers && 'content-type' in actual.headers) {
+        must(actual.headers['content-type']).not.match(/text\/html/i);
+      }
 
       return this;
     }
