@@ -1,60 +1,55 @@
- {
+{
   "name": "unit.js",
-
-  "version": "0.1.8",
-
-  "description": "Simple, intuitive and flexible unit testing framework for javascript / Node.js. Integrates Mocha (optional) and the great assertions libraries Must.js, Should.js, Assert of Node.js, Sinon.js and other friendly features.",
-
-  "main": "index.js",
-
+  "version": "1.0.0",
+  "description": "Simple, intuitive and flexible unit testing framework for javascript / Node.js (browser and server). Integrates awesome assertions libraries Must.js, Should.js, Assert of Node.js, Sinon.js and other friendly features.",
+  "main": "src/index.js",
   "bin": {
     "test": "./bin/test",
     "unitjs": "./unitjs"
   },
-
   "keywords": [
-    "unit test",
+    "test",
+    "spec",
     "tdd",
     "bdd",
-    "test",
     "framework",
-    "mocha",
-    "should",
-    "must",
-    "assert",
-    "sinon",
     "assertion",
-    "asserter",
-    "node",
-    "spec",
-    "generator",
-    "report"
+    "asserter"
   ],
-
   "author": {
-    "name":"Nicolas Tallefourtane",
-    "url":"http://nicolab.net"
+    "name": "Nicolas Tallefourtane",
+    "url": "http://nicolab.net"
   },
-
   "homepage": "http://unitjs.com",
-
   "repository": {
     "type": "git",
     "url": "git://github.com/unitjs/unit.js.git"
   },
-
   "bugs": "https://github.com/unitjs/unit.js/issues",
-
   "engines": {
     "node": ">= 0.10.0"
   },
-  
   "dependencies": {
-    "must":   "~0.11.0",
-    "should": ">= 3.1.2 < 4.0.0",
-    "sinon":  ">= 1.8.0 < 2.0.0",
-    "supertest": ">= 0.9.2 < 1.0.0",
-    "noder.io": ">= 0.2.0 < 1.0.0",
-    "mocha": ">= 1.12.0 < 2.0.0"
+    "bluebird": "^2.3.2",
+    "lodash": "^2.4.1",
+    "must": "^0.12.0",
+    "noder.io": ">= 1.0.0 < 2.0.0",
+    "should": "^4.0.4",
+    "sinon": ">= 1.10.3 < 2.0.0",
+    "supertest": ">= 0.13.0 < 1.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-download": "^0.0.1",
+    "gulp-rename": "^1.2.0",
+    "gulp-replace": "^0.4.0",
+    "gulp-uglify": "^1.0.1",
+    "gulp-webpack": "^0.3.0",
+    "webpack": "^1.4.0-beta6",
+    "mocha": "^1.21.4",
+    "spawn-rmrf": "^1.0.0"
+  },
+  "scripts": {
+    "test": "mocha test"
   }
 }
