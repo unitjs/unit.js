@@ -26,13 +26,13 @@ fs.readdirSync(__dirname + '/asserters').forEach(function(file) {
 
   if (path.extname(file) === '.js' && file !== 'index.js') {
 
-    var asserter_name = path.basename(file, '.js');
+    var asserterName = path.basename(file, '.js');
 
-    asserters[asserter_name] = require('./asserters/' + asserter_name);
+    asserters[asserterName] = require('./asserters/' + asserterName);
 
-    module.exports[asserter_name] = function(actual) {
+    module.exports[asserterName] = function(actual) {
 
-      return new asserters[asserter_name](actual);
+      return new asserters[asserterName](actual);
     };
   }
 });
