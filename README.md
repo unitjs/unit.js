@@ -2,6 +2,7 @@
 
 [![Actual version published on NPM](https://badge.fury.io/js/unit.js.png)](https://www.npmjs.org/package/unit.js)
 [![Dependencies](https://david-dm.org/unitjs/unit.js.png)](https://david-dm.org/unitjs/unit.js)
+[![npm module downloads per month](http://img.shields.io/npm/dm/unit.js.svg)](https://www.npmjs.org/package/unit.js)
 
 Unit testing framework for javascript / Node.js.
 
