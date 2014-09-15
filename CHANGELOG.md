@@ -33,7 +33,7 @@ Or `npm install mocha --save-dev` and add in your `package.json`:
 ```
 Then uses this command `npm test`.
 
-See [Mocha tutorial](http://unitjs.com/guide/browser.html) in the guide.
+See [Mocha tutorial](http://unitjs.com/guide/mocha.html) in the guide.
 
 
 ### New asserters:
