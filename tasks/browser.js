@@ -243,10 +243,9 @@ function buildSinonSrc(done) {
         .catch(function(err) {
           done(err);
         })
+
         // task is done
-        .finally(function() {
-          done();
-        })
+        .finally(done)
         .done()
       ;
     });
@@ -265,7 +264,7 @@ function replaceMainSrc(done) {
 
   gulp.src('./browser/tmp/src/index.js')
     .pipe(replace(/var supertest\s*=\s*require\('supertest'\);/, ''))
-    .pipe(replace(/;[\s\n]api\.httpAgent\s*=\s*supertest;?/, ''))
+    .pipe(replace(/[\s\n]api\.httpAgent\s*=\s*supertest;?/, ''))
     .pipe(gulp.dest('./browser/tmp/src'))
     .on('end', done);
 }
@@ -287,8 +286,8 @@ function buildAssertersSrc(done) {
 
       return '' +
         'module.exports.'+ asserterName +' = function(actual) { ' +
-        '  var asserter = require(\'./asserters/'+ asserterName +'\'); ' +
-        '  return new asserter(actual); ' +
+        '  var Asserter = require(\'./asserters/'+ asserterName +'\'); ' +
+        '  return new Asserter(actual); ' +
         '};'
       ;
     })
@@ -308,9 +307,7 @@ function buildAssertersSrc(done) {
       done(err);
     })
     // task is done
-    .finally(function() {
-      done();
-    })
+    .finally(done)
     .done()
   ;
 }
