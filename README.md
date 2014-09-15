@@ -180,7 +180,6 @@ it('read file async', function(done) {
   fs.readFileAsync('./file.js', 'utf8')
     .then(function(contents){
       test.string(contents);
-      done();
     })
     .catch(function(err){
       test.fail(err.message);
