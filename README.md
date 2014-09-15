@@ -43,7 +43,7 @@ Unit.js was designed to provide the essential tools for writing unit tests with 
   * Community support on the IRC channel __&#35;unit.js__ (freenode).
 
 > Unit.js v1 is released!
-> Look at the [changelog file](blob/master/CHANGELOG.md) for see new features of this major release.
+> Look at the [changelog file](CHANGELOG.md) for see new features of this major release.
 
 
 ## Installation
