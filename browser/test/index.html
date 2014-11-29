@@ -21,25 +21,29 @@
     <script>
       var runner = mocha.run();
 
-      /* Uncomment if you want display the stats in the header
+      //* (Un)comment if you want display the stats in the header
       runner.on('test end', function() {
-
+        'use strict';
         if(!$('#mocha-stats').has('li.assertions').length) {
 
-
-          $('#mocha-stats').prepend(
-            '<li class="assertions">' +
-            '<a href="#assertions-stats">assertions (stats):</a> <em>' +
-            unitjs.stats.total.assertions + '</em></li>'
-          );
+          $('#mocha-stats')
+            .prepend('<li><strong>Test cases:</strong></li>')
+            .append(
+              '<li>for</li>' +
+              '<li class="assertions">' +
+              '<em>' + unitjs.stats.total.assertions + '</em> ' +
+              '<a href="#assertions-stats">assertions:</a> </li>'
+            )
+          ;
         }
 
         $('#mocha-stats li.assertions em').text(unitjs.stats.total.assertions);
       });
-      */
+      //*/
 
       runner.on('end', function() {
-
+        'use strict';
+        
         var total = unitjs.stats.total.assertions;
         var details = '';
 
@@ -61,7 +65,5 @@
         );
       });
     </script>
-
   </body>
-
 </html>
