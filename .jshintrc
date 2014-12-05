@@ -17,6 +17,10 @@
   "strict": true,
   "trailing": true,
   "smarttabs": true,
-
-  "proto": true
+  "proto": true,
+  "laxbreak": true,
+  "predef": [
+    "unitjs", "mocha", "describe", "it",
+    "beforeEach", "afterEach", "before", "after"
+  ]
 }
