@@ -14,6 +14,32 @@
 
 var promise = require('bluebird');
 
+
+/**
+ * Check if a given `value` implements the standard methods of a promise
+ * (Bluebird, Q, When, jQuery deferred, rsvp, ...).
+ *
+ * Replaces the `is()` method of Bluebird which does not support
+ * multiple instances of Bluebird (from different packages),
+ * see https://github.com/unitjs/unit.js/issues/5
+ *
+ * @param  {mixed}  value The value to check
+ * @return {bool}   `true` is `value` is a promise,
+ * `false` if value is not a promise
+ */
+promise.is = function(value) {
+
+  return value
+    && (typeof value === 'object' || typeof value === 'function')
+    && typeof value.then === 'function'
+    && (typeof value.done === 'function' || typeof value.finally === 'function')
+    && (typeof value['catch'] === 'function'
+        || typeof value.fail === 'function'
+        || typeof value.error === 'function'
+       )
+  ;
+};
+
 /**
  * Create a promise that is resolved with the given value.
  * If value is already a trusted Promise, it is returned as is.
@@ -37,8 +63,8 @@ promise.given = function(value) {
     return promise.resolve();
   }
 
-  // function
-  if(typeof value === 'function') {
+  // function (not a promise)
+  if(typeof value === 'function' && !value.then) {
     return promise.resolve().then(value);
   }
 

@@ -195,6 +195,25 @@ describe('Control flow (async)', function() {
     ;
   });
 
+  it('test.promise.is', function() {
+    var assert = test.assert;
+    var is     = test.promise.is;
+    var fs     = test.promise.promisifyAll(require('fs'));
+
+    assert(!is({}));
+    assert(!is([]));
+    assert(!is(null));
+    assert(!is(0));
+    assert(!is(1));
+    assert(!is('a'));
+    assert(!is(function() {}));
+
+    assert(is(fs.readFileAsync(__filename, 'utf8')));
+    assert(is(test.promise.given([1, 2, 3])));
+    assert(is(test.promise.given({a: 1, b: 2})));
+    assert(is(test.promise.given(function() {})));
+  });
+
   it('Async example', function() {
 
     var fs = test.promisifyAll(require('fs'));
@@ -220,4 +239,5 @@ describe('Control flow (async)', function() {
       .done()
     ;
   });
+
 });
