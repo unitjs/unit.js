@@ -244,6 +244,7 @@ describe('Passes IOC container', function() {
   });
 
   it('stats', function() {
+    var countAssert, countAssertOk, total;
 
     test
       .object(test.stats)
@@ -258,7 +259,26 @@ describe('Passes IOC container', function() {
 
       .number(test.stats.assertions.isNumber)
         .isGreaterThan(1)
+
+      .case('assert', function() {
+        total         = test.stats.total.assertions;
+        countAssert   = test.stats.assertions.assert || 0;
+        countAssertOk = test.stats.assertions['assert.ok'] || 0;
+
+        test.assert(true);
+        test.assert.ok(true);
+
+        test
+          .number(test.stats.total.assertions)
+            .is(total + 2)
+
+          .number(test.stats.assertions.assert)
+            .is(countAssert + 1)
+
+          .number(test.stats.assertions['assert.ok'])
+            .is(countAssertOk + 1)
+        ;
+      })
     ;
   });
-
 });
