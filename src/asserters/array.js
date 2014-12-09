@@ -15,7 +15,7 @@
 var _                = require('lodash');
 
 // constructor
-var RawControlFlow     = require('../control-flow');
+var RawControlFlow   = require('../control-flow');
 
 // object
 var rawAssertions    = require('../assertions');
