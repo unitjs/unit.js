@@ -14,24 +14,16 @@
 
 var fs        = require('fs');
 var path      = require('path');
-
-  // array of class
 var asserters = {};
 
-/**
- * Load all root asserters (object, string, number, value, function, ...)
- * @param  {String} file
- */
+// Load all root asserters (object, string, number, value, function, ...)
 fs.readdirSync(__dirname + '/asserters').forEach(function(file) {
-
   if (path.extname(file) === '.js' && file !== 'index.js') {
-
     var asserterName = path.basename(file, '.js');
-
+    
     asserters[asserterName] = require('./asserters/' + asserterName);
-
+    
     module.exports[asserterName] = function(actual) {
-
       return new asserters[asserterName](actual);
     };
   }
