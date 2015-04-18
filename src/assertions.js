@@ -12,6 +12,7 @@
 
 'use strict';
 
+var _      = require('lodash');
 var assert = require('assert');
 var should = require('should');
 var must   = require('must');
@@ -532,6 +533,28 @@ module.exports = function(actual) {
       countAssertion('isNotEmpty', true);
 
       must(actual).not.empty();
+
+      return this;
+    },
+
+    isNaN: function() {
+
+      countAssertion('isNaN', true);
+
+      if(!_.isNaN(actual)) {
+        fail('Actual value tested ('+ actual +') must be NaN');
+      }
+
+      return this;
+    },
+
+    isNotNaN: function() {
+
+      countAssertion('isNotNaN', true);
+
+      if(_.isNaN(actual)) {
+        fail('Actual value tested ('+ actual +') must be not NaN');
+      }
 
       return this;
     },

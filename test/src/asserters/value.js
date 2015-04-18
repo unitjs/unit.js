@@ -609,6 +609,105 @@ describe('Asserter value()', function(){
       ;
     });
 
+    it('isNaN()', function(){
+      test
+        .value(NaN)
+          .isNaN()
+
+        .value(new Number(NaN))
+          .isNaN()
+
+        .value(0/0)
+          .isNaN()
+
+        .value(parseInt('a', 10))
+          .isNaN()
+
+        .exception(function(){
+          test.value(1).isNaN();
+        })
+
+        .exception(function(){
+          test.value(new Number(1)).isNaN();
+        })
+
+        .exception(function(){
+          test.value(undefined).isNaN();
+        })
+
+        .exception(function(){
+          test.value(null).isNaN();
+        })
+
+        .exception(function(){
+          test.value(false).isNaN();
+        })
+
+        .exception(function(){
+          test.value(true).isNaN();
+        })
+
+        .exception(function(){
+          test.value(0).isNaN();
+        })
+
+        .exception(function(){
+          test.value({}).isNaN();
+        })
+
+        .exception(function(){
+          test.value([]).isNaN();
+        })
+      ;
+    });
+
+    it('isNotNaN()', function(){
+      test
+        .value(1)
+          .isNotNaN()
+
+        .value(new Number(1))
+          .isNotNaN()
+
+        .value(undefined)
+          .isNotNaN()
+
+        .value(null)
+          .isNotNaN()
+
+        .value(false)
+          .isNotNaN()
+
+        .value(true)
+          .isNotNaN()
+
+        .value(0)
+          .isNotNaN()
+
+        .value({})
+          .isNotNaN()
+
+        .value([])
+          .isNotNaN()
+
+        .exception(function(){
+          test.value(NaN).isNotNaN();
+        })
+
+        .exception(function(){
+          test.value(new Number(NaN)).isNotNaN();
+        })
+
+        .exception(function(){
+          test.value(0/0).isNotNaN();
+        })
+
+        .exception(function(){
+          test.value(parseInt('a', 10)).isNotNaN();
+        })
+      ;
+    });
+
     it('exists()', function(){
       test
         .value('foobar')

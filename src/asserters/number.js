@@ -31,7 +31,8 @@ var useAssertions = commonAssertions.concat([
 
   // quantifications
   'isBetween', 'isNotBetween', 'isBefore', 'isAfter',
-  'isGreaterThan', 'isLessThan', 'isApprox', 'isInfinite', 'isNotInfinite'
+  'isGreaterThan', 'isLessThan', 'isApprox', 'isInfinite', 'isNotInfinite',
+  'isNaN', 'isNotNaN'
 ]);
 
 /**
