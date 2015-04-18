@@ -1,6 +1,6 @@
 {
   "name": "unit.js",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "description": "Simple, intuitive and flexible unit testing framework for javascript / Node.js (browser and server). Integrates awesome assertions libraries like Must.js, Should.js, Assert of Node.js, Sinon.js and other friendly features (promise, IoC, plugins, ...).",
   "main": "src/index.js",
   "keywords": [
