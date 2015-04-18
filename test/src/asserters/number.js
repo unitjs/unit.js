@@ -544,62 +544,62 @@ describe('Asserter number()', function(){
 
     });
 
-  });
+    it('isNaN()', function(){
+      test
+        .number(NaN)
+          .isNaN()
 
-  it('isNaN()', function(){
-    test
-      .number(NaN)
-        .isNaN()
+        .number(new Number(NaN))
+          .isNaN()
 
-      .number(new Number(NaN))
-        .isNaN()
+        .number(0/0)
+          .isNaN()
 
-      .number(0/0)
-        .isNaN()
+        .number(parseInt('a', 10))
+          .isNaN()
 
-      .number(parseInt('a', 10))
-        .isNaN()
+        .exception(function(){
+          test.number(1).isNaN();
+        })
 
-      .exception(function(){
-        test.number(1).isNaN();
-      })
+        .exception(function(){
+          test.number(new Number(1)).isNaN();
+        })
 
-      .exception(function(){
-        test.number(new Number(1)).isNaN();
-      })
+        .exception(function(){
+          test.number(0).isNaN();
+        })
+      ;
+    });
 
-      .exception(function(){
-        test.number(0).isNaN();
-      })
-    ;
-  });
+    it('isNotNaN()', function(){
+      test
+        .number(1)
+          .isNotNaN()
 
-  it('isNotNaN()', function(){
-    test
-      .number(1)
-        .isNotNaN()
+        .number(new Number(1))
+          .isNotNaN()
 
-      .number(new Number(1))
-        .isNotNaN()
+        .number(0)
+          .isNotNaN()
 
-      .number(0)
-        .isNotNaN()
+        .exception(function(){
+          test.number(NaN).isNotNaN();
+        })
 
-      .exception(function(){
-        test.number(NaN).isNotNaN();
-      })
+        .exception(function(){
+          test.number(new Number(NaN)).isNotNaN();
+        })
 
-      .exception(function(){
-        test.number(new Number(NaN)).isNotNaN();
-      })
+        .exception(function(){
+          test.number(0/0).isNotNaN();
+        })
 
-      .exception(function(){
-        test.number(0/0).isNotNaN();
-      })
+        .exception(function(){
+          test.number(parseInt('a', 10)).isNotNaN();
+        })
+      ;
+    });
 
-      .exception(function(){
-        test.number(parseInt('a', 10)).isNotNaN();
-      })
-    ;
   });
 });
