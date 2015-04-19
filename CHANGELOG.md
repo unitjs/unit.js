@@ -4,7 +4,7 @@
 
 ### Update Should.js _v5.*_ to _v.6*_.
 
-Note: The _should.js@v6_ change the behavior of `should.containDeep*`, `should.containDeep*` does not check substrings anymore.
+In _should.js@v6_ the behavior of `should.containDeep*` was changed slightly. `should.containDeep*` does not check substrings anymore.
 See [should.js#42](https://github.com/shouldjs/should.js/issues/42)
 
 ### .contains()
@@ -14,7 +14,7 @@ See [should.js#42](https://github.com/shouldjs/should.js/issues/42)
 
 ## 1.2.0 - 2015-04-18
 
-New method of assertion:
+New methods of assertion:
 
  * [test.number(actual).isNaN()](http://unitjs.com/api/number.html#isNaN)
  * [test.number(actual).isNotNaN()](http://unitjs.com/api/number.html#isNotNaN)
