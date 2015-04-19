@@ -2,7 +2,7 @@
 
 ## 2.0.0 - 2015-04-19
 
-### Update Should.js _v5.*_ to _v.6*_.
+### Update Should.js _v5.*_ to _v6*_.
 
 In _should.js@v6_ the behavior of `should.containDeep*` was changed slightly. `should.containDeep*` does not check substrings anymore.
 See [should.js#42](https://github.com/shouldjs/should.js/issues/42)
