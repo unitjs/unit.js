@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.0.0 - 2015-04-19
+
+### Update Should.js _v5.*_ to _v.6*_.
+
+Note: The _should.js@v6_ change the behavior of `should.containDeep*`, `should.containDeep*` does not check substrings anymore.
+See [should.js#42](https://github.com/shouldjs/should.js/issues/42)
+
+### .contains()
+
+[.contains()](http://unitjs.com/api/value.html#contains) and [.notContains()](http://unitjs.com/api/value.html#notContains) takes several arguments (instead of an array of arguments). This new behavior is more natural and avoids the ambiguity for test an array or object.
+
+
+## 1.2.0 - 2015-04-18
+
+New method of assertion:
+
+ * [test.number(actual).isNaN()](http://unitjs.com/api/number.html#isNaN)
+ * [test.number(actual).isNotNaN()](http://unitjs.com/api/number.html#isNotNaN)
+ * [test.value(parseInt('not a number', 10)).isNaN()](http://unitjs.com/api/value.html#isNaN)
+ * [test.value(undefined).isNotNaN()](http://unitjs.com/api/value.html#isNotNaN)
+
 ## 1.0.0 - 2014-09-12
 
   * Lots of sub-dependencies are removed.
