@@ -989,34 +989,44 @@ module.exports = function(actual) {
     },
 
     contains: function(expected) {
-
       countAssertion('contains', true);
 
       if (arguments.length > 1) {
-
         for (var k in arguments) {
-          should(actual).containDeep(arguments[k]);
+          if(typeof arguments[k] === 'object') {
+            should(actual).containDeep(arguments[k]);
+          }else{
+            must(actual).contain(arguments[k]);
+          }
         }
-
-      } else {
+      }
+      else if(typeof actual === 'object') {
         should(actual).containDeep(expected);
+      }
+      else{
+        must(actual).contain(expected);
       }
 
       return this;
     },
 
     notContains: function(expected) {
-
       countAssertion('notContains', true);
 
       if (arguments.length > 1) {
-
         for (var k in arguments) {
-          should(actual).not.containDeep(arguments[k]);
+          if(typeof arguments[k] === 'object') {
+            should(actual).not.containDeep(arguments[k]);
+          }else{
+            must(actual).not.contain(arguments[k]);
+          }
         }
-
-      } else {
+      }
+      else if(typeof actual === 'object') {
         should(actual).not.containDeep(expected);
+      }
+      else{
+        must(actual).not.contain(expected);
       }
 
       return this;

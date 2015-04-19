@@ -408,7 +408,7 @@ describe('Asserter string()', function(){
           .contains('boy')
 
         .string('KISS principle : Keep it Simple, Stupid')
-          .contains(['Simple'], ['principle'], [':'])
+          .contains('Simple', 'principle', ':')
 
         .exception(function(){
           test.string('Hello').contains('hello');

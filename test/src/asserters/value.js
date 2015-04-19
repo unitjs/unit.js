@@ -1240,7 +1240,7 @@ describe('Asserter value()', function(){
           .contains('boy')
 
         .value('KISS principle : Keep it Simple, Stupid')
-          .contains(['Simple'], ['principle'], [':'])
+          .contains('Simple', 'principle', ':')
 
         .value([1,2,3])
           .contains([3])
@@ -1249,7 +1249,7 @@ describe('Asserter value()', function(){
           .contains([1, 3])
 
         .value([1,2,3])
-          .contains([3], [1, 3])
+          .contains([3, 1, 2])
 
         .value({ a: { b: 10 }, b: { c: 10, d: 11, a: { b: 10, c: 11} }})
           .contains({ a: { b: 10 }, b: { c: 10, a: { c: 11 }}})
