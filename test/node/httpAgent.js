@@ -62,58 +62,54 @@ describe('supertest library to as httpAgent', function() {
     server.listen(0);
   });
 
+  after(function() {
+    // close the server so that mocha can exit once done running tests
+    server.close();
+  });
 
-  it('Good request', function() {
+
+  it('Good request', function(done) {
 
     var testServer;
 
-    test
-      .given('Create a server asserter', function(){
+    test.given('Create a server asserter', function(){
 
-        testServer = function(name){
+      testServer = function(name){
 
-          test.bool(indicator.get(name + '_page')).isFalse();
+        test.bool(indicator.get(name + '_page')).isFalse();
 
-          // async queue
-          test.promise.resolve()
-            .then(function(){
-              return test.httpAgent(server).get('/' + (name == 'home' ? '' : name));
-            })
-            .then(function(request){
-              request
-                .expect(200, name + ' page')
-                .expect('x-powered-by', 'unit.js')
-                .expect('Content-Type', /text/)
+        test.httpAgent(server)
+          .get('/' + (name == 'home' ? '' : name))
+          .expect(200, name + ' page')
+          .expect('x-powered-by', 'unit.js')
+          .expect('Content-Type', /text/)
+          .end(function(err, res){
+            test
+              .bool(indicator.get(name + '_page'))
+                .isTrue()
 
-                .end(function(err, res){
-                  test
-                    .bool(indicator.get(name + '_page'))
-                      .isTrue()
+              .value(err)
+                .isFalsy()
 
-                    .value(err)
-                      .isFalsy()
+              .string(res.text)
+                .isIdenticalTo(name + ' page')
+            ;
+          })
+        ;
+      };
+    })
 
-                    .string(res.text)
-                      .isIdenticalTo(name + ' page')
-                  ;
-                })
-              ;
-            })
-            .catch(function(err) {
-              throw err;
-            })
-            .done()
-          ;
-        };
-      })
+    .then('Test the server: "/"', function(){
+      testServer('home');
+    })
 
-      .then('Test the server: "/"', function(){
-        testServer('home');
-      })
+    .then('Test the server: "/some"', function(){
+      testServer('some');
+    })
 
-      .then('Test the server: "/some"', function(){
-        testServer('some');
-      })
+    .then('Exit test case', function(){
+      done();
+    })
     ;
   });
 

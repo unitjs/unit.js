@@ -433,7 +433,7 @@ module.exports = function(actual) {
 
       countAssertion('isArguments', true);
 
-      should(actual).arguments;
+      should(actual).be.Arguments();
 
       return this;
     },
@@ -442,7 +442,7 @@ module.exports = function(actual) {
 
       countAssertion('isNotArguments', true);
 
-      should(actual).not.arguments;
+      should(actual).not.be.Arguments();
 
       return this;
     },
@@ -711,7 +711,7 @@ module.exports = function(actual) {
 
       countAssertion('isApprox', true);
 
-      should(actual).approximately(num, delta);
+      should(actual).be.approximately(num, delta);
 
       return this;
     },
@@ -720,7 +720,7 @@ module.exports = function(actual) {
 
       countAssertion('isInfinite', true);
 
-      should(actual).Infinity;
+      should(actual).be.Infinity();
 
       return this;
     },
@@ -729,7 +729,7 @@ module.exports = function(actual) {
 
       countAssertion('isNotInfinite', true);
 
-      should(actual).not.Infinity;
+      should(actual).not.be.Infinity();
 
       return this;
     },
