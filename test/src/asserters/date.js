@@ -181,10 +181,10 @@ describe('Asserter date()', function(){
 
       test
         .date(date)
-          .match(/2010/)
+          .match(/\d/)
 
         .exception(function(){
-          test.date(date).match(/03/);
+          test.date(date).match(/^\d$/);
         })
       ;
 
@@ -196,10 +196,10 @@ describe('Asserter date()', function(){
 
       test
         .date(date)
-          .notMatch(/03/)
+          .notMatch(/^\d$/)
 
         .exception(function(){
-          test.date(date).notMatch(/02/);
+          test.date(date).notMatch(/\d/);
         })
       ;
 
@@ -211,10 +211,10 @@ describe('Asserter date()', function(){
 
       test
         .date(date)
-          .isValid(/2010/)
+          .isValid(/\d/)
 
         .exception(function(){
-          test.date(date).isValid(/03/);
+          test.date(date).isValid(/^\d$/);
         })
       ;
 
@@ -226,10 +226,10 @@ describe('Asserter date()', function(){
 
       test
         .date(date)
-          .isNotValid(/03/)
+          .isNotValid(/^\d$/)
 
         .exception(function(){
-          test.date(date).isNotValid(/02/);
+          test.date(date).isNotValid(/\d/);
         })
       ;
 
