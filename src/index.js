@@ -23,7 +23,11 @@ var assert         = require('./assert');
 var should         = require('should');
 var must           = require('must');
 var sinon          = require('sinon');
+var sinonTest      = require('sinon-test');
 var supertest      = require('supertest');
+
+// patch sinon with sinon-test
+sinon.test = sinonTest(sinon);
 
 // Populate the root API
 api.promise        = promise;
