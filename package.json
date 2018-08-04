@@ -23,7 +23,7 @@
   },
   "bugs": "https://github.com/unitjs/unit.js/issues",
   "dependencies": {
-    "bluebird": "^2.9.9",
+    "bluebird": "^3.5.1",
     "lodash": "^3.7.0",
     "must": "^0.12.0",
     "noder.io": ">= 1.0.0 < 2.0.0",
