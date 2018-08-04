@@ -62,6 +62,11 @@ describe('supertest library to as httpAgent', function() {
     server.listen(0);
   });
 
+  after(function() {
+    // close the server so that mocha can exit once done running tests
+    server.close();
+  });
+
 
   it('Good request', function() {
 
