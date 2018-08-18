@@ -30,7 +30,7 @@
     "should": "^6.0.1",
     "sinon": "^6.1.4",
     "sinon-test": "^2.2.1",
-    "supertest": ">= 0.15.0 < 1.0.0"
+    "supertest": "^3.1.0"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
