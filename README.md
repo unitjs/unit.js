@@ -20,10 +20,10 @@ _Unit.js_ provides an awesome API to write your unit tests in the way you prefer
   * &#43; Sinon.js
   * &#43; other friendly features.
 
- **=** [![Unit JS unit testing framework for javascript](http://unitjs.com/assets/img/unitjs.png)](http://unitjs.com)
+ **=** [![Unit JS unit testing framework for javascript](https://unitjs.com/assets/img/unitjs.png)](https://unitjs.com)
 
 
-Unit.js supports [dependency injection](http://unitjs.com/guide/dependency-injection.html) and is extensible via a [plugins system](http://unitjs.com/guide/plugins.html) easy to use.
+Unit.js supports [dependency injection](https://unitjs.com/guide/dependency-injection.html) and is extensible via a [plugins system](https://unitjs.com/guide/plugins.html) easy to use.
 
 The learning curve to be productive with Unit.js is very short. The list of assertions is fully documented in the _API doc_ and assertions are expressive like:
 
@@ -37,14 +37,11 @@ test.bool(myVar).isTrue();
 
 Unit.js was designed to provide the essential tools for writing unit tests with fun and qualities.
 
-  * [Unit.js documentation](http://unitjs.com)
-  * [Unit.js introduction](http://unitjs.com/guide/introduction.html)
-  * [Quickstart](http://unitjs.com/guide/quickstart.html)
-  * [Helpers](http://unitjs.com/guide/helpers.html)
+  * [Unit.js documentation](https://unitjs.com)
+  * [Unit.js introduction](https://unitjs.com/guide/introduction.html)
+  * [Quickstart](https://unitjs.com/guide/quickstart.html)
+  * [Helpers](https://unitjs.com/guide/helpers.html)
   * Community support on the IRC channel __&#35;unit.js__ (freenode).
-
-> Unit.js v1 is released!
-> Look at the [changelog file](CHANGELOG.md) for see new features of this major release.
 
 
 ## Installation
@@ -59,12 +56,12 @@ npm install unit.js
 
 ### For the browser
 
-See [Unit.js in the browser](http://unitjs.com/guide/browser.html).
+See [Unit.js in the browser](https://unitjs.com/guide/browser.html).
 
 
 ## Usage
 
-See [quickstart](http://unitjs.com/guide/quickstart.html) in the guide.
+See [quickstart](https://unitjs.com/guide/quickstart.html) in the guide.
 
 
 ### Example (proposal) of structured unit tests suite
@@ -73,7 +70,6 @@ See [quickstart](http://unitjs.com/guide/quickstart.html) in the guide.
 var test = require('unit.js');
 
 describe('Learning by the example', function(){
-
   it('example variable', function(){
 
     // just for example of tested value
@@ -90,7 +86,6 @@ describe('Learning by the example', function(){
           .contains('you')
 
       .when('"example" becomes an object', function(){
-
         example = {
           message : 'hello world',
           name    : 'Nico',
@@ -100,7 +95,6 @@ describe('Learning by the example', function(){
       })
 
       .then('test the "example" object', function(){
-
         test
           .object(example)
             .hasValue('developper')
@@ -124,29 +118,28 @@ describe('Learning by the example', function(){
 
 });
 ```
+
 Result :
 
-![Result of unit tests with Unit.js](http://unitjs.com/assets/img/screen_console_unitjs_quickstart_example_result.png)
+![Result of unit tests with Unit.js](https://unitjs.com/assets/img/screen_console_unitjs_quickstart_example_result.png)
 
 
 ### Plugins
 
-Unit.js provides a plugins system (based on [Noder.io](http://noder.io)) for extending Unit.js's assertions and interfaces.
+Unit.js provides a plugins system (based on [Noder.io](https://noder.io)) for extending Unit.js's assertions and interfaces.
 
 It is possible to create a package works easily as a plugin for Unit.js and also as a standalone module or library.
 
 Also, it's useful for bundled the code to re-use easily across multiple projects or for a large application with its specific modules (by writing plugins to facilitate the unit tests of each module).
 
-If you wrote a plugin for Unit.js, please [let us know](https://github.com/unitjs/unit.js/issues/new?title=[new%20plugin]%20).
-
-See [plugins](http://unitjs.com/guide/plugins.html) tutorial in the guide.
+See [plugins](https://unitjs.com/guide/plugins.html) tutorial in the guide.
 
 
 ### Dependency injection (IOC)
 
 Unit.js supports dependency injection (Inversion Of Control).
 
-See [dependency-injection](http://unitjs.com/guide/dependency-injection.html) in the guide.
+See [dependency-injection](https://unitjs.com/guide/dependency-injection.html) in the guide.
 
 
 ### Promise
@@ -161,12 +154,11 @@ Example:
 var fs = test.promisifyAll(require('fs'));
 
 it('async function', function(done) {
-
-  test.promise
+  test
+    .promise
     .given(anyAsyncFunction())
     .then(function(contents) {
-      test.string(contents)
-        .contains('some value');
+      test.string(contents).contains('some value');
     })
     .catch(function(err){
       test.fail(err.message);
@@ -177,8 +169,8 @@ it('async function', function(done) {
 });
 
 it('read file async', function(done) {
-
-  fs.readFileAsync('./file.js', 'utf8')
+  fs
+    .readFileAsync('./file.js', 'utf8')
     .then(function(contents){
       test.string(contents);
     })
@@ -194,7 +186,8 @@ it('read file async', function(done) {
 A light adjustment was added to write _promise_ with [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) style:
 
 ```js
-test.promise
+test
+  .promise
   .given(function() {
     // ...
   })
@@ -232,17 +225,17 @@ The API of Unit.js is fanatically documented with examples for all assertions.
   * API doc : the API of all asserters.
   * spec : the spec of all asserters.
   * guide : several tutorials to learn the unit testing with Unit.js.
-  * [Unit.js Introduction](http://unitjs.com/guide/introduction.html)
-  * [Unit.js Quickstart](http://unitjs.com/guide/quickstart.html)
+  * [Unit.js Introduction](https://unitjs.com/guide/introduction.html)
+  * [Unit.js Quickstart](https://unitjs.com/guide/quickstart.html)
 
 
 ## Learning
 
-Takes a little time to learn (see [UnitJS.com](http://unitjs.com)) with the tutorials in the _guide_, the _API doc_ and looking at the many examples of codes in the _spec doc_ and unit tests examples.
+Takes a little time to learn (see [UnitJS.com](https://unitjs.com)) with the tutorials in the _guide_, the _API doc_ and looking at the many examples of codes in the _spec doc_ and unit tests examples.
 
 You are operational and productive from the outset. The style of writing your unit tests is not imposed, it depends on your preferences. Unit.js is flexible enough to fit your coding style without effort on your part.
 
-The mastery of Unit.js is very fast, especially if you already know one of the libraries of assertions ([Assert of Node.js](http://unitjs.com/guide/assert-node-js.html), [Shoud.js](http://unitjs.com/guide/should-js.html), [Must.js](http://unitjs.com/guide/must-js.html), [Sinon.js](http://unitjs.com/guide/sinon-js.html), [Atoum](http://docs.atoum.org/en/chapter2.html#Writing-tests)).
+The mastery of Unit.js is very fast, especially if you already know one of the libraries of assertions ([Assert of Node.js](https://unitjs.com/guide/assert-node-js.html), [Shoud.js](https://unitjs.com/guide/should-js.html), [Must.js](https://unitjs.com/guide/must-js.html), [Sinon.js](https://unitjs.com/guide/sinon-js.html), [Atoum](http://docs.atoum.org/en/chapter2.html#Writing-tests)).
 
 
 ## Related
@@ -263,14 +256,14 @@ summary means:
 - You **have to share modifications** (e.g bug-fixes) you've made to this
   program.
 
-For more convoluted language, see the [LICENSE](http://unitjs.com/license.html).
+For more convoluted language, see the [LICENSE](https://unitjs.com/license.html).
 
 
 ## Author
 
 Unit.js is designed and built with love by
 
-| [![Nicolas Tallefourtane - Nicolab.net](http://www.gravatar.com/avatar/d7dd0f4769f3aa48a3ecb308f0b457fc?s=64)](http://nicolab.net) |
+| [![Nicolas Tallefourtane - Nicolab.net](https://www.gravatar.com/avatar/d7dd0f4769f3aa48a3ecb308f0b457fc?s=64)](https://nicolab.net) |
 |---|
-| [Nicolas Talle](http://nicolab.net) |
+| [Nicolas Talle](https://nicolab.net) |
 | [![Make a donation via Paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PGRH4ZXP36GUC) |
