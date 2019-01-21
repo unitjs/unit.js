@@ -14,13 +14,13 @@
 
 var test = require('../../../src');
 
-describe('Asserter function()', function(){
+describe('Asserter function()', function() {
 
-  describe('function() behavior', function(){
+  describe('function() behavior', function() {
 
-    it('Does not contains assertions from the assertions containers', function(){
+    it('Does not contains assertions from the assertions containers', function() {
 
-        var fn = function(){};
+        var fn = function() {};
 
         test
           .value(test.function(fn).hasHeader)
@@ -35,58 +35,58 @@ describe('Asserter function()', function(){
 
     });
 
-    it('Assert that the tested value is a `function`', function(){
+    it('Assert that the tested value is a `function`', function() {
 
-      var fn = function(){};
+      var fn = function() {};
 
       test
         .function(fn)
         .function(Date)
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
               test.function(fn());
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function({});
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function([]);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(new Date());
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function('foobar');
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(1);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(true);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(false);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(null);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(undefined);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function();
             })
           ;
@@ -97,115 +97,115 @@ describe('Asserter function()', function(){
 
   });
 
-  describe('Assertions of function()', function(){
+  describe('Assertions of function()', function() {
 
-    it('is(expected)', function(){
+    it('is(expected)', function() {
 
-      var fn = function(){};
+      var fn = function() {};
       var ref = fn;
 
       test
         .function(ref)
           .is(fn)
 
-        .exception(function(){
-          test.function(fn).is(function(){});
+        .exception(function() {
+          test.function(fn).is(function() {});
         })
       ;
 
     });
 
-    it('isNot(expected)', function(){
+    it('isNot(expected)', function() {
 
-      var fn = function(){};
-      var otherFunction = function(){};
+      var fn = function() {};
+      var otherFunction = function() {};
 
       test
         .function(fn)
           .isNot(otherFunction)
-          .isNot(function(){})
+          .isNot(function() {})
 
-        .exception(function(){
+        .exception(function() {
           test.function(fn).isNot(fn);
         })
       ;
 
     });
 
-    it('isIdenticalTo(expected)', function(){
+    it('isIdenticalTo(expected)', function() {
 
-      var fn = function(){};
+      var fn = function() {};
       var ref = fn;
 
       test
         .function(ref)
           .isIdenticalTo(fn)
 
-        .exception(function(){
-          test.function(fn).isIdenticalTo(function(){});
+        .exception(function() {
+          test.function(fn).isIdenticalTo(function() {});
         })
       ;
 
     });
 
-    it('isNotIdenticalTo(expected)', function(){
+    it('isNotIdenticalTo(expected)', function() {
 
-      var fn = function(){};
-      var otherFunction = function(){};
+      var fn = function() {};
+      var otherFunction = function() {};
 
       test
         .function(fn)
           .isNotIdenticalTo(otherFunction)
-          .isNotIdenticalTo(function(){})
+          .isNotIdenticalTo(function() {})
 
-        .exception(function(){
+        .exception(function() {
           test.function(fn).isNotIdenticalTo(fn);
         })
       ;
 
     });
 
-    it('isEqualTo(expected)', function(){
+    it('isEqualTo(expected)', function() {
 
-      var fn = function(){};
+      var fn = function() {};
       var ref = fn;
 
       test
         .function(ref)
           .isEqualTo(fn)
 
-        .exception(function(){
-          test.function(fn).isEqualTo(function(){});
+        .exception(function() {
+          test.function(fn).isEqualTo(function() {});
         })
       ;
 
     });
 
-    it('isNotEqualTo(expected)', function(){
+    it('isNotEqualTo(expected)', function() {
 
-      var fn = function(){};
-      var otherFunction = function(){};
+      var fn = function() {};
+      var otherFunction = function() {};
 
       test
         .function(fn)
           .isNotEqualTo(otherFunction)
-          .isNotEqualTo(function(){})
+          .isNotEqualTo(function() {})
 
-        .exception(function(){
+        .exception(function() {
           test.function(fn).isNotEqualTo(fn);
         })
       ;
 
     });
 
-    it('match(expected)', function(){
+    it('match(expected)', function() {
 
-      var fn = function(){
+      var fn = function() {
         return 'hello';
       };
 
-      function myFunction(){
-      };
+      function myFunction() {
+      }
 
       test
         .function(fn)
@@ -223,10 +223,10 @@ describe('Asserter function()', function(){
           .match(/my/)
           .match(/[a-z]/i)
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
 
               test.function(fn).match(function(it){
                 return it() === 'hey';
@@ -234,11 +234,11 @@ describe('Asserter function()', function(){
 
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(fn).match('someFunction');
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(myFunction).match(/someFunction/);
             })
           ;
@@ -247,13 +247,13 @@ describe('Asserter function()', function(){
 
     });
 
-    it('notMatch(expected)', function(){
+    it('notMatch(expected)', function() {
 
-      var fn = function(){
+      var fn = function() {
         return 'hello';
       };
 
-      function myFunction(){
+      function myFunction() {
       };
 
       test
@@ -271,10 +271,10 @@ describe('Asserter function()', function(){
           .notMatch('someFunction')
           .notMatch(/some/)
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
 
               test.function(fn).notMatch(function(it){
                 return it() === 'hello';
@@ -282,19 +282,19 @@ describe('Asserter function()', function(){
 
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(fn).notMatch('function');
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(myFunction).notMatch(/myFunction/);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(myFunction).notMatch(/my/);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(myFunction).notMatch('myFunction');
             })
           ;
@@ -303,13 +303,13 @@ describe('Asserter function()', function(){
 
     });
 
-    it('isValid(expected)', function(){
+    it('isValid(expected)', function() {
 
-      var fn = function(){
+      var fn = function() {
         return 'hello';
       };
 
-      function myFunction(){
+      function myFunction() {
       };
 
       test
@@ -328,10 +328,10 @@ describe('Asserter function()', function(){
           .isValid(/my/)
           .isValid(/[a-z]/i)
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
 
               test.function(fn).isValid(function(it){
                 return it() === 'hey';
@@ -339,11 +339,11 @@ describe('Asserter function()', function(){
 
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(fn).isValid('someFunction');
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(myFunction).isValid(/someFunction/);
             })
           ;
@@ -352,13 +352,13 @@ describe('Asserter function()', function(){
 
     });
 
-    it('isNotValid(expected)', function(){
+    it('isNotValid(expected)', function() {
 
-      var fn = function(){
+      var fn = function() {
         return 'hello';
       };
 
-      function myFunction(){
+      function myFunction() {
       };
 
       test
@@ -376,10 +376,10 @@ describe('Asserter function()', function(){
           .isNotValid('someFunction')
           .isNotValid(/some/)
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
 
               test.function(fn).isNotValid(function(it){
                 return it() === 'hello';
@@ -387,19 +387,19 @@ describe('Asserter function()', function(){
 
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(fn).isNotValid('function');
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(myFunction).isNotValid(/myFunction/);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(myFunction).isNotValid(/my/);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(myFunction).isNotValid('myFunction');
             })
           ;
@@ -408,11 +408,11 @@ describe('Asserter function()', function(){
 
     });
 
-    it('throws([constructor|expected], [expected])', function(){
+    it('throws([constructor|expected], [expected])', function() {
 
-      var fn = function(){};
+      var fn = function() {};
 
-      var trigger = function(){
+      var trigger = function() {
         throw new Error('Whoops!');
       };
 
@@ -424,35 +424,35 @@ describe('Asserter function()', function(){
           .throws(Error)
           .throws(Error, /whoops/i)
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .value(function(){
+            .value(function() {
               test.function(fn).throws();
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
               test.function(trigger).throws(TypeError);
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
               test.function(trigger).throws('gloops');
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
               test.function(trigger).throws(/gloops/);
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
               test.function(trigger).throws(TypeError, 'gloops');
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
               test.function(trigger).throws(Error, 'whoops');
             })
             .throws()
@@ -463,9 +463,9 @@ describe('Asserter function()', function(){
 
     });
 
-    it('isError()', function(){
+    it('isError()', function() {
 
-      var trigger = function(){
+      var trigger = function() {
         throw new Error('Whoops!');
       };
 
@@ -473,17 +473,17 @@ describe('Asserter function()', function(){
         .function(trigger)
           .isError()
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .value(function(){
-              test.function(function(){}).isError();
+            .value(function() {
+              test.function(function() {}).isError();
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
               test
-                .function(function(){
+                .function(function() {
                   throw 'error';
                 })
                 .isError()
@@ -496,11 +496,11 @@ describe('Asserter function()', function(){
 
     });
 
-    it('hasName(expected)', function(){
+    it('hasName(expected)', function() {
 
-      var fn = function(){};
+      var fn = function() {};
 
-      function myFunction(){
+      function myFunction() {
       };
 
       test
@@ -510,14 +510,14 @@ describe('Asserter function()', function(){
         .function(myFunction)
           .hasName('myFunction')
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
               test.function(new Date()).hasName('RegExp');
             })
 
-            .exception(function(){
+            .exception(function() {
               test.function(myFunction).hasName('function');
             })
           ;

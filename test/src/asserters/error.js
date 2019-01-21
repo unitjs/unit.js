@@ -14,17 +14,17 @@
 
 var test = require('../../../src');
 
-describe('Asserter error()', function(){
+describe('Asserter error()', function() {
 
-  describe('error() behavior', function(){
+  describe('error() behavior', function() {
 
     it('Does not contains inappropriate assertions ' +
-      'from the assertions containers', function(){
+      'from the assertions containers', function() {
 
       var
         indicator = 0,
 
-        trigger = function(){
+        trigger = function() {
           throw new Error('Whoops!');
         },
 
@@ -74,14 +74,14 @@ describe('Asserter error()', function(){
       var error = test.error(trigger);
 
       // ensures the test method
-      test.exception(function(){
+      test.exception(function() {
         test.value(error['hasMessage']).isUndefined();
       });
 
       test.number(indicator).isIdenticalTo(deletedAssertions.length);
     });
 
-    it('Fails if the tested exception is not an instance of Error', function(){
+    it('Fails if the tested exception is not an instance of Error', function() {
 
       var
         allCatch = {number: true, string: true, object: true, array: true},
@@ -95,23 +95,23 @@ describe('Asserter error()', function(){
           }
         },
 
-        error = function(){
+        error = function() {
           throw new Error('foo');
         },
 
-        number = function(){
+        number = function() {
           throw 1;
         },
 
-        string = function(){
+        string = function() {
           throw 'Error';
         },
 
-        object = function(){
+        object = function() {
           throw {name: Error, message: 'Whoops!'};
         },
 
-        array = function(){
+        array = function() {
           throw [Error];
         }
       ;
@@ -119,7 +119,7 @@ describe('Asserter error()', function(){
       test
         .error(error)
 
-        .when(function(){
+        .when(function() {
 
           check('number', number);  // status[name] = true;
           check('string', string);  // status[name] = true;
@@ -148,7 +148,7 @@ describe('Asserter error()', function(){
         .exception(error)
           .isError()
 
-        .when(function(){
+        .when(function() {
 
           check('number', number);  // not thrown
           check('string', string);  // not thrown
@@ -180,13 +180,13 @@ describe('Asserter error()', function(){
     });
   });
 
-  describe('Assertions of error()', function(){
+  describe('Assertions of error()', function() {
 
-    it('is(expected)', function(){
+    it('is(expected)', function() {
 
       var error = new Error('Whoops !');
 
-      var trigger = function(){
+      var trigger = function() {
         throw error;
       };
 
@@ -195,14 +195,14 @@ describe('Asserter error()', function(){
           .is(error)
           .is(new Error('Whoops !'))
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
           test
-            .value(function(){
+            .value(function() {
               test.error(trigger).is({message: 'Whoops !'});
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
               test.error(trigger).is(new TypeError('Whoops !'));
             })
             .throws()
@@ -211,10 +211,10 @@ describe('Asserter error()', function(){
       ;
     });
 
-    it('isNot(expected)', function(){
+    it('isNot(expected)', function() {
       var error = new Error('Whoops !');
 
-      var trigger = function(){
+      var trigger = function() {
         throw error;
       };
 
@@ -223,18 +223,18 @@ describe('Asserter error()', function(){
           .isNot({message: 'Whoops !'})
 
         // Test failure
-        .value(function(){
+        .value(function() {
           test.error(trigger).isNot(error);
         })
         .throws()
       ;
     });
 
-    it('isIdenticalTo(expected)', function(){
+    it('isIdenticalTo(expected)', function() {
 
       var error = new Error('Whoops !');
 
-      var trigger = function(){
+      var trigger = function() {
         throw error;
       };
 
@@ -243,18 +243,18 @@ describe('Asserter error()', function(){
           .isIdenticalTo(error)
 
         // Test failure
-        .value(function(){
+        .value(function() {
           test.error(trigger).isIdenticalTo(new Error('Whoops !'));
         })
         .throws()
       ;
     });
 
-    it('isNotIdenticalTo(expected)', function(){
+    it('isNotIdenticalTo(expected)', function() {
 
       var error = new Error('Whoops !');
 
-      var trigger = function(){
+      var trigger = function() {
         throw error;
       };
 
@@ -263,18 +263,18 @@ describe('Asserter error()', function(){
           .isNotIdenticalTo(new Error('Whoops !'))
 
         // Test failure
-        .value(function(){
+        .value(function() {
           test.error(trigger).isNotIdenticalTo(error);
         })
         .throws()
       ;
     });
 
-    it('isEqualTo(expected)', function(){
+    it('isEqualTo(expected)', function() {
 
       var error = new Error('Whoops !');
 
-      var trigger = function(){
+      var trigger = function() {
         throw error;
       };
 
@@ -283,18 +283,18 @@ describe('Asserter error()', function(){
           .isEqualTo(error)
 
         // Test failure
-        .value(function(){
+        .value(function() {
           test.error(trigger).isEqualTo(new Error('Whoops !'));
         })
         .throws()
       ;
     });
 
-    it('isNotEqualTo(expected)', function(){
+    it('isNotEqualTo(expected)', function() {
 
       var error = new Error('Whoops !');
 
-      var trigger = function(){
+      var trigger = function() {
         throw error;
       };
 
@@ -303,21 +303,21 @@ describe('Asserter error()', function(){
           .isNotEqualTo(new Error('Whoops !'))
 
         // Test failure
-        .value(function(){
+        .value(function() {
           test.error(trigger).isNotEqualTo(error);
         })
         .throws()
       ;
     });
 
-    it('match(expected)', function(){
+    it('match(expected)', function() {
 
       var
         // create an indicator for monitoring the example and the test
         indicator = test.createCollection(),
 
 
-        trigger = function(){
+        trigger = function() {
           indicator.set('error trigger called', true);
           throw new Error('Whoops!');
         }
@@ -338,20 +338,20 @@ describe('Asserter error()', function(){
         .bool(indicator.get('error trigger called')).isTrue()
         .bool(indicator.get('custom error validation called')).isTrue()
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .value(function(){
+            .value(function() {
               test.error(trigger).match('Hey');
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
               test.error(trigger).match(/Hey/);
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
               test.error(trigger).match(function(error){
                 return error instanceof RegExp;
               });
@@ -362,13 +362,13 @@ describe('Asserter error()', function(){
       ;
     });
 
-    it('notMatch(expected)', function(){
+    it('notMatch(expected)', function() {
 
       var
         // create an indicator for monitoring the example and the test
         indicator = test.createCollection(),
 
-        trigger = function(){
+        trigger = function() {
           indicator.set('error trigger called', true);
           throw new Error('Whoops!');
         }
@@ -389,15 +389,15 @@ describe('Asserter error()', function(){
         .bool(indicator.get('error trigger called')).isTrue()
         .bool(indicator.get('custom error validation called')).isTrue()
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .value(function(){
+            .value(function() {
               test.error(trigger).notMatch('Whoops!');
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
               test.error(trigger).notMatch(/Whoops/);
             })
             .throws()
@@ -406,14 +406,14 @@ describe('Asserter error()', function(){
       ;
     });
 
-    it('isValid(expected)', function(){
+    it('isValid(expected)', function() {
 
       var
         // create an indicator for monitoring the example and the test
         indicator = test.createCollection(),
 
 
-        trigger = function(){
+        trigger = function() {
           indicator.set('error trigger called', true);
           throw new Error('Whoops!');
         }
@@ -434,20 +434,20 @@ describe('Asserter error()', function(){
         .bool(indicator.get('error trigger called')).isTrue()
         .bool(indicator.get('custom error validation called')).isTrue()
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .value(function(){
+            .value(function() {
               test.error(trigger).isValid('Hey');
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
               test.error(trigger).isValid(/Hey/);
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
               test.error(trigger).isValid(function(error){
                 return error instanceof RegExp;
               });
@@ -458,13 +458,13 @@ describe('Asserter error()', function(){
       ;
     });
 
-    it('isNotValid(expected)', function(){
+    it('isNotValid(expected)', function() {
 
       var
         // create an indicator for monitoring the example and the test
         indicator = test.createCollection(),
 
-        trigger = function(){
+        trigger = function() {
           indicator.set('error trigger called', true);
           throw new Error('Whoops!');
         }
@@ -485,15 +485,15 @@ describe('Asserter error()', function(){
         .bool(indicator.get('error trigger called')).isTrue()
         .bool(indicator.get('custom error validation called')).isTrue()
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .value(function(){
+            .value(function() {
               test.error(trigger).isNotValid('Whoops!');
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
               test.error(trigger).isNotValid(/Whoops/);
             })
             .throws()
@@ -506,22 +506,22 @@ describe('Asserter error()', function(){
     // Containers //
     ////////////////
 
-    it('isEnumerable(property)', function(){
+    it('isEnumerable(property)', function() {
 
       var error = new Error('Whoops !');
       error.foo = 'bar';
 
       test
-        .error(function(){
+        .error(function() {
           throw error;
         })
         .isEnumerable('foo')
 
         // Test failure
-        .value(function(){
+        .value(function() {
 
           test
-            .error(function(){
+            .error(function() {
               throw error;
             })
             .isEnumerable('message')
@@ -533,22 +533,22 @@ describe('Asserter error()', function(){
 
     });
 
-    it('isNotEnumerable(property)', function(){
+    it('isNotEnumerable(property)', function() {
 
       var error = new Error('Whoops !');
       error.foo = 'bar';
 
       test
-        .error(function(){
+        .error(function() {
           throw error;
         })
         .isNotEnumerable('message')
 
         // Test failure
-        .value(function(){
+        .value(function() {
 
           test
-            .error(function(){
+            .error(function() {
               throw error;
             })
             .isNotEnumerable('foo')
@@ -560,7 +560,7 @@ describe('Asserter error()', function(){
 
     });
 
-    it('isFrozen()', function(){
+    it('isFrozen()', function() {
 
       var
         error = new Error('Whoops !'),
@@ -570,16 +570,16 @@ describe('Asserter error()', function(){
       Object.freeze(frozenError);
 
       test
-        .error(function(){
+        .error(function() {
           throw frozenError;
         })
         .isFrozen()
 
         // Test failure
-        .value(function(){
+        .value(function() {
 
           test
-            .error(function(){
+            .error(function() {
               throw error;
             })
             .isFrozen()
@@ -591,7 +591,7 @@ describe('Asserter error()', function(){
 
     });
 
-    it('isNotFrozen()', function(){
+    it('isNotFrozen()', function() {
 
       var
         error = new Error('Whoops !'),
@@ -601,16 +601,16 @@ describe('Asserter error()', function(){
       Object.freeze(frozenError);
 
       test
-        .error(function(){
+        .error(function() {
           throw error;
         })
         .isNotFrozen()
 
         // Test failure
-        .value(function(){
+        .value(function() {
 
           test
-            .error(function(){
+            .error(function() {
               throw frozenError;
             })
             .isNotFrozen()
@@ -622,19 +622,19 @@ describe('Asserter error()', function(){
 
     });
 
-    it('isInstanceOf(expected)', function(){
+    it('isInstanceOf(expected)', function() {
 
       test
-        .error(function(){
+        .error(function() {
           throw new TypeError('Whoops !');
         })
         .isInstanceOf(TypeError)
 
         // Test failure
-        .value(function(){
+        .value(function() {
 
           test
-            .error(function(){
+            .error(function() {
               throw new Error('Bad type');
             })
             .isInstanceOf(TypeError)
@@ -646,19 +646,19 @@ describe('Asserter error()', function(){
 
     });
 
-    it('isNotInstanceOf(expected)', function(){
+    it('isNotInstanceOf(expected)', function() {
 
       test
-        .error(function(){
+        .error(function() {
           throw new Error('Whoops !');
         })
         .isNotInstanceOf(TypeError)
 
         // Test failure
-        .value(function(){
+        .value(function() {
 
           test
-            .error(function(){
+            .error(function() {
               throw new TypeError('Bad type');
             })
             .isNotInstanceOf(TypeError)
@@ -670,23 +670,23 @@ describe('Asserter error()', function(){
 
     });
 
-    it('hasProperty(property [, value])', function(){
+    it('hasProperty(property [, value])', function() {
 
       test
-        .error(function(){
+        .error(function() {
           throw new Error('Whoops !');
         })
         .hasProperty('message')
         .hasProperty('message', 'Whoops !')
         .hasProperty('constructor')
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .hasProperty('foo')
@@ -695,10 +695,10 @@ describe('Asserter error()', function(){
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .hasProperty('message', 'whoops')
@@ -712,22 +712,22 @@ describe('Asserter error()', function(){
 
     });
 
-    it('hasNotProperty(property [, value])', function(){
+    it('hasNotProperty(property [, value])', function() {
 
       test
-        .error(function(){
+        .error(function() {
           throw new Error('Whoops !');
         })
         .hasNotProperty('foo')
         .hasNotProperty('message', 'whoops')
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .hasNotProperty('message')
@@ -736,10 +736,10 @@ describe('Asserter error()', function(){
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .hasNotProperty('message', 'Whoops !')
@@ -748,10 +748,10 @@ describe('Asserter error()', function(){
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .hasNotProperty('constructor')
@@ -765,22 +765,22 @@ describe('Asserter error()', function(){
 
     });
 
-    it('hasOwnProperty(property [, value])', function(){
+    it('hasOwnProperty(property [, value])', function() {
 
       test
-        .error(function(){
+        .error(function() {
           throw new Error('Whoops !');
         })
         .hasOwnProperty('message')
         .hasOwnProperty('message', 'Whoops !')
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .hasOwnProperty('foo')
@@ -789,10 +789,10 @@ describe('Asserter error()', function(){
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .hasOwnProperty('message', 'Grrrr !')
@@ -801,10 +801,10 @@ describe('Asserter error()', function(){
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .hasOwnProperty('constructor')
@@ -818,23 +818,23 @@ describe('Asserter error()', function(){
 
     });
 
-    it('hasNotOwnProperty(property [, value])', function(){
+    it('hasNotOwnProperty(property [, value])', function() {
 
       test
-        .error(function(){
+        .error(function() {
           throw new Error('Whoops !');
         })
         .hasNotOwnProperty('foo')
         .hasNotOwnProperty('message', 'Grrrr !')
         .hasNotOwnProperty('constructor')
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .hasNotOwnProperty('message')
@@ -843,10 +843,10 @@ describe('Asserter error()', function(){
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .hasNotOwnProperty('message', 'Whoops !')
@@ -860,23 +860,23 @@ describe('Asserter error()', function(){
 
     });
 
-    it('hasKey(key [, value])', function(){
+    it('hasKey(key [, value])', function() {
 
       test
-        .error(function(){
+        .error(function() {
           throw new Error('Whoops !');
         })
         .hasKey('message')
         .hasKey('message', 'Whoops !')
         .hasKey('constructor')
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .hasKey('foo')
@@ -885,10 +885,10 @@ describe('Asserter error()', function(){
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .hasKey('message', 'whoops')
@@ -902,22 +902,22 @@ describe('Asserter error()', function(){
 
     });
 
-    it('notHasKey(key [, value])', function(){
+    it('notHasKey(key [, value])', function() {
 
       test
-        .error(function(){
+        .error(function() {
           throw new Error('Whoops !');
         })
         .notHasKey('foo')
         .notHasKey('message', 'whoops')
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .notHasKey('message')
@@ -926,10 +926,10 @@ describe('Asserter error()', function(){
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .notHasKey('message', 'Whoops !')
@@ -938,10 +938,10 @@ describe('Asserter error()', function(){
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
 
               test
-                .error(function(){
+                .error(function() {
                   throw new Error('Whoops !');
                 })
                 .notHasKey('constructor')
@@ -959,20 +959,20 @@ describe('Asserter error()', function(){
     // specific //
     ////////////////
 
-    it('hasMessage(expected)', function(){
+    it('hasMessage(expected)', function() {
 
       var
 
         // create an indicator for monitoring the example and the test
         indicator = test.createCollection(),
 
-        trigger = function(){
+        trigger = function() {
 
           indicator.set('error constructor called', true);
           throw new Error("I'm a ninja !");
         },
 
-        resetIndicator = function(){
+        resetIndicator = function() {
           // empty
           indicator.setAll({});
         },
@@ -1004,7 +1004,7 @@ describe('Asserter error()', function(){
         // because test.error(trigger) throws the trigger in the block
         // also you can use test.value().throws() (see after)
         .case(exception = test.error(trigger))
-          .error(function(){
+          .error(function() {
 
             indicator.set('ninjaa is not in error message', true);
 
@@ -1019,7 +1019,7 @@ describe('Asserter error()', function(){
         // the above example is equal to
         .then(resetIndicator())
 
-          .value(function(){
+          .value(function() {
 
             indicator.set('ninjaa is not in error message', true);
 

@@ -14,11 +14,9 @@
 
 var test = require('../../../src');
 
-describe('Asserter date()', function(){
-
-  describe('date() behavior', function(){
-
-    it('Does not contains assertions from the assertions containers', function(){
+describe('Asserter date()', function() {
+  describe('date() behavior', function() {
+    it('Does not contains assertions from the assertions containers', function() {
 
       test
         .value(test.date(new Date()).hasHeader)
@@ -35,269 +33,253 @@ describe('Asserter date()', function(){
       ;
     });
 
-    it('Assert that the tested value is an instance of `Date`', function(){
-
+    it('Assert that the tested value is an instance of `Date`', function() {
       test
         .date(new Date())
         .date(new Date('2010, 5, 20'))
 
-        .case('Test failure', function(){
-
+        .case('Test failure', function() {
           test
-            .exception(function(){
+            .exception(function() {
               test.date('2010 5 20');
             })
 
-            .exception(function(){
+            .exception(function() {
               test.date(2010);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.date(Date);
             })
           ;
         })
       ;
-
     });
-
   });
 
-  describe('Assertions of date()', function(){
-
-    it('is(expected)', function(){
-
+  describe('Assertions of date()', function() {
+    it('is(expected)', function() {
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .is(new Date('2010, 5, 20'))
 
-        .case('Test failure', function(){
-
+        .case('Test failure', function() {
           test
-            .exception(function(){
+            .exception(function() {
               test.date(date).is(/2010/);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.date(date).is(new Date('2011, 5, 20'));
             })
           ;
-
         })
       ;
-
     });
 
-    it('isNot(expected)', function(){
-
+    it('isNot(expected)', function() {
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .isNot(new Date('2012, 02, 28'))
 
-        .case('Test failure', function(){
-
+        .case('Test failure', function() {
           test
-            .exception(function(){
+            .exception(function() {
               test.date(date).isNot(new Date('2010, 5, 20'));
             })
 
-            .exception(function(){
+            .exception(function() {
               test.date(date).isNot(date);
             })
           ;
 
         })
       ;
-
     });
 
-    it('isIdenticalTo(expected)', function(){
-
+    it('isIdenticalTo(expected)', function() {
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .isIdenticalTo(date)
 
-        .exception(function(){
+        .exception(function() {
           test.date(date).isIdenticalTo(new Date('2010, 5, 20'));
         })
       ;
-
     });
 
-    it('isNotIdenticalTo(expected)', function(){
-
+    it('isNotIdenticalTo(expected)', function() {
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .isNotIdenticalTo(new Date('2010, 5, 20'))
 
-        .exception(function(){
+        .exception(function() {
           test.date(date).isNotIdenticalTo(date);
         })
       ;
-
     });
 
-    it('isEqualTo(expected)', function(){
-
+    it('isEqualTo(expected)', function() {
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .isEqualTo(date)
 
-        .exception(function(){
+        .exception(function() {
           test.date(date).isEqualTo(new Date('2010, 5, 20'));
         })
       ;
-
     });
 
-    it('isNotEqualTo(expected)', function(){
-
+    it('isNotEqualTo(expected)', function() {
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .isNotEqualTo(new Date('2010, 5, 20'))
 
-        .exception(function(){
+        .exception(function() {
           test.date(date).isNotEqualTo(date);
         })
       ;
-
     });
 
-    it('match(expected)', function(){
-
+    it('match(expected)', function() {
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .match(/\d/)
+          .match(/2010/)
 
-        .exception(function(){
+        .exception(function() {
           test.date(date).match(/^\d$/);
         })
-      ;
 
+        .exception(function() {
+          test.date(date).match(/03/);
+        })
+      ;
     });
 
-    it('notMatch(expected)', function(){
-
+    it('notMatch(expected)', function() {
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .notMatch(/^\d$/)
+          .notMatch(/03/)
 
-        .exception(function(){
+        .exception(function() {
           test.date(date).notMatch(/\d/);
         })
-      ;
 
+        .exception(function() {
+          test.date(date).notMatch(/20/);
+        })
+      ;
     });
 
-    it('isValid(expected)', function(){
-
+    it('isValid(expected)', function() {
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .isValid(/\d/)
+          .isValid(/2010/)
 
-        .exception(function(){
+        .exception(function() {
           test.date(date).isValid(/^\d$/);
         })
-      ;
 
+        .exception(function() {
+          test.date(date).isValid(/03/);
+        })
+      ;
     });
 
-    it('isNotValid(expected)', function(){
+    it('isNotValid(expected)', function() {
 
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .isNotValid(/^\d$/)
+          .isNotValid(/03/)
 
-        .exception(function(){
+        .exception(function() {
           test.date(date).isNotValid(/\d/);
         })
-      ;
 
+        .exception(function() {
+          test.date(date).isNotValid(/20/);
+        })
+      ;
     });
 
-    it('isBetween(begin, end)', function(){
-
+    it('isBetween(begin, end)', function() {
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .isBetween(new Date('1982, 02, 17'), new Date('2012, 02, 28'))
 
-        .exception(function(){
+        .exception(function() {
           test.date(date).isBetween(
             new Date('2012, 02, 28'), new Date('1982, 02, 17')
           );
         })
       ;
-
     });
 
-    it('isNotBetween(begin, end)', function(){
-
+    it('isNotBetween(begin, end)', function() {
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .isNotBetween(new Date('2011, 02, 17'), new Date('2012, 02, 28'))
 
-        .exception(function(){
+        .exception(function() {
           test.date(date).isNotBetween(
             new Date('1982, 02, 17'), new Date('2012, 02, 28')
           );
         })
       ;
-
     });
 
-    it('isBefore(expected)', function(){
-
+    it('isBefore(expected)', function() {
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .isBefore(new Date('2012, 02, 28'))
 
-        .exception(function(){
+        .exception(function() {
           test.date(date).isBefore(new Date('1982, 02, 17'));
         })
       ;
-
     });
 
-    it('isAfter(expected)', function(){
-
+    it('isAfter(expected)', function() {
       var date = new Date('2010, 5, 20');
 
       test
         .date(date)
           .isAfter(new Date('1982, 02, 17'))
 
-        .exception(function(){
+        .exception(function() {
           test.date(date).isAfter(new Date('2012, 02, 28'));
         })
       ;
-
     });
-
   });
 });

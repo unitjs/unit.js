@@ -43,10 +43,7 @@ function getTodos(listId, callback) {
 }
 
 describe('Unit.js provides sinon.js', function() {
-
   describe('Spies', function() {
-
-
     it('calls the original function', function() {
       var callback = test.spy();
       var proxy = once(callback);

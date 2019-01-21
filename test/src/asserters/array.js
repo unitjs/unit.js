@@ -14,11 +14,11 @@
 
 var test = require('../../../src');
 
-describe('Asserter array()', function(){
+describe('Asserter array()', function() {
 
-  describe('array() behavior', function(){
+  describe('array() behavior', function() {
 
-    it('Does not contains assertions from the assertions containers', function(){
+    it('Does not contains assertions from the assertions containers', function() {
         test
           .value(test.array([]).hasHeader)
             .isUndefined()
@@ -34,7 +34,7 @@ describe('Asserter array()', function(){
         ;
     });
 
-    it('Assert that the tested value is an `array`', function(){
+    it('Assert that the tested value is an `array`', function() {
 
         var Foo = function Foo(){};
 
@@ -43,43 +43,43 @@ describe('Asserter array()', function(){
           .array(['a', 'b', 'c'])
           .array(new Array())
 
-          .case('Test failure', function(){
+          .case('Test failure', function() {
 
             test
-              .exception(function(){
+              .exception(function() {
                 test.array({});
               })
 
-              .exception(function(){
+              .exception(function() {
                 test.array('Foo');
               })
 
-              .exception(function(){
+              .exception(function() {
                 test.array(Foo);
               })
 
-              .exception(function(){
+              .exception(function() {
                 test.array(1);
               })
 
-              .exception(function(){
+              .exception(function() {
                 test.array(undefined);
               })
 
-              .exception(function(){
+              .exception(function() {
                 test.array(true);
               })
 
-              .exception(function(){
+              .exception(function() {
                 test.array(false);
               })
 
-              .exception(function(){
+              .exception(function() {
                 test.array(null);
               })
 
-              .exception(function(){
-                test.array(function(){});
+              .exception(function() {
+                test.array(function() {});
               })
             ;
           })
@@ -88,33 +88,33 @@ describe('Asserter array()', function(){
 
   });
 
-  describe('Assertions of array()', function(){
+  describe('Assertions of array()', function() {
 
-    it('is(expected)', function(){
+    it('is(expected)', function() {
 
       test
         .array(['foo', [0, 1]])
           .is(['foo', [0, 1]])
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
               test.array(['foo', [0, 1]])
                 .is(['foo', [0, '1']]);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.array(['foo', [0, 1]])
                 .is(['foo', [0, 1, 2]]);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.array(['foo', [0, 1]])
                 .is(['foo', [0]]);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.array(['foo', [0, 1]])
                 .is(['foobar', [0, 1]]);
             })
@@ -124,13 +124,13 @@ describe('Asserter array()', function(){
 
     });
 
-    it('isNot(expected)', function(){
+    it('isNot(expected)', function() {
 
       test
         .array(['foo', [0, 1]])
           .isNot(['foo', [0, '1']])
 
-        .exception(function(){
+        .exception(function() {
           test.array(['foo', [0, 1]])
             .isNot(['foo', [0, 1]]);
         })
@@ -138,7 +138,7 @@ describe('Asserter array()', function(){
 
     });
 
-    it('isIdenticalTo(expected)', function(){
+    it('isIdenticalTo(expected)', function() {
 
       var
         arr = [1],
@@ -149,7 +149,7 @@ describe('Asserter array()', function(){
         .array(arr)
           .isIdenticalTo(arr2)
 
-        .exception(function(){
+        .exception(function() {
           test.array(arr)
             .isIdenticalTo([1]);
         })
@@ -157,7 +157,7 @@ describe('Asserter array()', function(){
 
     });
 
-    it('isNotIdenticalTo(expected)', function(){
+    it('isNotIdenticalTo(expected)', function() {
 
       var
         arr = [1],
@@ -168,7 +168,7 @@ describe('Asserter array()', function(){
         .array(arr)
           .isNotIdenticalTo([1])
 
-        .exception(function(){
+        .exception(function() {
           test.array(arr)
             .isNotIdenticalTo(arr2);
         })
@@ -187,7 +187,7 @@ describe('Asserter array()', function(){
         .array(arr)
           .isEqualTo(arr2)
 
-        .exception(function(){
+        .exception(function() {
           test.array(arr)
             .isEqualTo([1]);
         })
@@ -206,7 +206,7 @@ describe('Asserter array()', function(){
         .array(arr)
           .isNotEqualTo([1])
 
-        .exception(function(){
+        .exception(function() {
           test.array(arr)
             .isNotEqualTo(arr2);
         })
@@ -258,7 +258,7 @@ describe('Asserter array()', function(){
 
     });
 
-    it('isValid(expected)', function(){
+    it('isValid(expected)', function() {
 
       test
         .array(['a', 'b', 'c'])
@@ -280,7 +280,7 @@ describe('Asserter array()', function(){
 
     });
 
-    it('isNotValid(expected)', function(){
+    it('isNotValid(expected)', function() {
 
       test
         .array(['a', 'b', 'c'])
@@ -302,7 +302,7 @@ describe('Asserter array()', function(){
 
     });
 
-    it('matchEach(expected)', function(){
+    it('matchEach(expected)', function() {
 
       test
         .array([10, 11, 12])
@@ -322,7 +322,7 @@ describe('Asserter array()', function(){
 
     });
 
-    it('notMatchEach(expected)', function(){
+    it('notMatchEach(expected)', function() {
 
       test
         .array([10, 11, 12])
@@ -342,18 +342,18 @@ describe('Asserter array()', function(){
 
     });
 
-    it('isEmpty()', function(){
+    it('isEmpty()', function() {
 
       test
         .array([])
           .isEmpty()
 
-        .exception(function(){
+        .exception(function() {
           test.array([0])
             .isEmpty();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.array([''])
             .isEmpty();
         })
@@ -361,13 +361,13 @@ describe('Asserter array()', function(){
 
     });
 
-    it('isNotEmpty()', function(){
+    it('isNotEmpty()', function() {
 
       test
         .array(['a'])
           .isNotEmpty()
 
-        .exception(function(){
+        .exception(function() {
           test.array([])
             .isNotEmpty();
         })
@@ -375,31 +375,31 @@ describe('Asserter array()', function(){
 
     });
 
-    it('hasLength(expected)', function(){
+    it('hasLength(expected)', function() {
       test
         .array([1, 2])
           .hasLength(2)
 
-        .exception(function(){
+        .exception(function() {
           test.array([1, 2])
             .hasLength(1);
         })
       ;
     });
 
-    it('hasNotLength(expected)', function(){
+    it('hasNotLength(expected)', function() {
       test
         .array([1, 2])
           .hasNotLength(1)
 
-        .exception(function(){
+        .exception(function() {
           test.array([1, 2])
             .hasNotLength(2);
         })
       ;
     });
 
-    it('isEnumerable(property)', function(){
+    it('isEnumerable(property)', function() {
       var arr = ['is enumerable'];
 
       test
@@ -409,14 +409,14 @@ describe('Asserter array()', function(){
         .array(arr)
           .isNotEnumerable('length')
 
-        .exception(function(){
+        .exception(function() {
           test.array(arr)
             .isEnumerable('length');
         })
       ;
     });
 
-    it('isNotEnumerable(property)', function(){
+    it('isNotEnumerable(property)', function() {
       var arr = ['is enumerable'];
 
       test
@@ -426,134 +426,134 @@ describe('Asserter array()', function(){
         .array(arr)
           .isEnumerable(0)
 
-        .exception(function(){
+        .exception(function() {
           test.array(arr)
             .isNotEnumerable(0);
         })
       ;
     });
 
-    it('hasProperty(property [, value])', function(){
+    it('hasProperty(property [, value])', function() {
       test
         .array(['a', 'b'])
           .hasProperty(1)
           .hasProperty(0, 'a')
 
-        .exception(function(){
+        .exception(function() {
           test.array(['a', 'b'])
             .hasProperty(3);
         })
 
-        .exception(function(){
+        .exception(function() {
           test.array(['a', 'b'])
             .hasProperty(0, 'b');
         })
       ;
     });
 
-    it('hasNotProperty(property [, value])', function(){
+    it('hasNotProperty(property [, value])', function() {
       test
         .array(['a', 'b'])
           .hasNotProperty(2)
           .hasNotProperty(0, 'b')
 
-        .exception(function(){
+        .exception(function() {
           test.array(['a', 'b'])
             .hasNotProperty(0);
         })
 
-        .exception(function(){
+        .exception(function() {
           test.array(['a', 'b'])
             .hasNotProperty(1, 'b');
         })
       ;
     });
 
-    it('hasKey(key [, value])', function(){
+    it('hasKey(key [, value])', function() {
       test
         .array(['a', 'b'])
           .hasKey(1)
           .hasKey(0, 'a')
 
-        .exception(function(){
+        .exception(function() {
           test.array(['a', 'b'])
             .hasKey(3);
         })
 
-        .exception(function(){
+        .exception(function() {
           test.array(['a', 'b'])
             .hasKey(0, 'b');
         })
       ;
     });
 
-    it('notHasKey(key [, value])', function(){
+    it('notHasKey(key [, value])', function() {
       test
         .array(['a', 'b'])
           .notHasKey(2)
           .notHasKey(0, 'b')
 
-        .exception(function(){
+        .exception(function() {
           test.array(['a', 'b'])
             .notHasKey(0);
         })
 
-        .exception(function(){
+        .exception(function() {
           test.array(['a', 'b'])
             .notHasKey(1, 'b');
         })
       ;
     });
 
-    it('hasValue(expected)', function(){
+    it('hasValue(expected)', function() {
       test
         .array([1, 42, 3])
           .hasValue(42)
 
-        .exception(function(){
+        .exception(function() {
           test.array([1, 42, 3])
             .hasValue(0);
         })
       ;
     });
 
-    it('notHasValue(expected)', function(){
+    it('notHasValue(expected)', function() {
       test
         .array([1, 42, 3])
           .notHasValue(4)
 
-        .exception(function(){
+        .exception(function() {
           test.array([1, 42, 3])
             .notHasValue(42);
         })
       ;
     });
 
-    it('hasValues(expected)', function(){
+    it('hasValues(expected)', function() {
       test
         .array([1, 42, 3])
           .hasValues([42, 3])
 
-        .exception(function(){
+        .exception(function() {
           test.array([1, 42, 3])
             .hasValues([42, 3, 10]);
         })
       ;
     });
 
-    it('notHasValues(expected)', function(){
+    it('notHasValues(expected)', function() {
       test
         .array([1, 42, 3])
           .notHasValues([4, 2])
 
-        .exception(function(){
+        .exception(function() {
           test.array([1, 42, 3])
             .notHasValues([4, 1]);
         })
       ;
     });
 
-    it('contains(expected [, ...])', function(){
+    it('contains(expected [, ...])', function() {
       test
         .array([1,2,3])
           .contains([3])
@@ -576,14 +576,14 @@ describe('Asserter array()', function(){
         .array([{a: 'a'}, {b: 'b', c: 'c'}])
           .contains([{a: 'a'}], [{b: 'b'}])
 
-        .exception(function(){
+        .exception(function() {
           test.array([1,2,3])
             .contains([0]);
         })
       ;
     });
 
-    it('notContains(expected [, ...])', function(){
+    it('notContains(expected [, ...])', function() {
       test
         .array([[1],[2],[3, 4]])
           .notContains([[0]])
@@ -591,14 +591,14 @@ describe('Asserter array()', function(){
         .array([{a: 'a'}, {b: 'b', c: 'c'}])
           .notContains([{a: 'b'}], [{c: 'b'}])
 
-        .exception(function(){
+        .exception(function() {
           test.array([{a: 'a'}, {b: 'b', c: 'c'}])
           .notContains([{a: 'a'}], [{b: 'b'}]);
         })
       ;
     });
 
-    it('isReverseOf(expected)', function(){
+    it('isReverseOf(expected)', function() {
 
       test
         .array([1, 2, 3])
@@ -616,7 +616,7 @@ describe('Asserter array()', function(){
       ;
     });
 
-    it('isNotReverseOf(expected)', function(){
+    it('isNotReverseOf(expected)', function() {
 
       test
         .array([1, 2, 2, 3])

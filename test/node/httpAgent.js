@@ -72,7 +72,7 @@ describe('supertest library to as httpAgent', function() {
 
     var testServer;
 
-    test.given('Create a server asserter', function(){
+    test.given('Create a server asserter', function() {
 
       testServer = function(name){
 
@@ -99,15 +99,15 @@ describe('supertest library to as httpAgent', function() {
       };
     })
 
-    .then('Test the server: "/"', function(){
+    .then('Test the server: "/"', function() {
       testServer('home');
     })
 
-    .then('Test the server: "/some"', function(){
+    .then('Test the server: "/some"', function() {
       testServer('some');
     })
 
-    .then('Exit test case', function(){
+    .then('Exit test case', function() {
       done();
     })
     ;

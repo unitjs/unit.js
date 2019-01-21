@@ -14,11 +14,11 @@
 
 var test = require('../../../src');
 
-describe('Asserter string()', function(){
+describe('Asserter string()', function() {
 
-  describe('string() behavior', function(){
+  describe('string() behavior', function() {
 
-    it('Does not contains assertions from the assertions containers', function(){
+    it('Does not contains assertions from the assertions containers', function() {
 
       test
         .value(test.string('').hasHeader)
@@ -36,48 +36,48 @@ describe('Asserter string()', function(){
 
     });
 
-    it('Assert that the tested value is a `string`', function(){
+    it('Assert that the tested value is a `string`', function() {
 
       test
         .string('')
         .string('Hello')
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
               test.string();
             })
 
-            .exception(function(){
+            .exception(function() {
               test.string({});
             })
 
-            .exception(function(){
+            .exception(function() {
               test.string([]);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.string(1);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.string(/foobar/);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.string(true);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.string(false);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.string(null);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.string(undefined);
             })
           ;
@@ -86,9 +86,9 @@ describe('Asserter string()', function(){
     });
   });
 
-  describe('Assertions of string()', function(){
+  describe('Assertions of string()', function() {
 
-    it('is(expected)', function(){
+    it('is(expected)', function() {
 
       var str = 'Hello world !';
 
@@ -96,14 +96,14 @@ describe('Asserter string()', function(){
         .string(str)
           .is('Hello world !')
 
-        .exception(function(){
+        .exception(function() {
           test.string(str).is('foo');
         })
       ;
 
     });
 
-    it('isNot(expected)', function(){
+    it('isNot(expected)', function() {
 
       var str = 'Hello world !';
 
@@ -111,14 +111,14 @@ describe('Asserter string()', function(){
         .string(str)
           .isNot('hello world !')
 
-        .exception(function(){
+        .exception(function() {
           test.string(str).isNot('Hello world !');
         })
       ;
 
     });
 
-    it('isIdenticalTo(expected)', function(){
+    it('isIdenticalTo(expected)', function() {
 
       var str = 'Hello world !';
 
@@ -126,14 +126,14 @@ describe('Asserter string()', function(){
         .string(str)
           .isIdenticalTo('Hello world !')
 
-        .exception(function(){
+        .exception(function() {
           test.string(str).isIdenticalTo('Hello World !');
         })
       ;
 
     });
 
-    it('isNotIdenticalTo(expected)', function(){
+    it('isNotIdenticalTo(expected)', function() {
 
       var str = 'Hello world !';
 
@@ -141,14 +141,14 @@ describe('Asserter string()', function(){
         .string(str)
           .isNotIdenticalTo('hello world !')
 
-        .exception(function(){
+        .exception(function() {
           test.string(str).isNotIdenticalTo('Hello world !');
         })
       ;
 
     });
 
-    it('isEqualTo(expected)', function(){
+    it('isEqualTo(expected)', function() {
 
       var str = 'Hello world !';
 
@@ -156,14 +156,14 @@ describe('Asserter string()', function(){
         .string(str)
           .isEqualTo('Hello world !')
 
-        .exception(function(){
+        .exception(function() {
           test.string(str).isEqualTo('Hello World !');
         })
       ;
 
     });
 
-    it('isNotEqualTo(expected)', function(){
+    it('isNotEqualTo(expected)', function() {
 
       var str = 'Hello world !';
 
@@ -171,14 +171,14 @@ describe('Asserter string()', function(){
         .string(str)
           .isNotEqualTo('hello world !')
 
-        .exception(function(){
+        .exception(function() {
           test.string(str).isNotEqualTo('Hello world !');
         })
       ;
 
     });
 
-    it('match(expected)', function(){
+    it('match(expected)', function() {
 
       // Assert a string value with a expected string
       test.string('Hello').match('Hello');
@@ -191,13 +191,13 @@ describe('Asserter string()', function(){
         return it === 'hello';
       });
 
-      test.exception(function(){
+      test.exception(function() {
         test.string('hello').match(/foo/);
       });
 
     });
 
-    it('notMatch(expected)', function(){
+    it('notMatch(expected)', function() {
 
       test
         .string('foobar')
@@ -209,14 +209,14 @@ describe('Asserter string()', function(){
             return it === 'bar';
           })
 
-        .exception(function(){
+        .exception(function() {
           test.string('Hello Nico!').notMatch(/nico/i);
         })
       ;
 
     });
 
-    it('isValid(expected)', function(){
+    it('isValid(expected)', function() {
 
       // Assert a string value with a expected string
       test.string('Hello').isValid('Hello');
@@ -229,13 +229,13 @@ describe('Asserter string()', function(){
         return it === 'hello';
       });
 
-      test.exception(function(){
+      test.exception(function() {
         test.string('hello').isValid(/foo/);
       });
 
     });
 
-    it('isNotValid(expected)', function(){
+    it('isNotValid(expected)', function() {
 
       test
         .string('foobar')
@@ -247,14 +247,14 @@ describe('Asserter string()', function(){
             return it === 'bar';
           })
 
-        .exception(function(){
+        .exception(function() {
           test.string('Hello Nico!').notMatch(/nico/i);
         })
       ;
 
     });
 
-    it('matchEach(expected)', function(){
+    it('matchEach(expected)', function() {
 
       var str = 'Hello Nico!';
 
@@ -264,16 +264,16 @@ describe('Asserter string()', function(){
             return it === 'Hello Nico!';
           }])
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
               test.string(str).matchEach([/hello/i, 'nico', function(it){
                 return it === 'Hello Nico!';
               }]);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.string(str).matchEach([/hello/i, 'Nico', function(it){
                 return it === 'Hello nico!';
               }]);
@@ -283,7 +283,7 @@ describe('Asserter string()', function(){
       ;
     });
 
-    it('notMatchEach(expected)', function(){
+    it('notMatchEach(expected)', function() {
 
       var str = 'Hello Nico!';
 
@@ -293,16 +293,16 @@ describe('Asserter string()', function(){
             return it === 'Bye';
           }])
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
               test.string(str).notMatchEach([/hello/, 'Nico', function(it){
                 return it === 'Hello !';
               }]);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.string(str).notMatchEach([/hello/, 'nico', function(it){
                 return it === 'Hello Nico!';
               }]);
@@ -313,96 +313,96 @@ describe('Asserter string()', function(){
 
     });
 
-    it('isEmpty()', function(){
+    it('isEmpty()', function() {
       test
         .string('')
           .isEmpty()
 
-        .exception(function(){
+        .exception(function() {
           test.string(str).isEmpty();
         })
       ;
     });
 
-    it('isNotEmpty()', function(){
+    it('isNotEmpty()', function() {
       test
         .string('a')
           .isNotEmpty()
 
-        .exception(function(){
+        .exception(function() {
           test.string('').isNotEmpty();
         })
       ;
     });
 
-    it('hasLength(expected)', function(){
+    it('hasLength(expected)', function() {
       test
         .string('Hello Nico')
           .hasLength(10)
 
-        .exception(function(){
+        .exception(function() {
           test.string('abc').hasLength(4);
         })
       ;
     });
 
-    it('hasNotLength(expected)', function(){
+    it('hasNotLength(expected)', function() {
       test
         .string('Hello Nico')
           .hasNotLength(11)
 
-        .exception(function(){
+        .exception(function() {
           test.string('abc').hasNotLength(3);
         })
       ;
     });
 
-    it('hasValue(expected)', function(){
+    it('hasValue(expected)', function() {
       test
         .string('Hello, Nico!')
           .hasValue('Nico')
 
-        .exception(function(){
+        .exception(function() {
           test.string('Hello').hasValue('hello');
         })
       ;
     });
 
-    it('notHasValue(expected)', function(){
+    it('notHasValue(expected)', function() {
       test
         .string('Hello, Nico!')
           .notHasValue('Bye')
 
-        .exception(function(){
+        .exception(function() {
           test.string('Hello').notHasValue('Hello');
         })
       ;
     });
 
-    it('hasValues(expected)', function(){
+    it('hasValues(expected)', function() {
       test
         .string('Hello Nico!')
           .hasValues(['Hello', 'Nico'])
 
-        .exception(function(){
+        .exception(function() {
           test.string('Hello Nico!').hasValues(['Hi', 'Nico']);
         })
       ;
     });
 
-    it('notHasValues(expected)', function(){
+    it('notHasValues(expected)', function() {
       test
         .string('Sarah Connor ?')
           .notHasValues(['next', 'door'])
 
-        .exception(function(){
+        .exception(function() {
           test.string('Hello Nico!').notHasValues(['Hi', 'Nico']);
         })
 
       ;
     });
 
-    it('contains(expected [, ...])', function(){
+    it('contains(expected [, ...])', function() {
       test
         .string('hello boy')
           .contains('boy')
@@ -410,62 +410,62 @@ describe('Asserter string()', function(){
         .string('KISS principle : Keep it Simple, Stupid')
           .contains('Simple', 'principle', ':')
 
-        .exception(function(){
+        .exception(function() {
           test.string('Hello').contains('hello');
         })
       ;
     });
 
-    it('notContains(expected [, ...])', function(){
+    it('notContains(expected [, ...])', function() {
       test
         .string('hello boy')
           .notContains('bye')
 
-        .exception(function(){
+        .exception(function() {
           test.string('Hello').notContains('Hello');
         })
       ;
     });
 
-    it('startsWith(str)', function(){
+    it('startsWith(str)', function() {
       test
         .string('foobar')
           .startsWith('foo')
 
-        .exception(function(){
+        .exception(function() {
           test.string('Hello the world').startsWith('world');
         })
       ;
     });
 
-    it('notStartsWith(str)', function(){
+    it('notStartsWith(str)', function() {
       test
         .string('foobar')
           .notStartsWith('bar')
 
-        .exception(function(){
+        .exception(function() {
           test.string('Hello the world').notStartsWith('Hello');
         })
       ;
     });
 
-    it('endsWith(str)', function(){
+    it('endsWith(str)', function() {
       test
         .string('foobar')
           .endsWith('bar')
 
-        .exception(function(){
+        .exception(function() {
           test.string('Hello the world').endsWith('Hello');
         })
       ;
     });
 
-    it('notEndsWith(str)', function(){
+    it('notEndsWith(str)', function() {
       test
         .string('foobar')
           .notEndsWith('foo')
 
-        .exception(function(){
+        .exception(function() {
           test.string('Hello the world').notEndsWith('world');
         })
       ;

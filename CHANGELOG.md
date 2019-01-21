@@ -1,5 +1,14 @@
 # Changelog
 
+
+## 2.1.0 - 2019-01-21
+
+ * Update all dependencies
+ * Break changes:
+    The native `Number()` is an object.
+    So `test.number(val)` and `test.value(val).isNumber()` consider the reality,
+    an instance of `Number()` is an object.
+
 ## 2.0.0 - 2015-04-19
 
 ### Update Should.js _v5.*_ to _v6*_.

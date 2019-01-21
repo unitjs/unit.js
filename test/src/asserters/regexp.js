@@ -14,11 +14,11 @@
 
 var test = require('../../../src');
 
-describe('Asserter regexp()', function(){
+describe('Asserter regexp()', function() {
 
-  describe('regexp() behavior', function(){
+  describe('regexp() behavior', function() {
 
-    it('Does not contains assertions from the assertions containers', function(){
+    it('Does not contains assertions from the assertions containers', function() {
 
       test
         .value(test.regexp(new RegExp()).hasHeader)
@@ -32,68 +32,68 @@ describe('Asserter regexp()', function(){
       ;
     });
 
-    it('Assert that the tested value is an instance of `RegExp`', function(){
+    it('Assert that the tested value is an instance of `RegExp`', function() {
 
       test
         .regexp(/foobar/)
         .regexp(new RegExp('foo', 'i'))
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
               test.regexp({});
             })
 
-            .exception(function(){
+            .exception(function() {
               test.regexp([]);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.regexp('');
             })
 
-            .exception(function(){
+            .exception(function() {
               test.regexp();
             })
 
-            .exception(function(){
+            .exception(function() {
               test.regexp(undefined);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.regexp(null);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.regexp(true);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.regexp(false);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.regexp(0);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.regexp(1);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.regexp('[a-z]');
             })
 
-            .exception(function(){
+            .exception(function() {
               test.regexp('/foobar/');
             })
 
-            .exception(function(){
+            .exception(function() {
               test.regexp(RegExp);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.regexp(new Date());
             })
           ;
@@ -105,9 +105,9 @@ describe('Asserter regexp()', function(){
 
   });
 
-  describe('Assertions of regexp()', function(){
+  describe('Assertions of regexp()', function() {
 
-    it('is(expected)', function(){
+    it('is(expected)', function() {
 
       var regexp = new RegExp(/[a-z]/);
 
@@ -115,14 +115,14 @@ describe('Asserter regexp()', function(){
         .regexp(regexp)
           .is(new RegExp(/[a-z]/))
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(regexp).is(/A-Z/);
         })
       ;
 
     });
 
-    it('isNot(expected)', function(){
+    it('isNot(expected)', function() {
 
       var regexp = new RegExp(/[a-z]/);
 
@@ -130,14 +130,14 @@ describe('Asserter regexp()', function(){
         .regexp(regexp)
           .isNot(new RegExp(/[A-Z]/))
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(regexp).isNot(/[a-z]/);
         })
       ;
 
     });
 
-    it('isIdenticalTo(expected)', function(){
+    it('isIdenticalTo(expected)', function() {
 
       var
         regexp = new RegExp(/[a-z]/),
@@ -148,14 +148,14 @@ describe('Asserter regexp()', function(){
         .regexp(regexp)
           .isIdenticalTo(ref)
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(regexp).isIdenticalTo(/[a-z]/);
         })
       ;
 
     });
 
-    it('isNotIdenticalTo(expected)', function(){
+    it('isNotIdenticalTo(expected)', function() {
 
       var regexp = new RegExp(/[a-z]/);
 
@@ -163,14 +163,14 @@ describe('Asserter regexp()', function(){
         .regexp(regexp)
           .isNotIdenticalTo(new RegExp(/[a-z]/))
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(regexp).isNotIdenticalTo(regexp);
         })
       ;
 
     });
 
-    it('isEqualTo(expected)', function(){
+    it('isEqualTo(expected)', function() {
 
       var
         regexp = new RegExp(/[a-z]/),
@@ -181,14 +181,14 @@ describe('Asserter regexp()', function(){
         .regexp(regexp)
           .isEqualTo(ref)
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(regexp).isEqualTo(/[a-z]/);
         })
       ;
 
     });
 
-    it('isNotEqualTo(expected)', function(){
+    it('isNotEqualTo(expected)', function() {
 
       var regexp = new RegExp(/[a-z]/);
 
@@ -196,14 +196,14 @@ describe('Asserter regexp()', function(){
         .regexp(regexp)
           .isNotEqualTo(new RegExp(/[a-z]/))
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(regexp).isNotEqualTo(regexp);
         })
       ;
 
     });
 
-    it('match(expected)', function(){
+    it('match(expected)', function() {
 
       var
         regexp = new RegExp(/[a-z]/),
@@ -216,7 +216,7 @@ describe('Asserter regexp()', function(){
             return reg === ref;
           })
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(regexp).match(function(actual){
             return actual.source == '[A-Z]';
           });
@@ -225,7 +225,7 @@ describe('Asserter regexp()', function(){
 
     });
 
-    it('notMatch(expected)', function(){
+    it('notMatch(expected)', function() {
 
       var
         regexp = new RegExp(/[a-z]/),
@@ -239,7 +239,7 @@ describe('Asserter regexp()', function(){
             return reg === ref || reg === actual;
           })
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(regexp).notMatch(function(actual){
             return actual.source == '[a-z]';
           });
@@ -248,7 +248,7 @@ describe('Asserter regexp()', function(){
 
     });
 
-    it('isValid(expected)', function(){
+    it('isValid(expected)', function() {
 
       var
         regexp = new RegExp(/[a-z]/),
@@ -261,7 +261,7 @@ describe('Asserter regexp()', function(){
             return reg === ref;
           })
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(regexp).isValid(function(actual){
             return actual.source == '[A-Z]';
           });
@@ -270,7 +270,7 @@ describe('Asserter regexp()', function(){
 
     });
 
-    it('isNotValid(expected)', function(){
+    it('isNotValid(expected)', function() {
 
       var
         regexp = new RegExp(/[a-z]/),
@@ -284,7 +284,7 @@ describe('Asserter regexp()', function(){
             return reg === ref || reg === actual;
           })
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(regexp).isNotValid(function(actual){
             return actual.source == '[a-z]';
           });
@@ -293,7 +293,7 @@ describe('Asserter regexp()', function(){
 
     });
 
-    it('isEnumerable(property)', function(){
+    it('isEnumerable(property)', function() {
 
       var regexp = new RegExp(/[a-z]/);
 
@@ -306,14 +306,14 @@ describe('Asserter regexp()', function(){
         .regexp(regexp)
           .isEnumerable('myCustom')
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(regexp).isEnumerable('ignoreCase');
         })
       ;
 
     });
 
-    it('isNotEnumerable(property)', function(){
+    it('isNotEnumerable(property)', function() {
 
       var regexp = new RegExp(/[a-z]/);
 
@@ -328,14 +328,14 @@ describe('Asserter regexp()', function(){
           .isNotEnumerable('ignoreCase')
           .isNotEnumerable('multiline')
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(regexp).isNotEnumerable('myCustom');
         })
       ;
 
     });
 
-    it('isFrozen', function(){
+    it('isFrozen', function() {
 
       var regexp = new RegExp(/[a-z]/);
       Object.freeze(regexp);
@@ -344,14 +344,14 @@ describe('Asserter regexp()', function(){
         .regexp(regexp)
           .isFrozen()
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(/[a-z]/).isFrozen();
         })
       ;
 
     });
 
-    it('isNotFrozen', function(){
+    it('isNotFrozen', function() {
 
       var
         regexp = new RegExp(/[a-z]/),
@@ -364,78 +364,78 @@ describe('Asserter regexp()', function(){
         .regexp(regexp)
           .isNotFrozen()
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(regexpFrozen).isNotFrozen();
         })
       ;
 
     });
 
-    it('hasProperty(property [, value])', function(){
+    it('hasProperty(property [, value])', function() {
 
       test
         .regexp(/[a-z]/)
           .hasProperty('lastIndex')
           .hasProperty('constructor')
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(/[a-z]/).hasProperty('foo');
         })
       ;
 
     });
 
-    it('hasNotProperty(property [, value])', function(){
+    it('hasNotProperty(property [, value])', function() {
       test
         .regexp(/[a-z]/)
           .hasNotProperty('foobar')
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(/[a-z]/).hasNotProperty('lastIndex');
         })
       ;
     });
 
-    it('hasOwnProperty(property [, value])', function(){
+    it('hasOwnProperty(property [, value])', function() {
       test
         .regexp(/[a-z]/)
           .hasOwnProperty('lastIndex')
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(/[a-z]/).hasOwnProperty('constructor');
         })
       ;
     });
 
-    it('hasNotOwnProperty(property [, value])', function(){
+    it('hasNotOwnProperty(property [, value])', function() {
       test
         .regexp(/[a-z]/)
           .hasNotOwnProperty('constructor')
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(/[a-z]/).hasNotOwnProperty('lastIndex');
         })
       ;
     });
 
-    it('hasKey(key [,value ])', function(){
+    it('hasKey(key [,value ])', function() {
       test
         .regexp(/[a-z]/)
           .hasKey('lastIndex')
           .hasKey('constructor')
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(/[a-z]/).hasKey('foo');
         })
       ;
     });
 
-    it('notHasKey(key [,value])', function(){
+    it('notHasKey(key [,value])', function() {
       test
         .regexp(/[a-z]/)
           .notHasKey('foobar')
 
-        .exception(function(){
+        .exception(function() {
           test.regexp(/[a-z]/).notHasKey('lastIndex');
         })
       ;

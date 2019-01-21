@@ -14,11 +14,11 @@
 
 var test = require('../../../src');
 
-describe('Asserter object()', function(){
+describe('Asserter object()', function() {
 
-  describe('object() behavior', function(){
+  describe('object() behavior', function() {
 
-    it('Does not contains assertions from the assertions containers', function(){
+    it('Does not contains assertions from the assertions containers', function() {
 
       test
         .value(test.object({}).hasHeader)
@@ -36,7 +36,7 @@ describe('Asserter object()', function(){
 
     });
 
-    it('Assert that the tested value is an `object`', function(){
+    it('Assert that the tested value is an `object`', function() {
 
       var Foo = function Foo(){};
 
@@ -47,39 +47,39 @@ describe('Asserter object()', function(){
         .object(new RegExp())
         .object(new Foo())
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
               test.object('Foo');
             })
 
-            .exception(function(){
+            .exception(function() {
               test.object(Foo);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.object(1);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.object(undefined);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.object(true);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.object(false);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.object(null);
             })
 
-            .exception(function(){
-              test.object(function(){});
+            .exception(function() {
+              test.object(function() {});
             })
           ;
         })
@@ -89,35 +89,35 @@ describe('Asserter object()', function(){
 
   });
 
-  describe('Assertions of object()', function(){
+  describe('Assertions of object()', function() {
 
-    it('is(expected)', function(){
+    it('is(expected)', function() {
 
       test
         .object({fluent: 'is awesome', deep: [0, 1]})
           .is({fluent: 'is awesome', deep: [0, 1]})
 
-        .exception(function(){
+        .exception(function() {
           test.object({fluent: 'is awesome', deep: [0, 1]})
             .is({fluent: 'is awesome', deep: [0, 2]});
         })
       ;
     });
 
-    it('isNot(expected)', function(){
+    it('isNot(expected)', function() {
 
       test
         .object({fluent: 'is awesome', deep: [0, 1]})
           .isNot({fluent: 'is awesome', deep: [0, '1']})
 
-        .exception(function(){
+        .exception(function() {
           test.object({fluent: 'is awesome', deep: [0, 1]})
             .isNot({fluent: 'is awesome', deep: [0, 1]});
         })
       ;
     });
 
-    it('isIdenticalTo(expected)', function(){
+    it('isIdenticalTo(expected)', function() {
       var
         obj = {},
         obj2 = obj
@@ -127,13 +127,13 @@ describe('Asserter object()', function(){
         .object(obj)
           .isIdenticalTo(obj2)
 
-        .exception(function(){
+        .exception(function() {
           test.object(obj).isIdenticalTo({});
         })
       ;
     });
 
-    it('isNotIdenticalTo(expected)', function(){
+    it('isNotIdenticalTo(expected)', function() {
 
       var
         obj = {},
@@ -144,13 +144,13 @@ describe('Asserter object()', function(){
         .object(obj)
           .isNotIdenticalTo({})
 
-        .exception(function(){
+        .exception(function() {
           test.object(obj).isNotIdenticalTo(obj2);
         })
       ;
     });
 
-    it('isEqualTo(expected)', function(){
+    it('isEqualTo(expected)', function() {
       var
         obj = {},
         obj2 = obj
@@ -160,13 +160,13 @@ describe('Asserter object()', function(){
         .object(obj)
           .isEqualTo(obj2)
 
-        .exception(function(){
+        .exception(function() {
           test.object(obj).isEqualTo({});
         })
       ;
     });
 
-    it('isNotEqualTo(expected)', function(){
+    it('isNotEqualTo(expected)', function() {
       var
         obj = {foo: 'bar'},
         obj2 = obj
@@ -176,13 +176,13 @@ describe('Asserter object()', function(){
         .object(obj)
           .isNotEqualTo({foo: 'bar', baz: 'bar'})
 
-        .exception(function(){
+        .exception(function() {
           test.object(obj).isNotEqualTo(obj2);
         })
       ;
     });
 
-    it('match(expected)', function(){
+    it('match(expected)', function() {
 
       test
         .object({hello: 'world'})
@@ -190,7 +190,7 @@ describe('Asserter object()', function(){
             return obj.hello == 'world';
           })
 
-        .exception(function(){
+        .exception(function() {
           test.object({hello: 'world'})
             .match(function(obj){
               return obj.hello == 'foo';
@@ -199,7 +199,7 @@ describe('Asserter object()', function(){
       ;
     });
 
-    it('notMatch(expected)', function(){
+    it('notMatch(expected)', function() {
 
       test
         .object({hello: 'world'})
@@ -207,7 +207,7 @@ describe('Asserter object()', function(){
             return obj.hello == 'E.T';
           })
 
-        .exception(function(){
+        .exception(function() {
 
           test.object({hello: 'world'})
             .notMatch(function(obj){
@@ -217,7 +217,7 @@ describe('Asserter object()', function(){
       ;
     });
 
-    it('isValid(expected)', function(){
+    it('isValid(expected)', function() {
 
       test
         .object({hello: 'world'})
@@ -225,7 +225,7 @@ describe('Asserter object()', function(){
             return obj.hello == 'world';
           })
 
-        .exception(function(){
+        .exception(function() {
           test.object({hello: 'world'})
             .isValid(function(obj){
               return obj.hello == 'foo';
@@ -234,7 +234,7 @@ describe('Asserter object()', function(){
       ;
     });
 
-    it('isNotValid(expected)', function(){
+    it('isNotValid(expected)', function() {
 
       test
         .object({hello: 'world'})
@@ -242,7 +242,7 @@ describe('Asserter object()', function(){
             return obj.hello == 'E.T';
           })
 
-        .exception(function(){
+        .exception(function() {
 
           test.object({hello: 'world'})
             .isNotValid(function(obj){
@@ -252,7 +252,7 @@ describe('Asserter object()', function(){
       ;
     });
 
-    it('matchEach(expected)', function(){
+    it('matchEach(expected)', function() {
 
       test
         .object({foo: 'bar', hey: 'you', joker:1})
@@ -265,7 +265,7 @@ describe('Asserter object()', function(){
             return (typeof it == 'string');
           })
 
-        .exception(function(){
+        .exception(function() {
 
           // error if one or several does not match
           test.object({foo: 'bar', hey: 'you', joker:1})
@@ -277,7 +277,7 @@ describe('Asserter object()', function(){
       ;
     });
 
-    it('notMatchEach(expected)', function(){
+    it('notMatchEach(expected)', function() {
 
       test
         .object({foo: 'bar', hey: 'you', joker:1})
@@ -288,7 +288,7 @@ describe('Asserter object()', function(){
             }
           })
 
-        .exception(function(){
+        .exception(function() {
 
           // error if one or several does not match
           test.object({foo: 'bar', hey: 'you', joker:1})
@@ -300,7 +300,7 @@ describe('Asserter object()', function(){
             })
         })
 
-        .exception(function(){
+        .exception(function() {
 
           // error if one or several does not match
           test.object({foo: 'bar', hey: 'you', joker:1})
@@ -312,76 +312,76 @@ describe('Asserter object()', function(){
       ;
     });
 
-    it('isArray()', function(){
+    it('isArray()', function() {
       test
         .object([])
           .isArray()
 
-        .exception(function(){
+        .exception(function() {
           test.object({}).isArray();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.object(new Date()).isArray();
         })
       ;
     });
 
-    it('isRegExp()', function(){
+    it('isRegExp()', function() {
       test
         .object(/[0-9]+/)
           .isRegExp()
 
-        .exception(function(){
+        .exception(function() {
           test.object({}).isRegExp();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.object(new Date()).isRegExp();
         })
       ;
     });
 
-    it('isNotRegExp()', function(){
+    it('isNotRegExp()', function() {
       test
         .object(new Date())
           .isNotRegExp()
 
-        .exception(function(){
+        .exception(function() {
            test.object(/[0-9]+/).isNotRegExp();
         })
       ;
     });
 
-    it('isDate()', function(){
+    it('isDate()', function() {
       test
         .object(new Date())
           .isDate()
 
-        .exception(function(){
+        .exception(function() {
           test.object({}).isDate();
         })
 
-        .exception(function(){
+        .exception(function() {
            test.object(/[0-9]+/).isDate();
         })
       ;
     });
 
-    it('isNotDate()', function(){
+    it('isNotDate()', function() {
       test
         .object(/[0-9]+/)
           .isNotDate()
 
-        .exception(function(){
+        .exception(function() {
           test.object(new Date()).isNotDate();
         })
       ;
     });
 
-    it('isArguments()', function(){
+    it('isArguments()', function() {
 
-      var fn = function(){
+      var fn = function() {
 
         var args = arguments;
 
@@ -391,14 +391,14 @@ describe('Asserter object()', function(){
 
       fn(1, 2, 3);
 
-      test.exception(function(){
+      test.exception(function() {
         test.object({0: 'a'}).isArguments();
       });
     });
 
-    it('isNotArguments()', function(){
+    it('isNotArguments()', function() {
 
-      var fn = function(){
+      var fn = function() {
 
         test
           .object(arguments)
@@ -414,139 +414,139 @@ describe('Asserter object()', function(){
 
       fn(1, 2, 3);
 
-      test.exception(function(){
+      test.exception(function() {
         test.object(arguments).isNotArguments();
       });
     });
 
-    it('isEmpty()', function(){
+    it('isEmpty()', function() {
       test
         .object({})
           .isEmpty()
 
-        .exception(function(){
+        .exception(function() {
           test.object({0: 'a'}).isEmpty();
         })
       ;
     });
 
-    it('isNotEmpty()', function(){
+    it('isNotEmpty()', function() {
       test
         .object({hello: 'Nico'})
           .isNotEmpty()
 
-        .exception(function(){
+        .exception(function() {
           test.object({}).isNotEmpty();
         })
       ;
     });
 
-    it('hasLength(expected)', function(){
+    it('hasLength(expected)', function() {
 
       test
         .object({foo: 'bar', other: 'baz'})
           .hasLength(2)
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar', other: 'baz'})
             .hasLength(3);
         })
       ;
     });
 
-    it('hasNotLength(expected)', function(){
+    it('hasNotLength(expected)', function() {
 
       test
         .object({foo: 'bar', other: 'baz'})
           .hasNotLength(4)
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar', other: 'baz'})
             .hasNotLength(2);
         })
       ;
     });
 
-    it('isEnumerable(property)', function(){
+    it('isEnumerable(property)', function() {
 
       test
         .object({prop: 'foobar'})
           .isEnumerable('prop')
 
-        .exception(function(){
+        .exception(function() {
           test.object({prop: 'foobar'})
             .isEnumerable('length');
         })
       ;
     });
 
-    it('isNotEnumerable(property)', function(){
+    it('isNotEnumerable(property)', function() {
 
       test
         .object(Object.create({}, {prop: {enumerable: 0}}))
           .isNotEnumerable('prop')
 
-        .exception(function(){
+        .exception(function() {
           test.object({prop: 'foobar'})
             .isNotEnumerable('prop');
         })
       ;
     });
 
-    it('isFrozen()', function(){
+    it('isFrozen()', function() {
       test
         .object(Object.freeze({}))
           .isFrozen()
 
-        .exception(function(){
+        .exception(function() {
           test.object({})
             .isFrozen();
         })
       ;
     });
 
-    it('isNotFrozen()', function(){
+    it('isNotFrozen()', function() {
       test
         .object({})
           .isNotFrozen()
 
-        .exception(function(){
+        .exception(function() {
           test.object(Object.freeze({}))
             .isNotFrozen();
         })
       ;
     });
 
-    it('isInstanceOf(expected)', function(){
+    it('isInstanceOf(expected)', function() {
       test
         .object(new Date())
           .isInstanceOf(Date)
 
-        .exception(function(){
+        .exception(function() {
           test.object(new Date())
             .isInstanceOf(Error);
         })
       ;
     });
 
-    it('isNotInstanceOf(expected)', function(){
+    it('isNotInstanceOf(expected)', function() {
       test
         .object(new Date())
           .isNotInstanceOf(RegExp)
 
-        .exception(function(){
+        .exception(function() {
           test.object(new Date())
             .isNotInstanceOf(Object);
         })
 
-        .exception(function(){
+        .exception(function() {
           test.object(new Date())
             .isNotInstanceOf(Date);
         })
       ;
     });
 
-    it('hasProperty(property [, value])', function(){
+    it('hasProperty(property [, value])', function() {
       test
         .object({foo: 'bar'})
           .hasProperty('foo')
@@ -554,19 +554,19 @@ describe('Asserter object()', function(){
         .object({foo: 'bar'})
           .hasProperty('foo', 'bar')
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar'})
             .hasProperty('bar');
         })
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar'})
             .hasProperty('foo', 'ba');
         })
       ;
     });
 
-    it('hasNotProperty(property [, value])', function(){
+    it('hasNotProperty(property [, value])', function() {
       test
         .object({foo: 'bar'})
           .hasNotProperty('bar')
@@ -574,19 +574,19 @@ describe('Asserter object()', function(){
         .object({foo: 'bar'})
           .hasNotProperty('foo', 'baz')
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar'})
             .hasNotProperty('foo');
         })
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar'})
             .hasNotProperty('foo', 'bar');
         })
       ;
     });
 
-    it('hasOwnProperty(property [, value])', function(){
+    it('hasOwnProperty(property [, value])', function() {
       test
         .object({foo: 'bar'})
           .hasOwnProperty('foo')
@@ -594,19 +594,19 @@ describe('Asserter object()', function(){
         .object({foo: 'bar'})
           .hasOwnProperty('foo', 'bar')
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar'})
             .hasOwnProperty('bar');
         })
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar'})
             .hasOwnProperty('foo', 'ba');
         })
       ;
     });
 
-    it('hasNotOwnProperty(property [, value])', function(){
+    it('hasNotOwnProperty(property [, value])', function() {
       test
         .object({foo: 'bar'})
           .hasNotOwnProperty('bar')
@@ -614,55 +614,55 @@ describe('Asserter object()', function(){
         .object({foo: 'bar'})
           .hasNotOwnProperty('foo', 'baz')
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar'})
             .hasNotOwnProperty('foo');
         })
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar'})
             .hasNotOwnProperty('foo', 'bar');
         })
       ;
     });
 
-    it('hasProperties(properties)', function(){
+    it('hasProperties(properties)', function() {
       test
         .object({foo: 'bar', bar: 'huhu', other: 'vroom'})
           .hasProperties(['other', 'bar', 'foo'])
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar', bar: 'huhu', other: 'vroom'})
             .hasProperties(['other', 'bar']);
         })
       ;
     });
 
-    it('hasNotProperties(properties)', function(){
+    it('hasNotProperties(properties)', function() {
       test
         .object({foo: 'bar', bar: 'huhu', other: 'vroom'})
           .hasNotProperties(['other', 'foo'])
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar', bar: 'huhu', other: 'vroom'})
             .hasNotProperties(['bar', 'other', 'foo']);
         })
       ;
     });
 
-    it('hasOwnProperties(properties)', function(){
+    it('hasOwnProperties(properties)', function() {
       test
         .object({foo: 'bar', bar: 'huhu', other: 'vroom'})
           .hasOwnProperties(['other', 'bar', 'foo'])
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar', bar: 'huhu', other: 'vroom'})
             .hasOwnProperties(['other', 'bar']);
         })
       ;
     });
 
-    it('hasKey(key [, value])', function(){
+    it('hasKey(key [, value])', function() {
       test
         .object({foo: 'bar'})
           .hasKey('foo')
@@ -670,19 +670,19 @@ describe('Asserter object()', function(){
         .object({foo: 'bar'})
           .hasKey('foo', 'bar')
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar'})
             .hasKey('bar');
         })
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar'})
             .hasKey('foo', 'ba');
         })
       ;
     });
 
-    it('notHasKey(key [, value])', function(){
+    it('notHasKey(key [, value])', function() {
       test
         .object({foo: 'bar'})
           .notHasKey('bar')
@@ -690,95 +690,95 @@ describe('Asserter object()', function(){
         .object({foo: 'bar'})
           .notHasKey('foo', 'baz')
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar'})
             .notHasKey('foo');
         })
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar'})
             .notHasKey('foo', 'bar');
         })
       ;
     });
 
-    it('hasKeys(keys)', function(){
+    it('hasKeys(keys)', function() {
       test
         .object({foo: 'bar', bar: 'huhu', other: 'vroom'})
           .hasKeys(['other', 'bar', 'foo'])
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar', bar: 'huhu', other: 'vroom'})
             .hasKeys(['other', 'bar']);
         })
       ;
     });
 
-    it('notHasKeys(keys)', function(){
+    it('notHasKeys(keys)', function() {
       test
         .object({foo: 'bar', bar: 'huhu', other: 'vroom'})
           .notHasKeys(['other', 'foo'])
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: 'bar', bar: 'huhu', other: 'vroom'})
             .notHasKeys(['bar', 'other', 'foo']);
         })
       ;
     });
 
-    it('hasValue(expected)', function(){
+    it('hasValue(expected)', function() {
 
       test
         .object({life: 42, love: 69})
           .hasValue(42)
 
-        .exception(function(){
+        .exception(function() {
           test.object({life: 42, love: 69})
             .hasValue('42');
         })
       ;
     });
 
-    it('notHasValue(expected)', function(){
+    it('notHasValue(expected)', function() {
 
       test
         .object({life: 42, love: 69})
           .notHasValue(4)
 
-        .exception(function(){
+        .exception(function() {
           test.object({life: 42, love: 69})
             .notHasValue(42);
         })
       ;
     });
 
-    it('hasValues(expected)', function(){
+    it('hasValues(expected)', function() {
 
       test
         .object({life: 42, love: 69})
           .hasValues([42, 69])
 
-        .exception(function(){
+        .exception(function() {
           test.object([1, 42, 3])
             .hasValues([42, 3.01]);
         })
       ;
     });
 
-    it('notHasValues(expected)', function(){
+    it('notHasValues(expected)', function() {
 
       test
         .object({life: 42, love: 69})
           .notHasValues([43, 68])
 
-        .exception(function(){
+        .exception(function() {
           test.object([1, 42, 3])
             .notHasValues([1, 42, 3]);
         })
       ;
     });
 
-    it('contains(expected [, ...])', function(){
+    it('contains(expected [, ...])', function() {
 
       test
         .object({ a: { b: 10 }, b: { c: 10, d: 11, a: { b: 10, c: 11} }})
@@ -788,33 +788,33 @@ describe('Asserter object()', function(){
           .contains({b: {c: 'c'}})
           .contains({b: {c: 'c'}}, {a: 'a'})
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: {a: 'a'}, bar: {b: 'b', c: 'c'}})
             .contains({foo: {a: 'a'}}, {bar: {b: 'c'}});
         })
       ;
     });
 
-    it('notContains(expected [, ...])', function(){
+    it('notContains(expected [, ...])', function() {
 
       test
         .object({a: 'a'}, {b: 'b', c: 'c'})
           .notContains({c: 'b'})
 
-        .exception(function(){
+        .exception(function() {
           test.object({foo: {a: 'a'}, bar: {b: 'b', c: 'c'}})
             .notContains({foo: {a: 'a'}, bar: {c: 'c'}});
         })
       ;
     });
 
-    it('hasName(expected)', function(){
+    it('hasName(expected)', function() {
 
       test
         .object(new Date(2010, 5, 28))
           .hasName('Date')
 
-        .exception(function(){
+        .exception(function() {
           test.object(new Date(2010, 5, 28))
             .hasName('date');
         })

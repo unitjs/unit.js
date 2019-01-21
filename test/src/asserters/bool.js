@@ -14,11 +14,11 @@
 
 var test = require('../../../src');
 
-describe('Asserter bool()', function(){
+describe('Asserter bool()', function() {
 
-  describe('bool() behavior', function(){
+  describe('bool() behavior', function() {
 
-    it('Does not contains assertions from the assertions containers', function(){
+    it('Does not contains assertions from the assertions containers', function() {
 
       test
         .value(test.bool(true).hasHeader)
@@ -33,55 +33,55 @@ describe('Asserter bool()', function(){
 
     });
 
-    it('Assert that the tested value is a `boolean`', function(){
+    it('Assert that the tested value is a `boolean`', function() {
 
       test
         .bool(true)
         .bool(false)
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
               test.bool();
             })
-            .exception(function(){
+            .exception(function() {
               test.bool(0);
             })
-            .exception(function(){
+            .exception(function() {
               test.bool(1);
             })
-            .exception(function(){
+            .exception(function() {
               test.bool(undefined);
             })
-            .exception(function(){
+            .exception(function() {
               test.bool(null);
             })
-            .exception(function(){
+            .exception(function() {
               test.bool('');
             })
-            .exception(function(){
+            .exception(function() {
               test.bool('true');
             })
-            .exception(function(){
+            .exception(function() {
               test.bool('false');
             })
-            .exception(function(){
+            .exception(function() {
               test.bool('1');
             })
-            .exception(function(){
+            .exception(function() {
               test.bool('0');
             })
-            .exception(function(){
+            .exception(function() {
               test.bool([]);
             })
-            .exception(function(){
+            .exception(function() {
               test.bool({});
             })
-            .exception(function(){
+            .exception(function() {
               test.bool(new Boolean('false')).isFalse(); // object
             })
-            .exception(function(){
+            .exception(function() {
               test.bool(Boolean('false')).isFalse();
             })
           ;
@@ -91,53 +91,53 @@ describe('Asserter bool()', function(){
 
   });
 
-  describe('Assertions of bool()', function(){
+  describe('Assertions of bool()', function() {
 
-    it('isTrue()', function(){
+    it('isTrue()', function() {
 
       test
         .bool(true)
           .isTrue()
 
-        .exception(function(){
+        .exception(function() {
           test.bool(false).isTrue();
         })
       ;
 
     });
 
-    it('isNotTrue()', function(){
+    it('isNotTrue()', function() {
 
       test
         .bool(false)
           .isNotTrue()
 
-        .exception(function(){
+        .exception(function() {
           test.bool(true).isNotTrue();
         })
       ;
 
     });
 
-    it('isFalse()', function(){
+    it('isFalse()', function() {
 
       test
         .bool(false)
           .isFalse()
 
-        .exception(function(){
+        .exception(function() {
           test.bool(true).isFalse();
         })
       ;
     });
 
-    it('isNotFalse()', function(){
+    it('isNotFalse()', function() {
 
       test
         .bool(true)
           .isNotFalse()
 
-        .exception(function(){
+        .exception(function() {
           test.bool(false).isNotFalse();
         })
       ;

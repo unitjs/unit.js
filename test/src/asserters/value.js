@@ -18,11 +18,11 @@ var test = require('../../../src');
 var rawAssertions = require('../../../src/assertions');
 
 
-describe('Asserter value()', function(){
+describe('Asserter value()', function() {
 
-  describe('value() behavior', function(){
+  describe('value() behavior', function() {
 
-    it('value() has all assertions', function(){
+    it('value() has all assertions', function() {
 
       var assertions = rawAssertions.call(this, undefined);
 
@@ -31,84 +31,84 @@ describe('Asserter value()', function(){
       }
 
       // ensures the test method
-      test.exception(function(){
+      test.exception(function() {
         test.value(test.value(undefined)['foobar_not_exist']).exists();
       });
     });
 
   });
 
-  describe('Assertions of value()', function(){
+  describe('Assertions of value()', function() {
 
-    it('is(expected)', function(){
+    it('is(expected)', function() {
       test
         .value({fluent: 'is awesome', deep: [0, 1]})
           .is({fluent: 'is awesome', deep: [0, 1]})
 
-        .exception(function(){
+        .exception(function() {
           test.value({fluent: 'is awesome', deep: [0, 1]})
             .is({fluent: 'is awesome', deep: [0, 2]});
         })
       ;
     });
 
-    it('isNot(expected)', function(){
+    it('isNot(expected)', function() {
       test
         .value({fluent: 'is awesome', deep: [0, 1]})
           .isNot({fluent: 'is awesome', deep: [0, '1']})
 
-        .exception(function(){
+        .exception(function() {
           test.value({fluent: 'is awesome', deep: [0, 1]})
             .isNot({fluent: 'is awesome', deep: [0, 1]});
         })
       ;
     });
 
-    it('isIdenticalTo(expected)', function(){
+    it('isIdenticalTo(expected)', function() {
       test
         .value(1)
           .isIdenticalTo(1)
 
-        .exception(function(){
+        .exception(function() {
           test.value(1).isIdenticalTo(2);
         })
       ;
     });
 
-    it('isNotIdenticalTo(expected)', function(){
+    it('isNotIdenticalTo(expected)', function() {
       test
         .value('1')
           .isNotIdenticalTo(1)
 
-        .exception(function(){
+        .exception(function() {
           test.value(1).isNotIdenticalTo(1);
         })
       ;
     });
 
-    it('isEqualTo(expected)', function(){
+    it('isEqualTo(expected)', function() {
       test
         .value('1')
           .isEqualTo(1)
 
-        .exception(function(){
+        .exception(function() {
           test.value(1).isEqualTo(1.1);
         })
       ;
     });
 
-    it('isNotEqualTo(expected)', function(){
+    it('isNotEqualTo(expected)', function() {
       test
         .value('foobar')
           .isNotEqualTo([])
 
-        .exception(function(){
+        .exception(function() {
           test.value('foobar').isNotEqualTo('foobar');
         })
       ;
     });
 
-    it('match(expected)', function(){
+    it('match(expected)', function() {
       test
         .value('foobar')
           .match(/[fo]+bar$/)
@@ -119,13 +119,13 @@ describe('Asserter value()', function(){
         .value(10)
           .match(10)
 
-        .exception(function(){
+        .exception(function() {
           test.value('foobar').match('whoops');
         })
       ;
     });
 
-    it('notMatch(expected)', function(){
+    it('notMatch(expected)', function() {
       test
         .value('foobar')
           .notMatch(/[foo]+bazzz$/)
@@ -136,20 +136,20 @@ describe('Asserter value()', function(){
         .value(10)
           .notMatch(8)
 
-        .exception(function(){
+        .exception(function() {
           test.value('foobar').notMatch('foobar');
         })
       ;
     });
 
-    it('matchEach(expected)', function(){
+    it('matchEach(expected)', function() {
       test
         .value([10, 11, 12])
           .matchEach(function(it) {
             return it >= 10;
           })
 
-        .exception(function(){
+        .exception(function() {
 
           // error if one or several does not match
           test.value([10, 11, 12]).matchEach(function(it) {
@@ -159,14 +159,14 @@ describe('Asserter value()', function(){
       ;
     });
 
-    it('notMatchEach(expected)', function(){
+    it('notMatchEach(expected)', function() {
       test
         .value([10, 11, 12])
           .notMatchEach(function(it) {
             return it >= 13;
           })
 
-        .exception(function(){
+        .exception(function() {
 
           // error all match
           test.value([10, 11, 12]).notMatchEach(function(it) {
@@ -176,14 +176,14 @@ describe('Asserter value()', function(){
       ;
     });
 
-    it('isValid(expected)', function(){
+    it('isValid(expected)', function() {
       test
         .value(42)
           .isValid(function(actual) {
             return actual === 42;
           })
 
-        .exception(function(){
+        .exception(function() {
           test.value(42).isValid(function(actual) {
             return actual === 'expected value';
           });
@@ -191,14 +191,14 @@ describe('Asserter value()', function(){
       ;
     });
 
-    it('isNotValid(expected)', function(){
+    it('isNotValid(expected)', function() {
       test
         .value(42)
           .isNotValid(function(actual) {
             return actual === 44;
           })
 
-        .exception(function(){
+        .exception(function() {
           test.value(42).isNotValid(function(actual) {
             return actual === 42;
           });
@@ -206,7 +206,7 @@ describe('Asserter value()', function(){
       ;
     });
 
-    it('isType(expected)', function(){
+    it('isType(expected)', function() {
       test
         .value('foobar').isType('string')
 
@@ -228,13 +228,13 @@ describe('Asserter value()', function(){
 
         .value(false).isType('boolean')
 
-        .exception(function(){
+        .exception(function() {
           test.value('1').isType('number');
         })
       ;
     });
 
-    it('isNotType(expected)', function(){
+    it('isNotType(expected)', function() {
       test
         .value({}).isNotType('string')
 
@@ -254,180 +254,180 @@ describe('Asserter value()', function(){
 
         .value('false').isNotType('boolean')
 
-        .exception(function(){
+        .exception(function() {
           test.value('1').isNotType('string');
         })
       ;
     });
 
-    it('isObject()', function(){
+    it('isObject()', function() {
       test
         .value({})
           .isObject()
 
-        .exception(function(){
-          test.value(function(){}).isObject();
+        .exception(function() {
+          test.value(function() {}).isObject();
         })
       ;
     });
 
-    it('isArray()', function(){
+    it('isArray()', function() {
       test
         .value([])
           .isArray()
 
-        .exception(function(){
+        .exception(function() {
           test.value({}).isArray();
         })
       ;
     });
 
-    it('isFunction()', function(){
+    it('isFunction()', function() {
       test
-        .value(function(){})
+        .value(function() {})
           .isFunction()
 
-        .exception(function(){
+        .exception(function() {
           test.value(new Date()).isFunction();
         })
       ;
     });
 
-    it('isString()', function(){
+    it('isString()', function() {
       test
         .value('foobar')
           .isString()
 
-        .exception(function(){
+        .exception(function() {
           test.value(10.2).isString();
         })
       ;
     });
 
-    it('isNumber()', function(){
+    it('isNumber()', function() {
       test
         .value(42)
           .isNumber()
 
-        .exception(function(){
+        .exception(function() {
           test.value(true).isNumber();
         })
       ;
     });
 
-    it('isBool() - alias of isBoolean()', function(){
+    it('isBool() - alias of isBoolean()', function() {
       test
         .value(false)
           .isBool()
 
-        .exception(function(){
+        .exception(function() {
           test.value(null).isBool();
         })
       ;
     });
 
-    it('isBoolean()', function(){
+    it('isBoolean()', function() {
       test
         .value(true)
           .isBoolean()
 
-        .exception(function(){
+        .exception(function() {
           test.value(undefined).isBoolean();
         })
       ;
     });
 
-    it('isNull()', function(){
+    it('isNull()', function() {
       test
         .value(null)
           .isNull()
 
-        .exception(function(){
+        .exception(function() {
           test.value(false).isNull();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value(undefined).isNull();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value(0).isNull();
         })
       ;
     });
 
-    it('isUndefined()', function(){
+    it('isUndefined()', function() {
       test
         .value(undefined)
           .isUndefined()
 
-        .exception(function(){
+        .exception(function() {
           test.value(null).isUndefined();
         })
       ;
     });
 
-    it('isRegExp()', function(){
+    it('isRegExp()', function() {
       test
         .value(/[0-9]+/)
           .isRegExp()
 
-        .exception(function(){
+        .exception(function() {
           test.value('/[0-9]+/').isRegExp();
         })
       ;
     });
 
-    it('isNotRegExp()', function(){
+    it('isNotRegExp()', function() {
       test
         .value(new Date())
           .isNotRegExp()
 
-        .exception(function(){
+        .exception(function() {
           test.value(/foo/).isNotRegExp();
         })
       ;
     });
 
-    it('isDate()', function(){
+    it('isDate()', function() {
       test
         .value(new Date())
           .isDate()
 
-        .exception(function(){
+        .exception(function() {
           test.value({month:5, year:2012, day:12}).isDate();
         })
       ;
     });
 
-    it('isNotDate()', function(){
+    it('isNotDate()', function() {
       test
         .value(/[0-9]+/)
           .isNotDate()
 
-        .exception(function(){
+        .exception(function() {
           test.value(new Date()).isNotDate();
         })
       ;
     });
 
-    it('isArguments()', function(){
+    it('isArguments()', function() {
 
-      var fn = function(){
+      var fn = function() {
         test.value(arguments).isArguments();
       };
 
       fn(1, 2, 3);
 
-      test.exception(function(){
+      test.exception(function() {
         test.value({0: 'a'}).isArguments();
       });
 
     });
 
-    it('isNotArguments()', function(){
+    it('isNotArguments()', function() {
 
-      var fn = function(){
+      var fn = function() {
 
         test
           .value([1, 2, 3])
@@ -436,7 +436,7 @@ describe('Asserter value()', function(){
           .value({0:1, 1:2, 2:3})
             .isNotArguments()
 
-          .exception(function(){
+          .exception(function() {
             test.value(arguments).isNotArguments();
           })
         ;
@@ -445,18 +445,18 @@ describe('Asserter value()', function(){
       fn(1, 2, 3);
     });
 
-    it('isTrue()', function(){
+    it('isTrue()', function() {
       test
         .value(true)
           .isTrue()
 
-        .exception(function(){
+        .exception(function() {
           test.value(1).isTrue();
         })
       ;
     });
 
-    it('isNotTrue()', function(){
+    it('isNotTrue()', function() {
 
       test
         .value(false)
@@ -471,13 +471,13 @@ describe('Asserter value()', function(){
         .value('true')
           .isNotTrue()
 
-        .exception(function(){
+        .exception(function() {
           test.value(true).isNotTrue();
         })
       ;
     });
 
-    it('isTruthy()', function(){
+    it('isTruthy()', function() {
       test
         .value(true)
           .isTruthy()
@@ -488,35 +488,35 @@ describe('Asserter value()', function(){
         .value('ok')
           .isTruthy()
 
-        .exception(function(){
+        .exception(function() {
           test.value('').isTruthy();
         })
       ;
     });
 
-    it('isNotTruthy()', function(){
+    it('isNotTruthy()', function() {
       test
         .value(0)
           .isNotTruthy()
 
-        .exception(function(){
+        .exception(function() {
           test.value('1').isNotTruthy();
         })
       ;
     });
 
-    it('isFalse()', function(){
+    it('isFalse()', function() {
       test
         .value(false)
           .isFalse()
 
-        .exception(function(){
+        .exception(function() {
           test.value(null).isFalse();
         })
       ;
     });
 
-    it('isNotFalse()', function(){
+    it('isNotFalse()', function() {
 
       test
         .value(true)
@@ -537,13 +537,13 @@ describe('Asserter value()', function(){
         .value(undefined)
           .isNotFalse()
 
-        .exception(function(){
+        .exception(function() {
           test.value(false).isNotFalse();
         })
       ;
     });
 
-    it('isFalsy()', function(){
+    it('isFalsy()', function() {
       test
         .value(false)
           .isFalsy()
@@ -560,24 +560,24 @@ describe('Asserter value()', function(){
         .value(undefined)
           .isFalsy()
 
-        .exception(function(){
+        .exception(function() {
           test.value(1).isFalsy();
         })
       ;
     });
 
-    it('isNotFalsy()', function(){
+    it('isNotFalsy()', function() {
       test
         .value(1)
           .isNotFalsy()
 
-        .exception(function(){
+        .exception(function() {
           test.value(undefined).isNotFalsy();
         })
       ;
     });
 
-    it('isEmpty()', function(){
+    it('isEmpty()', function() {
       test
         .value('')
           .isEmpty()
@@ -588,28 +588,28 @@ describe('Asserter value()', function(){
         .value({})
           .isEmpty()
 
-        .exception(function(){
+        .exception(function() {
           test.value(1).isEmpty();
         })
       ;
     });
 
-    it('isNotEmpty()', function(){
+    it('isNotEmpty()', function() {
       test
         .value('a')
           .isNotEmpty()
 
-        .exception(function(){
+        .exception(function() {
           test.value('').isNotEmpty();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value({}).isNotEmpty();
         })
       ;
     });
 
-    it('isNaN()', function(){
+    it('isNaN()', function() {
       test
         .value(NaN)
           .isNaN()
@@ -623,45 +623,45 @@ describe('Asserter value()', function(){
         .value(parseInt('a', 10))
           .isNaN()
 
-        .exception(function(){
+        .exception(function() {
           test.value(1).isNaN();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value(new Number(1)).isNaN();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value(undefined).isNaN();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value(null).isNaN();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value(false).isNaN();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value(true).isNaN();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value(0).isNaN();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value({}).isNaN();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value([]).isNaN();
         })
       ;
     });
 
-    it('isNotNaN()', function(){
+    it('isNotNaN()', function() {
       test
         .value(1)
           .isNotNaN()
@@ -690,38 +690,38 @@ describe('Asserter value()', function(){
         .value([])
           .isNotNaN()
 
-        .exception(function(){
+        .exception(function() {
           test.value(NaN).isNotNaN();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value(new Number(NaN)).isNotNaN();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value(0/0).isNotNaN();
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value(parseInt('a', 10)).isNotNaN();
         })
       ;
     });
 
-    it('exists()', function(){
+    it('exists()', function() {
       test
         .value('foobar')
           .exists()
 
-        .exception(function(){
+        .exception(function() {
           test.value(null).exists();
         })
       ;
     });
 
-    it('isError() - alias of throws(Error)', function(){
+    it('isError() - alias of throws(Error)', function() {
 
-      var trigger = function(){
+      var trigger = function() {
         throw new Error('Whoops!');
       };
 
@@ -729,21 +729,21 @@ describe('Asserter value()', function(){
         .value(trigger)
           .isError()
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .value(function(){
+            .value(function() {
 
-              test.value(function(){
+              test.value(function() {
                 throw {name: 'error', message: 'Whoops'};
               })
               .isError();
             })
             .throws()
 
-            .value(function(){
+            .value(function() {
 
-              test.value(function(){
+              test.value(function() {
                 throw Error; // <= not instanciated
               })
               .isError();
@@ -754,9 +754,9 @@ describe('Asserter value()', function(){
       ;
     });
 
-    it('throws([constructor], [expected])', function(){
+    it('throws([constructor], [expected])', function() {
 
-      var indicator, trigger = function(){
+      var indicator, trigger = function() {
         throw new Error("I'm a ninja !");
       };
 
@@ -782,8 +782,8 @@ describe('Asserter value()', function(){
           .bool(indicator)
             .isTrue()
 
-        .exception(function(){
-          test.value(function(){
+        .exception(function() {
+          test.value(function() {
             return true;
           })
           .throws();
@@ -792,7 +792,7 @@ describe('Asserter value()', function(){
 
     });
 
-    it('hasLength(expected)', function(){
+    it('hasLength(expected)', function() {
       test
         .value([1, 2])
           .hasLength(2)
@@ -800,13 +800,13 @@ describe('Asserter value()', function(){
         .value('Hello Nico')
           .hasLength(10)
 
-        .exception(function(){
+        .exception(function() {
           test.value('Hello Nico').hasLength(2);
         })
       ;
     });
 
-    it('hasNotLength(expected)', function(){
+    it('hasNotLength(expected)', function() {
       test
         .value([1, 2])
           .hasNotLength(1)
@@ -814,13 +814,13 @@ describe('Asserter value()', function(){
         .value('Hello Nico')
           .hasNotLength(11)
 
-        .exception(function(){
+        .exception(function() {
           test.value('Hello Nico').hasNotLength(10);
         })
       ;
     });
 
-    it('isBetween(begin, end)', function(){
+    it('isBetween(begin, end)', function() {
       test
         .value(2)
           .isBetween(2, 4)
@@ -831,13 +831,13 @@ describe('Asserter value()', function(){
         .value(4)
           .isBetween(2, 4)
 
-        .exception(function(){
+        .exception(function() {
           test.value(2).isBetween(4, 2);
         })
       ;
     });
 
-    it('isNotBetween(begin, end)', function(){
+    it('isNotBetween(begin, end)', function() {
       test
         .value(1)
           .isNotBetween(2, 4)
@@ -845,88 +845,88 @@ describe('Asserter value()', function(){
         .value(5)
           .isNotBetween(2, 4)
 
-        .exception(function(){
+        .exception(function() {
           test.value(2).isNotBetween(2, 2);
         })
       ;
     });
 
-    it('isBefore(expected)', function(){
+    it('isBefore(expected)', function() {
       test
         .value(new Date(2010, 5, 20))
           .isBefore(new Date(2012, 2, 28))
 
-        .exception(function(){
+        .exception(function() {
           test.value(new Date(2012, 2, 28))
             .isBefore(new Date(1982, 2, 17));
         })
       ;
     });
 
-    it('isAfter(expected)', function(){
+    it('isAfter(expected)', function() {
       test
         .value(new Date(2012, 2, 28))
           .isAfter(new Date(2010, 5, 20))
 
-        .exception(function(){
+        .exception(function() {
           test.value(new Date(2012, 2, 28))
             .isAfter(new Date(2014, 2, 28));
         })
       ;
     });
 
-    it('isLessThan(expected)', function(){
+    it('isLessThan(expected)', function() {
       test
         .value(1)
           .isLessThan(2)
 
-        .exception(function(){
+        .exception(function() {
           test.value(1).isLessThan(0.98);
         })
       ;
     });
 
-    it('isGreaterThan(expected)', function(){
+    it('isGreaterThan(expected)', function() {
       test
         .value(2)
           .isGreaterThan(1)
 
-        .exception(function(){
+        .exception(function() {
           test.value(1).isGreaterThan(1.00000001);
         })
       ;
     });
 
-    it('isApprox(num, delta)', function(){
+    it('isApprox(num, delta)', function() {
       test
         .value(99.98)
           .isApprox(100, 0.1)
 
-        .exception(function(){
+        .exception(function() {
           test.value(99.98)
             .isApprox(100, 0.01);
         })
       ;
     });
 
-    it('isInfinite()', function(){
+    it('isInfinite()', function() {
       test
         .value(1/0)
           .isInfinite()
 
-        .exception(function(){
+        .exception(function() {
           test.value(1.333333333333333333333)
             .isInfinite();
         })
       ;
     });
 
-    it('isNotInfinite()', function(){
+    it('isNotInfinite()', function() {
       test
         .value(1.3333333333333333333333333)
           .isNotInfinite()
 
-        .exception(function(){
+        .exception(function() {
           test.value(1/0)
             .isNotInfinite();
         })
@@ -934,19 +934,19 @@ describe('Asserter value()', function(){
     });
 
 
-    it('isEnumerable(property)', function(){
+    it('isEnumerable(property)', function() {
       test
         .value({prop: 'foobar'})
           .isEnumerable('prop')
 
-        .exception(function(){
+        .exception(function() {
           test.value(function() {})
             .isEnumerable('call');
         })
       ;
     });
 
-    it('isNotEnumerable(property)', function(){
+    it('isNotEnumerable(property)', function() {
       test
         .value(function() {})
           .isNotEnumerable('call')
@@ -954,62 +954,62 @@ describe('Asserter value()', function(){
         .value(Object.create({}, {prop: {enumerable: 0}}))
           .isNotEnumerable('prop')
 
-        .exception(function(){
+        .exception(function() {
           test.value({prop: 'foobar'})
             .isNotEnumerable('prop');
         })
       ;
     });
 
-    it('isFrozen()', function(){
+    it('isFrozen()', function() {
       test
         .value(Object.freeze({}))
           .isFrozen()
 
-        .exception(function(){
+        .exception(function() {
           test.value({})
             .isFrozen();
         })
       ;
     });
 
-    it('isNotFrozen()', function(){
+    it('isNotFrozen()', function() {
       test
         .value({})
           .isNotFrozen()
 
-        .exception(function(){
+        .exception(function() {
           test.value(Object.freeze({}))
             .isNotFrozen();
         })
       ;
     });
 
-    it('isInstanceOf(expected)', function(){
+    it('isInstanceOf(expected)', function() {
       test
         .value(new Date())
           .isInstanceOf(Date)
 
-        .exception(function(){
+        .exception(function() {
           test.value(new Date())
             .isInstanceOf(Array);
         })
       ;
     });
 
-    it('isNotInstanceOf(expected)', function(){
+    it('isNotInstanceOf(expected)', function() {
       test
         .value(new Date())
           .isNotInstanceOf(RegExp)
 
-        .exception(function(){
+        .exception(function() {
           test.value(new Date())
             .isNotInstanceOf(Object);
         })
       ;
     });
 
-    it('hasProperty(property [, value])', function(){
+    it('hasProperty(property [, value])', function() {
       test
         .value({foo: 'bar'})
           .hasProperty('foo')
@@ -1017,14 +1017,14 @@ describe('Asserter value()', function(){
         .value({foo: 'bar'})
           .hasProperty('foo', 'bar')
 
-        .exception(function(){
+        .exception(function() {
           test.value({})
             .hasProperty('foo');
         })
       ;
     });
 
-    it('hasNotProperty(property [, value])', function(){
+    it('hasNotProperty(property [, value])', function() {
       test
         .value({foo: 'bar'})
           .hasNotProperty('bar')
@@ -1032,14 +1032,14 @@ describe('Asserter value()', function(){
         .value({foo: 'bar'})
           .hasNotProperty('foo', 'baz')
 
-        .exception(function(){
+        .exception(function() {
           test.value({foo: 'bar'})
             .hasNotProperty('foo');
         })
       ;
     });
 
-    it('hasOwnProperty(property [, value])', function(){
+    it('hasOwnProperty(property [, value])', function() {
       test
         .value({foo: 'bar'})
           .hasOwnProperty('foo')
@@ -1047,14 +1047,14 @@ describe('Asserter value()', function(){
         .value({foo: 'bar'})
           .hasOwnProperty('foo', 'bar')
 
-        .exception(function(){
+        .exception(function() {
           test.value(new RegExp('foo'))
             .hasOwnProperty('constructor');
         })
       ;
     });
 
-    it('hasNotOwnProperty(property [, value])', function(){
+    it('hasNotOwnProperty(property [, value])', function() {
       test
         .value({foo: 'bar'})
           .hasNotOwnProperty('bar')
@@ -1062,14 +1062,14 @@ describe('Asserter value()', function(){
         .value({foo: 'bar'})
           .hasNotOwnProperty('foo', 'baz')
 
-        .exception(function(){
+        .exception(function() {
           test.value({foo: 'bar'})
             .hasNotOwnProperty('foo');
         })
       ;
     });
 
-    it('hasProperties(properties)', function(){
+    it('hasProperties(properties)', function() {
 
       var obj = {foo: 'bar', bar: 'huhu', other: 'vroom'};
 
@@ -1077,14 +1077,14 @@ describe('Asserter value()', function(){
         .value(obj)
           .hasProperties(['other', 'bar', 'foo'])
 
-        .exception(function(){
+        .exception(function() {
           test.value(obj)
             .hasProperties(['other', 'bar']);
         })
       ;
     });
 
-    it('hasNotProperties(properties)', function(){
+    it('hasNotProperties(properties)', function() {
 
       var obj = {foo: 'bar', bar: 'huhu', other: 'vroom'};
 
@@ -1092,14 +1092,14 @@ describe('Asserter value()', function(){
         .value(obj)
           .hasNotProperties(['other', 'foo'])
 
-        .exception(function(){
+        .exception(function() {
           test.value(obj)
             .hasNotProperties(['other', 'bar', 'foo']);
         })
       ;
     });
 
-    it('hasOwnProperties(properties)', function(){
+    it('hasOwnProperties(properties)', function() {
 
       var obj = {foo: 'bar', bar: 'huhu', other: 'vroom'};
 
@@ -1107,14 +1107,14 @@ describe('Asserter value()', function(){
         .value(obj)
           .hasOwnProperties(['other', 'bar', 'foo'])
 
-        .exception(function(){
+        .exception(function() {
           test.value(obj)
             .hasOwnProperties(['other', 'bar']);
         })
       ;
     });
 
-    it('hasKey(key [, value])', function(){
+    it('hasKey(key [, value])', function() {
       test
         .value({foo: 'bar'})
           .hasKey('foo')
@@ -1122,14 +1122,14 @@ describe('Asserter value()', function(){
         .value({foo: 'bar'})
           .hasKey('foo', 'bar')
 
-        .exception(function(){
+        .exception(function() {
           test.value({})
             .hasKey('foo');
         })
       ;
     });
 
-    it('notHasKey(key [, value])', function(){
+    it('notHasKey(key [, value])', function() {
       test
         .value({foo: 'bar'})
           .notHasKey('bar')
@@ -1137,14 +1137,14 @@ describe('Asserter value()', function(){
         .value({foo: 'bar'})
           .notHasKey('foo', 'baz')
 
-        .exception(function(){
+        .exception(function() {
           test.value({foo: 'bar'})
             .notHasKey('foo');
         })
       ;
     });
 
-    it('hasKeys(keys)', function(){
+    it('hasKeys(keys)', function() {
 
       var obj = {foo: 'bar', bar: 'huhu', other: 'vroom'};
 
@@ -1152,14 +1152,14 @@ describe('Asserter value()', function(){
         .value(obj)
           .hasKeys(['other', 'bar', 'foo'])
 
-        .exception(function(){
+        .exception(function() {
           test.value(obj)
             .hasKeys(['other', 'bar']);
         })
       ;
     });
 
-    it('notHasKeys(keys)', function(){
+    it('notHasKeys(keys)', function() {
 
       var obj = {foo: 'bar', bar: 'huhu', other: 'vroom'};
 
@@ -1167,14 +1167,14 @@ describe('Asserter value()', function(){
         .value(obj)
           .notHasKeys(['other', 'foo'])
 
-        .exception(function(){
+        .exception(function() {
           test.value(obj)
             .notHasKeys(['other', 'bar', 'foo']);
         })
       ;
     });
 
-    it('hasValue(expected)', function(){
+    it('hasValue(expected)', function() {
       test
         .value('Hello, Nico!')
           .hasValue('Nico')
@@ -1185,14 +1185,14 @@ describe('Asserter value()', function(){
         .value({life: 42, love: 69})
           .hasValue(42)
 
-        .exception(function(){
+        .exception(function() {
           test.value({life: 42, love: 69})
             .hasValue(6);
         })
       ;
     });
 
-    it('notHasValue(expected)', function(){
+    it('notHasValue(expected)', function() {
       test
         .value('Hello, Nico!')
           .notHasValue('Bye')
@@ -1203,38 +1203,38 @@ describe('Asserter value()', function(){
         .value({life: 42, love: 69})
           .notHasValue(4)
 
-        .exception(function(){
+        .exception(function() {
           test.value({life: 42, love: 69})
             .notHasValue(69);
         })
       ;
     });
 
-    it('hasValues(expected)', function(){
+    it('hasValues(expected)', function() {
       test
         .value([1, 42, 3])
           .hasValues([42, 3])
 
-        .exception(function(){
+        .exception(function() {
           test.value([1, 42, 3])
             .hasValues([42, 3.01]);
         })
       ;
     });
 
-    it('notHasValues(expected)', function(){
+    it('notHasValues(expected)', function() {
       test
         .value([1, 42, 3])
           .notHasValues([4, 2])
 
-        .exception(function(){
+        .exception(function() {
           test.value([1, 42, 3])
             .notHasValues([1, 42, 3]);
         })
       ;
     });
 
-    it('contains(expected [, ...])', function(){
+    it('contains(expected [, ...])', function() {
       test
         .value('hello boy')
           .contains('boy')
@@ -1266,14 +1266,14 @@ describe('Asserter value()', function(){
         .value([{a: 'a'}, {b: 'b', c: 'c'}])
           .contains([{a: 'a'}], [{b: 'b'}])
 
-        .exception(function(){
+        .exception(function() {
           test.value([{a: 'a'}, {b: 'b', c: 'c'}])
           .contains([{a: 'a'}], [{b: 'c'}]);
         })
       ;
     });
 
-    it('notContains(expected [, ...])', function(){
+    it('notContains(expected [, ...])', function() {
       test
         .value('hello boy')
           .notContains('bye')
@@ -1284,14 +1284,14 @@ describe('Asserter value()', function(){
         .value([{a: 'a'}, {b: 'b', c: 'c'}])
           .notContains([{a: 'b'}], [{c: 'b'}])
 
-        .exception(function(){
+        .exception(function() {
           test.value([{a: 'a'}, {b: 'b', c: 'c'}])
             .notContains([{a: 'a'}, {c: 'c'}]);
         })
       ;
     });
 
-    it('isReverseOf(expected)', function(){
+    it('isReverseOf(expected)', function() {
 
       test
         .value([1, 2, 3])
@@ -1309,7 +1309,7 @@ describe('Asserter value()', function(){
       ;
     });
 
-    it('isNotReverseOf(expected)', function(){
+    it('isNotReverseOf(expected)', function() {
 
       test
         .value([1, 2, 2, 3])
@@ -1322,52 +1322,52 @@ describe('Asserter value()', function(){
       ;
     });
 
-    it('startsWith(str)', function(){
+    it('startsWith(str)', function() {
       test
         .value('foobar')
           .startsWith('foo')
 
-        .exception(function(){
+        .exception(function() {
           test.value('Hello the world').startsWith('world');
         })
       ;
     });
 
-    it('notStartsWith(str)', function(){
+    it('notStartsWith(str)', function() {
       test
         .value('foobar')
           .notStartsWith('bar')
 
-        .exception(function(){
+        .exception(function() {
           test.value('Hello the world').notStartsWith('Hello');
         })
       ;
     });
 
-    it('endsWith(str)', function(){
+    it('endsWith(str)', function() {
       test
         .value('foobar')
           .endsWith('bar')
 
-        .exception(function(){
+        .exception(function() {
           test.value('Hello the world').endsWith('Hello');
         })
       ;
     });
 
-    it('notEndsWith(str)', function(){
+    it('notEndsWith(str)', function() {
       test
         .value('foobar')
           .notEndsWith('foo')
 
-        .exception(function(){
+        .exception(function() {
           test.value('Hello the world').notEndsWith('world');
         })
       ;
     });
 
 
-    it('hasHttpStatus(code)', function(){
+    it('hasHttpStatus(code)', function() {
 
       var req = {
         headers: {
@@ -1383,13 +1383,13 @@ describe('Asserter value()', function(){
         .value(req)
           .hasProperty('statusCode', 200)
 
-        .exception(function(){
+        .exception(function() {
           test.value(req).hasHttpStatus(500);
         })
       ;
     });
 
-    it('notHasHttpStatus(code)', function(){
+    it('notHasHttpStatus(code)', function() {
 
       var req = {
         headers: {
@@ -1405,13 +1405,13 @@ describe('Asserter value()', function(){
         .value(req)
           .hasNotProperty('statusCode', 404)
 
-        .exception(function(){
+        .exception(function() {
           test.value(req).notHasHttpStatus(200);
         })
       ;
     });
 
-    it('hasHeader(field [, value])', function(){
+    it('hasHeader(field [, value])', function() {
 
       var req = {
         headers: {
@@ -1420,11 +1420,11 @@ describe('Asserter value()', function(){
       };
 
       test
-        .exception(function(){
+        .exception(function() {
           test.value(req).hasHeader('charset');
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value(req).hasHeader('content-type', 'text/html');
         })
 
@@ -1454,7 +1454,7 @@ describe('Asserter value()', function(){
       ;
     });
 
-    it('notHasHeader(field [, value])', function(){
+    it('notHasHeader(field [, value])', function() {
 
       var req = {
         headers: {
@@ -1463,11 +1463,11 @@ describe('Asserter value()', function(){
       };
 
       test
-        .exception(function(){
+        .exception(function() {
           test.value(req).notHasHeader('content-type');
         })
 
-        .exception(function(){
+        .exception(function() {
           test.value(req).notHasHeader('content-type', 'application/json');
         })
 
@@ -1488,7 +1488,7 @@ describe('Asserter value()', function(){
 
     });
 
-    it('hasHeaderJson()', function(){
+    it('hasHeaderJson()', function() {
       var req = {
         headers: {
           'content-type': 'application/json'
@@ -1520,13 +1520,13 @@ describe('Asserter value()', function(){
       test
         .then(req.headers['content-type'] = 'text/html')
 
-        .error(function(){
+        .error(function() {
           test.value(req).hasHeaderJson();
         })
       ;
     });
 
-    it('notHasHeaderJson()', function(){
+    it('notHasHeaderJson()', function() {
 
       var req = {
         headers: {
@@ -1556,13 +1556,13 @@ describe('Asserter value()', function(){
 
         .then(req.headers['content-type'] = 'application/json')
 
-        .error(function(){
+        .error(function() {
           test.value(req).notHasHeaderJson();
         })
       ;
     });
 
-    it('hasHeaderHtml()', function(){
+    it('hasHeaderHtml()', function() {
 
       var req = {
         headers: {
@@ -1589,13 +1589,13 @@ describe('Asserter value()', function(){
       test
         .then(req.headers['content-type'] = 'application/json')
 
-        .error(function(){
+        .error(function() {
           test.value(req).hasHeaderHtml();
         })
       ;
     });
 
-    it('notHasHeaderHtml()', function(){
+    it('notHasHeaderHtml()', function() {
 
       var req = {
         headers: {
@@ -1613,7 +1613,7 @@ describe('Asserter value()', function(){
 
         .then(req.headers['content-type'] = 'text/html')
 
-        .error(function(){
+        .error(function() {
           test.value(req).notHasHeaderHtml();
         })
       ;

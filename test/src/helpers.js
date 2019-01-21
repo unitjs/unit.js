@@ -213,7 +213,7 @@ describe('Passes IOC container', function() {
 
     test.wait(20, spy);
 
-    setTimeout(function(){
+    setTimeout(function() {
 
       test.assert(spy.calledOnce);
       defAt = defAt.getTime();

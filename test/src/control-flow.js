@@ -15,9 +15,8 @@
 var test = require('../../src');
 
 describe('Control flow', function() {
-
-  describe('Performs the tests without entangled with the flow of ' +
-    'other series of tests', function() {
+  describe('Performs the tests without entangled with the flow of '
+  + 'other series of tests', function() {
 
     it('Series launched with chaining', function() {
       test

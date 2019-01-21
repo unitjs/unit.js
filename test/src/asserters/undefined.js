@@ -18,11 +18,11 @@ var test = require('../../../src');
 var rawAssertions = require('../../../src/assertions');
 
 
-describe('Asserter undefined()', function(){
+describe('Asserter undefined()', function() {
 
-  describe('undefined() behavior', function(){
+  describe('undefined() behavior', function() {
 
-    it('Does not contains assertions from the assertions containers', function(){
+    it('Does not contains assertions from the assertions containers', function() {
 
       var assertions = rawAssertions.call(this, undefined);
 
@@ -37,59 +37,59 @@ describe('Asserter undefined()', function(){
       }
 
       // ensures the test method
-      test.exception(function(){
+      test.exception(function() {
         test.value(test.undefined(undefined)['hasOwnProperty']).isUndefined();
       });
 
     });
 
-    it('Assert that the tested value is `undefined`', function(){
+    it('Assert that the tested value is `undefined`', function() {
 
       test
         .undefined(undefined)
         .undefined()
 
-        .case('Test failure', function(){
+        .case('Test failure', function() {
 
           test
-            .exception(function(){
+            .exception(function() {
               test.undefined(0);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.undefined(1);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.undefined('undefined');
             })
 
-            .exception(function(){
+            .exception(function() {
               test.undefined(null);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.undefined(false);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.undefined(true);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.undefined('');
             })
 
-            .exception(function(){
+            .exception(function() {
               test.undefined([]);
             })
 
-            .exception(function(){
+            .exception(function() {
               test.undefined({});
             })
 
-            .exception(function(){
-              test.undefined(function(){});
+            .exception(function() {
+              test.undefined(function() {});
             })
           ;
 
