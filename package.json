@@ -1,6 +1,6 @@
 {
   "name": "unit.js",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Simple, intuitive and flexible unit testing framework for javascript / Node.js (browser and server). Integrates awesome assertions libraries like Must.js, Should.js, Assert of Node.js, Sinon.js and other friendly features (promise, IoC, plugins, ...).",
   "main": "src/index.js",
   "keywords": [
@@ -14,23 +14,23 @@
   ],
   "author": {
     "name": "Nicolas Tallefourtane",
-    "url": "http://nicolab.net"
+    "url": "https://nicolab.net"
   },
-  "homepage": "http://unitjs.com",
+  "homepage": "https://unitjs.com",
   "repository": {
     "type": "git",
     "url": "git://github.com/unitjs/unit.js.git"
   },
   "bugs": "https://github.com/unitjs/unit.js/issues",
   "dependencies": {
-    "bluebird": "^3.5.3",
-    "lodash": "^4.17.11",
+    "bluebird": "^3.7.1",
+    "lodash": "^4.17.15",
     "must": "^0.13.4",
     "noder.io": ">= 1.0.0 < 2.0.0",
     "should": "^13.2.3",
-    "sinon": "^7.2.3",
+    "sinon": "^7.5.0",
     "sinon-test": "^2.4.0",
-    "supertest": "^3.4.1"
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
@@ -43,6 +43,6 @@
     "webpack-stream": "^5.2.1"
   },
   "scripts": {
-    "test": "mocha test"
+    "test": "npx mocha test"
   }
 }
