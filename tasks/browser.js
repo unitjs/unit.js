@@ -77,18 +77,18 @@ function tmpClean(done){
 function buildSrc(done) {
   gulp
     .src('./src/**/*')
-   .pipe(gulp.dest('./browser/tmp/src'))
-   .on('end', function() {
+    .pipe(gulp.dest('./browser/tmp/src'))
+    .on('end', function() {
 
-     // buildToSrc > replaceMainSrc > buildAssertersSrc > buildWebPackTests
-     // > done
-     buildToSrc(function() {
-       replaceMainSrc(function() {
-         buildAssertersSrc(function() {
-           buildWebPackTests(done);
-         });
-       });
-     });
+      // buildToSrc > replaceMainSrc > buildAssertersSrc > buildWebPackTests
+      // > done
+      buildToSrc(function() {
+        replaceMainSrc(function() {
+          buildAssertersSrc(function() {
+            buildWebPackTests(done);
+          });
+        });
+      });
    });
 }
 
