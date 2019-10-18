@@ -13,7 +13,10 @@
     <div id="mocha"></div>
     <script src="mocha.js"></script>
     <script src="unit.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+      crossorigin="anonymous"></script>
     <script>
       mocha.setup('bdd');
     </script>
@@ -43,7 +46,7 @@
 
       runner.on('end', function() {
         'use strict';
-        
+
         var total = unitjs.stats.total.assertions;
         var details = '';
 
