@@ -67,13 +67,13 @@ See [quickstart](https://unitjs.com/guide/quickstart.html) in the guide.
 ### Example (proposal) of structured unit tests suite
 
 ```js
-var test = require('unit.js');
+const test = require('unit.js');
 
 describe('Learning by the example', function(){
   it('example variable', function(){
 
     // just for example of tested value
-    var example = 'hello world';
+    const example = 'hello world';
 
     test
       .string(example)
@@ -151,7 +151,7 @@ Bluebird is a fully featured promise library with focus on innovative features a
 Example:
 
 ```js
-var fs = test.promisifyAll(require('fs'));
+const fs = test.promisifyAll(require('fs'));
 
 it('async function', function(done) {
   test
@@ -211,7 +211,7 @@ For use _Unit.js_ in an existing tests suite, you can write your new tests with 
 For use _Unit.js_ in an existing file of unit tests, you just have to load it with `require('unit.js')` and use it like any assertion lib, example:
 
 ```js
-var test = require('unit.js');
+const test = require('unit.js');
 
 // your old tests with your old assertion lib
 // and your new tests with Unit.js
@@ -243,7 +243,6 @@ The mastery of Unit.js is very fast, especially if you already know one of the l
 Useful _snippets_ for code editor:
   * [Unit.js package for Atom.io editor](https://github.com/unitjs/atom-unitjs)
   * [Unit.js package for Sublime Text editor](https://github.com/unitjs/sublime-unitjs)
-
 
 ## License
 
